@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/radio_shortcut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+			<RadioButton
+			    android:id="@+id/radio_shortcut_enable"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:checked="true"
+			    android:text="@string/shortcut_on" />
+	
+	        <RadioButton
+	            android:id="@+id/radio_shortcut_disable"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/shortcut_off" />
+	        
+	         <RadioButton
+	            android:id="@+id/radio_shortcut_toggle"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/shortcut_toggle" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_shortcut_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@android:string/ok" />
+
+    </LinearLayout>
+
+</RelativeLayout>
