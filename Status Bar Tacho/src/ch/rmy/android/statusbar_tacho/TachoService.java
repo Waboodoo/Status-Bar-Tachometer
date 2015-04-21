@@ -172,7 +172,7 @@ public class TachoService extends Service implements LocationListener {
 					speedForIcon = ICONS.length - 1;
 				}
 				icon = ICONS[speedForIcon];
-				message = String.format("%.1f", speed) + " " + unitName + " (" + location.getAccuracy() + ")";
+				message = String.format("%.1f", speed) + " " + unitName;
 			}
 
 			notification = notificationBuilder.setSmallIcon(icon).setContentText(message).build();
