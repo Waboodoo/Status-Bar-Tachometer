@@ -17,8 +17,23 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 
+/**
+ * 
+ * Runs in the background when enabled and displays a notification with the current speed in the system's status bar.
+ * 
+ * @author Roland Meyer
+ * 
+ */
 public class TachoService extends Service implements LocationListener {
 
+	/**
+	 * Enables or disables the main service
+	 * 
+	 * @param context
+	 *            The context
+	 * @param state
+	 *            True to enable, false to disable
+	 */
 	public static void setRunningState(Context context, boolean state) {
 		Intent intent = new Intent(context, TachoService.class);
 		if (state) {
@@ -28,6 +43,13 @@ public class TachoService extends Service implements LocationListener {
 		}
 	}
 
+	/**
+	 * Indicates whether the service is currently running or not
+	 * 
+	 * @param context
+	 *            The context
+	 * @return The running state
+	 */
 	public static boolean isRunning(Context context) {
 		SharedPreferences settings = context.getSharedPreferences(PREF, 0);
 		return settings.getBoolean(PREF_SERVICE, false);
