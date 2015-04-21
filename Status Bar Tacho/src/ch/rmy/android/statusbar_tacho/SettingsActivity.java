@@ -23,6 +23,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+/**
+ * Main activitiy. Allows to toggle the service, select the unit and to preview the current speed.
+ * 
+ * @author Roland Meyer
+ * 
+ */
 public class SettingsActivity extends Activity implements OnCheckedChangeListener, OnItemSelectedListener, LocationListener {
 
 	private TextView speedView;

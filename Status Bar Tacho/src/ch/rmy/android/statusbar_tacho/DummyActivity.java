@@ -3,6 +3,12 @@ package ch.rmy.android.statusbar_tacho;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * Receives broadcast intents from shortcuts to enable/disable/toggle the main service
+ * 
+ * @author Roland Meyer
+ * 
+ */
 public class DummyActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {

@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+/**
+ * Handles the placement of shortcuts and the selection of its options.
+ * 
+ * @author Roland Meyer
+ * 
+ */
 public class ShortcutActivity extends Activity implements OnClickListener, OnCheckedChangeListener {
 
 	public static final String SHORTCUT_ENABLE = "ch.rmy.android.statusbar_tacho.enable";
