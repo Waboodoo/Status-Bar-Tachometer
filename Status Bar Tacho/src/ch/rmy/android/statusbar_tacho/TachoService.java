@@ -4,8 +4,10 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
@@ -93,6 +95,7 @@ public class TachoService extends Service implements LocationListener {
 	public static final float[] UNIT_CONVERSIONS = { 3.6f, 2.23694f, 1f, 3.28084f };
 
 	private LocationManager locationManager;
+	private String provider;
 
 	private NotificationManager notificationManager;
 	private Notification.Builder notificationBuilder;
@@ -116,7 +119,7 @@ public class TachoService extends Service implements LocationListener {
 
 		Criteria criteria = new Criteria();
 		criteria.setSpeedRequired(true);
-		String provider = locationManager.getBestProvider(criteria, false);
+		provider = locationManager.getBestProvider(criteria, false);
 
 		locationProviderEnabled = locationManager.isProviderEnabled(provider);
 		locationManager.requestLocationUpdates(provider, 800, 0, this);
@@ -134,6 +137,11 @@ public class TachoService extends Service implements LocationListener {
 
 		startForeground(NOTIFICATION_ID, notification);
 
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(Intent.ACTION_SCREEN_ON);
+		filter.addAction(Intent.ACTION_SCREEN_OFF);
+		registerReceiver(screenStateReceiver, filter);
+
 		Editor editor = settings.edit();
 		editor.putBoolean(PREF_SERVICE, true);
 		editor.commit();
@@ -147,6 +155,8 @@ public class TachoService extends Service implements LocationListener {
 		Editor editor = settings.edit();
 		editor.putBoolean(PREF_SERVICE, false);
 		editor.commit();
+
+		unregisterReceiver(screenStateReceiver);
 
 		locationManager.removeUpdates(this);
 	}
@@ -198,5 +208,17 @@ public class TachoService extends Service implements LocationListener {
 		locationProviderEnabled = false;
 		onLocationChanged(null);
 	}
+
+	private final BroadcastReceiver screenStateReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			final String action = intent.getAction();
+			if (Intent.ACTION_SCREEN_ON.equals(action)) {
+				locationManager.requestLocationUpdates(provider, 800, 0, TachoService.this);
+			} else {
+				locationManager.removeUpdates(TachoService.this);
+			}
+		}
+	};
 
 }
