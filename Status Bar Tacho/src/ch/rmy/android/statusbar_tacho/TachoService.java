@@ -90,6 +90,9 @@ public class TachoService extends Service implements LocationListener {
 			R.drawable.icon190, R.drawable.icon191, R.drawable.icon192, R.drawable.icon193, R.drawable.icon194, R.drawable.icon195, R.drawable.icon196, R.drawable.icon197,
 			R.drawable.icon198, R.drawable.icon199 };
 
+	private static final int[] LARGE_ICONS = { R.drawable.large_icon0, R.drawable.large_icon1, R.drawable.large_icon2, R.drawable.large_icon3, R.drawable.large_icon4,
+			R.drawable.large_icon5, R.drawable.large_icon6, R.drawable.large_icon7 };
+
 	public static final int[] UNIT_NAMES = { R.string.unit_kmh, R.string.unit_mph, R.string.unit_ms, R.string.unit_fts };
 
 	public static final float[] UNIT_CONVERSIONS = { 3.6f, 2.23694f, 1f, 3.28084f };
@@ -102,6 +105,8 @@ public class TachoService extends Service implements LocationListener {
 
 	private int unit = 0;
 	private boolean locationProviderEnabled = false;
+
+	private int previousLargeIcon;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -131,9 +136,10 @@ public class TachoService extends Service implements LocationListener {
 		notificationBuilder = new Notification.Builder(this);
 		CharSequence title = getText(R.string.current_speed);
 		CharSequence message = getText(locationProviderEnabled ? R.string.unknown : R.string.gps_disabled);
-		Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-		Notification notification = notificationBuilder.setSmallIcon(R.drawable.icon_unknown).setLargeIcon(largeIcon).setContentTitle(title).setContentText(message).setWhen(0)
-				.setContentIntent(pendingIntent).build();
+		Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), LARGE_ICONS[0]);
+		previousLargeIcon = LARGE_ICONS[0];
+		notificationBuilder.setSmallIcon(R.drawable.icon_unknown).setLargeIcon(largeIcon).setContentTitle(title).setContentText(message).setWhen(0).setContentIntent(pendingIntent);
+		Notification notification = notificationBuilder.build();
 
 		startForeground(NOTIFICATION_ID, notification);
 
@@ -164,12 +170,15 @@ public class TachoService extends Service implements LocationListener {
 	@Override
 	public void onLocationChanged(Location location) {
 		Notification notification;
-		if (locationProviderEnabled) {
-			CharSequence message;
-			int icon;
 
+		CharSequence message;
+		int icon;
+		int largeIcon;
+
+		if (locationProviderEnabled) {
 			if (location == null) {
 				icon = R.drawable.icon_unknown;
+				largeIcon = LARGE_ICONS[0];
 				message = getText(R.string.unknown);
 			} else {
 				float conversion = UNIT_CONVERSIONS[unit];
@@ -183,12 +192,24 @@ public class TachoService extends Service implements LocationListener {
 				}
 				icon = ICONS[speedForIcon];
 				message = String.format("%.1f", speed) + " " + unitName;
-			}
 
-			notification = notificationBuilder.setSmallIcon(icon).setContentText(message).build();
+				largeIcon = LARGE_ICONS[(int) Math.min(Math.floor(location.getSpeed() * 8 / 27), 7)];
+			}
 		} else {
-			notification = notificationBuilder.setSmallIcon(R.drawable.icon_unknown).setContentText(getText(R.string.gps_disabled)).build();
+			icon = R.drawable.icon_unknown;
+			largeIcon = LARGE_ICONS[0];
+
+			message = getText(R.string.gps_disabled);
 		}
+
+		notificationBuilder.setSmallIcon(icon).setContentText(message);
+		if (largeIcon != previousLargeIcon) {
+			previousLargeIcon = largeIcon;
+			Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(), largeIcon);
+			notificationBuilder.setLargeIcon(largeIconBitmap);
+		}
+		notification = notificationBuilder.build();
+
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
