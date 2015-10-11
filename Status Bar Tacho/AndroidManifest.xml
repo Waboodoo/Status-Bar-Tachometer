@@ -38,12 +38,20 @@
         <activity
             android:name=".DummyActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Transparent">
-           <intent-filter>
+            android:theme="@style/Theme.Transparent" >
+            <intent-filter>
                 <action android:name="ch.rmy.android.statusbar_tacho.enable" />
                 <action android:name="ch.rmy.android.statusbar_tacho.disable" />
                 <action android:name="ch.rmy.android.statusbar_tacho.toggle" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SettingsActivity" />
         </activity>
     </application>
 

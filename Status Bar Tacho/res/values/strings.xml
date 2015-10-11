@@ -14,5 +14,10 @@
     <string name="shortcut_off">Disable tachometer</string>
     <string name="shortcut_toggle">Toggle tachometer</string>
     <string name="gps_disabled">GPS disabled</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">About</string>
+    <string name="about_text">Status Bar Tachometer displays your current speed, based on GPS readings, as a notification in your status bar.\n\nIt features different units of measurement and the option to place shortcuts to start, stop, or toggle the notifications from the home screen.\n\nThe app is completely free and open-source. It is developed by Roland Meyer (rmy.ch).</string>
+    <string name="github">View on Github</string>
+    <string name="contact">Contact developer</string>
 
 </resources>
