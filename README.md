@@ -1,4 +1,4 @@
-# Status-Bar-Tachometer
+# Status Bar Speedometer
 A simple Android app that displays your current speed as a notification in the status bar.
 
 It is toggleable through shortcuts and supports 4 different units:
