@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Status Bar Tachometer</string>
+    <string name="app_name">Speedometer</string>
     <string name="current_speed">Current Speed</string>
     <string name="unknown">unknown</string>
     <string name="unit_kmh">km/h</string>
     <string name="unit_mph">mi/h</string>
     <string name="unit_ms">m/s</string>
     <string name="unit_fts">ft/s</string>
-    <string name="toggle_off">Tachometer disabled</string>
-    <string name="toggle_on">Tachometer enabled</string>
-    <string name="shortcut_on">Enable tachometer</string>
-    <string name="shortcut_off">Disable tachometer</string>
-    <string name="shortcut_toggle">Toggle tachometer</string>
+    <string name="toggle_off">Speedometer disabled</string>
+    <string name="toggle_on">Speedometer enabled</string>
+    <string name="shortcut_on">Enable speedometer</string>
+    <string name="shortcut_off">Disable speedometer</string>
+    <string name="shortcut_toggle">Toggle speedometer</string>
     <string name="gps_disabled">GPS disabled</string>
     <string name="github">View on Github</string>
     <string name="speed_format">%1$.1f %2$s</string>
-
+    <string name="permission_missing">Permission not granted</string>
 </resources>

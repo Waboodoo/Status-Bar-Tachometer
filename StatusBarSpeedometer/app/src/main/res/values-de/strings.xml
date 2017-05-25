@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Status Bar Tachometer</string>
+    <string name="app_name">Tachometer</string>
     <string name="current_speed">Geschwindigkeit</string>
     <string name="unknown">unbekannt</string>
     <string name="unit_kmh">km/h</string>
@@ -15,5 +14,5 @@
     <string name="shortcut_toggle">Tachometer umschalten</string>
     <string name="gps_disabled">GPS deaktiviert</string>
     <string name="github">Auf Github anzeigen</string>
-    
+    <string name="permission_missing">nicht erlaubt</string>
 </resources>

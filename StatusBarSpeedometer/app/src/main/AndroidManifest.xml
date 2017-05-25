@@ -32,6 +32,9 @@
         <activity
             android:name=".activities.DummyActivity"
             android:label="@string/app_name"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="ch.rmy.android.statusbar_tacho.enable"/>
@@ -40,7 +43,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.TachoService"/>
+        <service android:name=".services.SpeedometerService"/>
 
     </application>
 
