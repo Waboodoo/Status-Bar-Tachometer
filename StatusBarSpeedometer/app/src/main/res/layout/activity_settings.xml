@@ -6,44 +6,36 @@
 
     <include layout="@layout/toolbar_layout"/>
 
-    <android.support.v4.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-            <TextView
-                android:id="@+id/speed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:textAppearance="@style/VeryLarge"/>
-
-            <ToggleButton
-                android:id="@+id/toggleButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/speed"
-                android:layout_marginTop="26dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textOff="@string/toggle_off"
-                android:textOn="@string/toggle_on"/>
+        <ScrollView android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/toggleButton">
 
             <Spinner
                 android:id="@+id/unitSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/toggleButton"
+
                 android:layout_marginTop="10dp"/>
 
-        </RelativeLayout>
+        </ScrollView>
 
-    </android.support.v4.widget.NestedScrollView>
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:textOff="@string/toggle_off"
+            android:textOn="@string/toggle_on"/>
+
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>
