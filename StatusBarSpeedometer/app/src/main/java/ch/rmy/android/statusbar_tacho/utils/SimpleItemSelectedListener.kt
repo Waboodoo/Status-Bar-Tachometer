@@ -5,7 +5,7 @@ import android.widget.AdapterView
 
 abstract class SimpleItemSelectedListener : AdapterView.OnItemSelectedListener {
 
-    override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         onItemSelected(position)
     }
 
@@ -13,7 +13,7 @@ abstract class SimpleItemSelectedListener : AdapterView.OnItemSelectedListener {
 
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
 }

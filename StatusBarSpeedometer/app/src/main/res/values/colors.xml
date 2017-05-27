@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- General Styling -->
     <item name="transparent" type="color">#00000000</item>
     <item name="primary" type="color">#FF607D8B</item>
     <item name="primary_dark" type="color">#FF37474F</item>
+
+    <!-- GaugeView -->
+    <item name="arc_background" type="color">#263238</item>
+    <item name="arc_stroke" type="color">#FF607D8B</item>
+    <item name="needle" type="color">#AA0000</item>
+    <item name="big_mark" type="color">#FFFFFF</item>
+    <item name="small_mark" type="color">#FF607D8B</item>
 </resources>

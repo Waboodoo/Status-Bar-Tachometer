@@ -44,6 +44,7 @@ class NotificationProvider(context: Context) {
     companion object {
 
         private val NOTIFICATION_ID = 1
+
     }
 
 }

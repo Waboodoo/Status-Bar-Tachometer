@@ -5,12 +5,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import ch.rmy.android.statusbar_tacho.R
+import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
+import ch.rmy.android.statusbar_tacho.units.Unit
 import ch.rmy.android.statusbar_tacho.units.Units
-import ch.rmy.android.statusbar_tacho.utils.Links
-import ch.rmy.android.statusbar_tacho.utils.PermissionManager
-import ch.rmy.android.statusbar_tacho.utils.Settings
-import ch.rmy.android.statusbar_tacho.utils.SimpleItemSelectedListener
+import ch.rmy.android.statusbar_tacho.utils.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : BaseActivity() {
@@ -18,18 +17,52 @@ class SettingsActivity : BaseActivity() {
     override val navigateUpIcon = 0
 
     private var permissionManager: PermissionManager? = null
+    private var speedWatcher: SpeedWatcher? = null
+    private var unit: Unit? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
         val settings = Settings(context)
+        unit = settings.unit
         setupUnitSelector(settings)
 
-        SpeedometerService.setRunningState(this, SpeedometerService.isRunning(this))
-
+        speedWatcher = destroyer.own(SpeedWatcher(context))
         permissionManager = PermissionManager(context)
+
         toggleButton.setOnCheckedChangeListener { _, isChecked -> toggleState(isChecked) }
+        speedWatcher!!.speedSource.bind(object : EventSource.Observer<Float?> {
+            override fun on(currentSpeed: Float?) {
+                if (currentSpeed == null) {
+                    updateSpeedViews(0f)
+                } else {
+                    updateSpeedViews(currentSpeed)
+                }
+            }
+        }, speedWatcher!!.currentSpeed)
+    }
+
+    private fun updateSpeedViews(speed: Float) {
+        val convertedSpeed = unit!!.convertSpeed(speed)
+        speedGauge.value = convertedSpeed
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initState()
+    }
+
+    internal fun initState() {
+        val state = SpeedometerService.isRunning(context)
+        SpeedometerService.setRunningState(context, state)
+        toggleButton.isChecked = SpeedometerService.isRunning(context)
+        speedWatcher!!.toggle(state)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        speedWatcher!!.disable()
     }
 
     internal fun toggleState(state: Boolean) {
@@ -39,22 +72,19 @@ class SettingsActivity : BaseActivity() {
             return
         }
 
+        speedWatcher!!.toggle(state)
         SpeedometerService.setRunningState(context, state)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        toggleButton.isChecked = SpeedometerService.isRunning(context)
     }
 
     internal fun setupUnitSelector(settings: Settings) {
         val unitNames = Units.UNITS.map { getText(it.nameRes) }
-        val dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, unitNames)
+        val dataAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, unitNames)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         unitSpinner.adapter = dataAdapter
         unitSpinner.onItemSelectedListener = object : SimpleItemSelectedListener() {
             override fun onItemSelected(position: Int) {
-                settings.unit = Units.UNITS[position]
+                unit = Units.UNITS[position]
+                settings.unit = unit as Unit
 
                 if (SpeedometerService.isRunning(context)) {
                     SpeedometerService.restart(context)
@@ -84,9 +114,4 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    companion object {
-
-        private val REQUEST_PERMISSION = 1
-
-    }
 }

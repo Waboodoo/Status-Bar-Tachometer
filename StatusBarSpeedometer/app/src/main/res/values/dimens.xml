@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="arc_stroke">5dp</dimen>
+    <dimen name="needle_stroke">3dp</dimen>
+    <dimen name="big_mark_stroke">2dp</dimen>
+    <dimen name="small_mark_stroke">1dp</dimen>
+</resources>

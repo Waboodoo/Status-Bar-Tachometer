@@ -46,6 +46,14 @@ class SpeedWatcher(context: Context) : Destroyable {
         isGPSEnabled = provider != null && locationManager.isProviderEnabled(provider)
     }
 
+    fun toggle(state: Boolean) {
+        if (state) {
+            enable()
+        } else {
+            disable()
+        }
+    }
+
     fun enable() {
         if (enabled) {
             return

@@ -16,13 +16,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        val toolbar = findViewById(R.id.toolbar)
-        if (toolbar is Toolbar) {
-            updateStatusBarColor()
-            setSupportActionBar(toolbar)
-            if (navigateUpIcon != 0) {
-                enableNavigateUpButton(navigateUpIcon)
-            }
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        updateStatusBarColor()
+        setSupportActionBar(toolbar)
+        if (navigateUpIcon != 0) {
+            enableNavigateUpButton(navigateUpIcon)
         }
     }
 
