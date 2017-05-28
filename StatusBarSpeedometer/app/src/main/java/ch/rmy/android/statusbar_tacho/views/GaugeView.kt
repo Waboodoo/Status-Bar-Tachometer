@@ -1,5 +1,6 @@
 package ch.rmy.android.statusbar_tacho.views
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -21,9 +22,21 @@ class GaugeView : View {
     private var centerX = 0f
     private var centerY = 0f
 
+    private var animation: ValueAnimator = ValueAnimator.ofFloat(0F, 0F)
+
     var value = 0f
         set(value) {
-            field = Math.max(0f, Math.min(MAX_VALUE, value))
+            val previousValue = field
+            val newValue = Math.max(0f, Math.min(MAX_VALUE, value))
+
+            animation.cancel();
+            animation = ValueAnimator.ofFloat(previousValue, newValue)
+            animation.duration = ANIMATION_DURATION;
+            animation.addUpdateListener { valueAnimator ->
+                field = valueAnimator!!.animatedValue as Float;
+                invalidate();
+            };
+            animation.start();
             invalidate()
         }
 
@@ -149,6 +162,7 @@ class GaugeView : View {
 
     companion object {
 
+        private val ANIMATION_DURATION = 1000L
         private val ARC_ANGLE = 360 * 0.6f
         private val NEEDLE_LENGTH = 0.91f
         private val NEEDLE_CAP = 0.03f
