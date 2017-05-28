@@ -43,6 +43,10 @@ class SpeedWatcher(context: Context) : Destroyable {
         criteria.isSpeedRequired = true
         provider = locationManager.getBestProvider(criteria, false)
 
+        updateGPSState()
+    }
+
+    internal fun updateGPSState() {
         isGPSEnabled = provider != null && locationManager.isProviderEnabled(provider)
     }
 
@@ -59,6 +63,7 @@ class SpeedWatcher(context: Context) : Destroyable {
             return
         }
         enabled = true
+        updateGPSState()
 
         if (permissionManager.hasLocationPermission() && provider != null) {
             locationManager.requestLocationUpdates(provider, 800, 0f, locationListener)
@@ -71,6 +76,7 @@ class SpeedWatcher(context: Context) : Destroyable {
             return
         }
         enabled = false
+        updateGPSState()
         if (permissionManager.hasLocationPermission() && provider != null) {
             locationManager.removeUpdates(locationListener)
         }

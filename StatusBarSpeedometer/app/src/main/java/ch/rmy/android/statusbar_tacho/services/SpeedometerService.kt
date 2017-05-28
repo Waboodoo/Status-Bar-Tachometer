@@ -68,7 +68,7 @@ class SpeedometerService : BaseService() {
             val convertedSpeed = unit!!.convertSpeed(currentSpeed)
 
             message = getString(
-                    R.string.speed_format,
+                    R.string.speed_format_with_unit,
                     convertedSpeed,
                     getString(unit!!.nameRes)
             )

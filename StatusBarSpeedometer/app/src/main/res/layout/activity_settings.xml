@@ -22,7 +22,7 @@
 
                 <FrameLayout android:layout_width="match_parent"
                              android:layout_height="wrap_content"
-                             android:background="@color/arc_background"
+                             android:background="@color/gauge_arc_background"
                              android:padding="16dp">
 
                     <ch.rmy.android.statusbar_tacho.views.GaugeView
@@ -36,6 +36,14 @@
                               android:orientation="vertical"
                               android:paddingLeft="16dp"
                               android:paddingRight="16dp">
+
+                    <TextView android:id="@+id/speedText"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:gravity="center"
+                              android:textAlignment="center"
+                              android:textColor="@color/speed_text"
+                              android:textSize="@dimen/speed_text_size"/>
 
                     <Spinner
                         android:id="@+id/unitSpinner"

@@ -46,6 +46,18 @@ class SettingsActivity : BaseActivity() {
     private fun updateSpeedViews(speed: Float) {
         val convertedSpeed = unit!!.convertSpeed(speed)
         speedGauge.value = convertedSpeed
+        speedText.text = if (!toggleButton.isChecked) {
+            getString(R.string.idle_speed)
+        } else if (!speedWatcher!!.isGPSEnabled) {
+            getString(R.string.gps_disabled)
+        } else if (!speedWatcher!!.hasLocationPermission()) {
+            getString(R.string.permission_missing)
+        } else {
+            getString(
+                    R.string.speed_format_without_unit,
+                    convertedSpeed
+            )
+        }
     }
 
     override fun onStart() {
@@ -74,6 +86,7 @@ class SettingsActivity : BaseActivity() {
 
         speedWatcher!!.toggle(state)
         SpeedometerService.setRunningState(context, state)
+        updateSpeedViews(0f)
     }
 
     internal fun setupUnitSelector(settings: Settings) {

@@ -14,6 +14,8 @@
     <string name="shortcut_toggle">Toggle speedometer</string>
     <string name="gps_disabled">GPS disabled</string>
     <string name="github">View on Github</string>
-    <string name="speed_format">%1$.1f %2$s</string>
+    <string name="speed_format_with_unit">%1$.1f %2$s</string>
+    <string name="speed_format_without_unit">%1$.1f</string>
     <string name="permission_missing">Permission not granted</string>
+    <string name="idle_speed">---</string>
 </resources>

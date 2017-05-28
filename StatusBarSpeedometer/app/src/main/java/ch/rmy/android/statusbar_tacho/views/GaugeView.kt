@@ -54,29 +54,29 @@ class GaugeView : View {
     }
 
     private fun init() {
-        arcPaint.strokeWidth = context.resources.getDimension(R.dimen.arc_stroke)
-        arcPaint.color = getColor(R.color.arc_stroke)
+        arcPaint.strokeWidth = context.resources.getDimension(R.dimen.gauge_arc_stroke)
+        arcPaint.color = getColor(R.color.gauge_arc_stroke)
         arcPaint.isAntiAlias = true
         arcPaint.style = Paint.Style.STROKE
 
-        numberPaint.color = getColor(R.color.numbers)
+        numberPaint.color = getColor(R.color.gauge_numbers)
         numberPaint.isAntiAlias = true
-        numberPaint.textSize = getDimension(R.dimen.number_size)
+        numberPaint.textSize = getDimension(R.dimen.gauge_number_size)
         numberPaint.textAlign = Paint.Align.CENTER
 
-        needlePaint.strokeWidth = getDimension(R.dimen.needle_stroke)
-        needlePaint.color = getColor(R.color.needle)
+        needlePaint.strokeWidth = getDimension(R.dimen.gauge_needle_stroke)
+        needlePaint.color = getColor(R.color.gauge_needle)
         needlePaint.isAntiAlias = true
         needlePaint.style = Paint.Style.STROKE
         needlePaint.strokeCap = Paint.Cap.ROUND
 
-        bigMarkPaint.strokeWidth = getDimension(R.dimen.big_mark_stroke)
-        bigMarkPaint.color = getColor(R.color.big_mark)
+        bigMarkPaint.strokeWidth = getDimension(R.dimen.gauge_big_mark_stroke)
+        bigMarkPaint.color = getColor(R.color.gauge_big_mark)
         bigMarkPaint.isAntiAlias = true
         bigMarkPaint.style = Paint.Style.STROKE
 
-        smallMarkPaint.strokeWidth = getDimension(R.dimen.small_mark_stroke)
-        smallMarkPaint.color = getColor(R.color.small_mark)
+        smallMarkPaint.strokeWidth = getDimension(R.dimen.gauge_small_mark_stroke)
+        smallMarkPaint.color = getColor(R.color.gauge_small_mark)
         smallMarkPaint.isAntiAlias = true
         smallMarkPaint.style = Paint.Style.STROKE
     }
@@ -93,7 +93,7 @@ class GaugeView : View {
         val totalWidth = MeasureSpec.getSize(widthMeasureSpec)
         val totalHeight = MeasureSpec.getSize(heightMeasureSpec)
 
-        val inset = arcPaint.strokeWidth / 2f
+        val inset = arcPaint.strokeWidth
 
         val availableWidth = totalWidth - 2 * inset
         val availableHeight = totalHeight - 2 * inset
