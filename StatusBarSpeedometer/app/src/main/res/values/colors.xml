@@ -11,4 +11,5 @@
     <item name="needle" type="color">#AA0000</item>
     <item name="big_mark" type="color">#FFFFFF</item>
     <item name="small_mark" type="color">#FF607D8B</item>
+    <item name="numbers" type="color">#FFFFFF</item>
 </resources>

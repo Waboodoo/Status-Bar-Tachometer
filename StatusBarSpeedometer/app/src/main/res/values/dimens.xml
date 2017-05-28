@@ -4,4 +4,5 @@
     <dimen name="needle_stroke">3dp</dimen>
     <dimen name="big_mark_stroke">2dp</dimen>
     <dimen name="small_mark_stroke">1dp</dimen>
+    <dimen name="number_size">12dp</dimen>
 </resources>

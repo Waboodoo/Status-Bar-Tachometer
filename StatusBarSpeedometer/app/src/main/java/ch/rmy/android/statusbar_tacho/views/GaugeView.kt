@@ -16,6 +16,7 @@ class GaugeView : View {
     private val needlePaint = Paint()
     private val bigMarkPaint = Paint()
     private val smallMarkPaint = Paint()
+    private val numberPaint = Paint()
 
     private val arcRect = RectF()
     private var radius = 0f
@@ -57,6 +58,11 @@ class GaugeView : View {
         arcPaint.color = getColor(R.color.arc_stroke)
         arcPaint.isAntiAlias = true
         arcPaint.style = Paint.Style.STROKE
+
+        numberPaint.color = getColor(R.color.numbers)
+        numberPaint.isAntiAlias = true
+        numberPaint.textSize = getDimension(R.dimen.number_size)
+        numberPaint.textAlign = Paint.Align.CENTER
 
         needlePaint.strokeWidth = getDimension(R.dimen.needle_stroke)
         needlePaint.color = getColor(R.color.needle)
@@ -123,8 +129,7 @@ class GaugeView : View {
         super.onDraw(canvas)
 
         // Draw arc
-        val startAngle = 270 - ARC_ANGLE / 2
-        canvas.drawArc(arcRect, startAngle, ARC_ANGLE, false, arcPaint)
+        canvas.drawArc(arcRect, START_ANGLE, ARC_ANGLE, false, arcPaint)
 
         // Draw marks
         for (i in 0..(MARK_COUNT - 1) * 2) {
@@ -136,6 +141,22 @@ class GaugeView : View {
             }
         }
 
+        // Draw numbers
+        for (i in 0..(MARK_COUNT - 1)) {
+            val progress = i.toFloat() / (MARK_COUNT - 1)
+            val value = (progress * MAX_VALUE).toInt()
+            val angle = getAngle(progress)
+            val factorX = Trigo.cos(angle)
+            val factorY = Trigo.sin(angle)
+
+            canvas.drawText(
+                    value.toString(),
+                    centerX + factorX * radius * NUMBER_START,
+                    centerY + factorY * radius * NUMBER_START,
+                    numberPaint
+            )
+        }
+
         // Draw needle
         val progress = value / MAX_VALUE
         needlePaint.style = Paint.Style.STROKE
@@ -145,8 +166,7 @@ class GaugeView : View {
     }
 
     private fun drawLine(canvas: Canvas, paint: Paint, progress: Float, startFactor: Float, endFactor: Float) {
-        val startAngle = 270 - ARC_ANGLE / 2
-        val angle = ARC_ANGLE * progress + startAngle
+        val angle = getAngle(progress)
         val factorX = Trigo.cos(angle)
         val factorY = Trigo.sin(angle)
         val start = startFactor * radius
@@ -160,18 +180,24 @@ class GaugeView : View {
         )
     }
 
+    private fun getAngle(progress: Float): Float {
+        return ARC_ANGLE * progress + START_ANGLE
+    }
+
     companion object {
 
         private val ANIMATION_DURATION = 1000L
         private val ARC_ANGLE = 360 * 0.6f
+        private val START_ANGLE = 270 - ARC_ANGLE / 2
         private val NEEDLE_LENGTH = 0.91f
         private val NEEDLE_CAP = 0.03f
         private val MAX_VALUE = 180f
-        private val MARK_COUNT = 17
+        private val MARK_COUNT = 10
         private val BIG_MARK_START = 0.88f
         private val BIG_MARK_END = 0.95f
         private val SMALL_MARK_START = 0.92f
         private val SMALL_MARK_END = 0.95f
+        private val NUMBER_START = 0.77f
 
     }
 
