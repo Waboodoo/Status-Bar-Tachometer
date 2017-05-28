@@ -15,8 +15,8 @@ class IconProvider(context: Context) {
 
     companion object {
 
-        private val MAX_VALUE = 199
-        private val RES_FORMAT = "icon%03d"
+        private val MAX_VALUE = 200
+        private val RES_FORMAT = "icon%04d"
         private val RES_TYPE = "drawable"
 
     }
