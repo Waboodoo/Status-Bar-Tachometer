@@ -3,6 +3,7 @@ package ch.rmy.android.statusbar_tacho.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
@@ -90,6 +91,12 @@ class SettingsActivity : BaseActivity() {
             toggleButton.isChecked = false
             permissionManager!!.requestLocationPermission(this)
             return
+        }
+
+        if (state) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
         speedWatcher!!.toggle(state)
