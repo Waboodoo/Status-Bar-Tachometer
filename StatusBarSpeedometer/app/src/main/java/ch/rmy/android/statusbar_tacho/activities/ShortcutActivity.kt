@@ -32,7 +32,7 @@ class ShortcutActivity : BaseActivity() {
             action = SHORTCUT_TOGGLE
         }
 
-        val icon = Intent.ShortcutIconResource.fromContext(this, R.drawable.ic_launcher)
+        val icon = Intent.ShortcutIconResource.fromContext(this, R.mipmap.ic_launcher)
 
         val intent = Intent()
 
