@@ -26,6 +26,7 @@ class SettingsActivity : BaseActivity() {
 
         val settings = Settings(context)
         unit = settings.unit
+        onUnitChanged()
         setupUnitSelector(settings)
 
         speedWatcher = destroyer.own(SpeedWatcher(context))
@@ -60,12 +61,17 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
+    private fun onUnitChanged() {
+        speedGauge.maxValue = unit!!.maxValue.toFloat()
+        speedGauge.markCount = unit!!.steps + 1
+    }
+
     override fun onStart() {
         super.onStart()
         initState()
     }
 
-    internal fun initState() {
+    private fun initState() {
         val state = SpeedometerService.isRunning(context)
         SpeedometerService.setRunningState(context, state)
         toggleButton.isChecked = SpeedometerService.isRunning(context)
@@ -77,7 +83,7 @@ class SettingsActivity : BaseActivity() {
         speedWatcher!!.disable()
     }
 
-    internal fun toggleState(state: Boolean) {
+    private fun toggleState(state: Boolean) {
         if (state && !permissionManager!!.hasLocationPermission()) {
             toggleButton.isChecked = false
             permissionManager!!.requestLocationPermission(this)
@@ -89,7 +95,7 @@ class SettingsActivity : BaseActivity() {
         updateSpeedViews(0f)
     }
 
-    internal fun setupUnitSelector(settings: Settings) {
+    private fun setupUnitSelector(settings: Settings) {
         val unitNames = Units.UNITS.map { getText(it.nameRes) }
         val dataAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, unitNames)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -98,6 +104,7 @@ class SettingsActivity : BaseActivity() {
             override fun onItemSelected(position: Int) {
                 unit = Units.UNITS[position]
                 settings.unit = unit as Unit
+                onUnitChanged()
 
                 if (SpeedometerService.isRunning(context)) {
                     SpeedometerService.restart(context)

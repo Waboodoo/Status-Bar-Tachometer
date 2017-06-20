@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="gauge_arc_stroke">5dp</dimen>
-    <dimen name="gauge_needle_stroke">3dp</dimen>
-    <dimen name="gauge_big_mark_stroke">2dp</dimen>
-    <dimen name="gauge_small_mark_stroke">1dp</dimen>
-    <dimen name="gauge_number_size">12dp</dimen>
     <dimen name="speed_text_size">36sp</dimen>
 </resources>
