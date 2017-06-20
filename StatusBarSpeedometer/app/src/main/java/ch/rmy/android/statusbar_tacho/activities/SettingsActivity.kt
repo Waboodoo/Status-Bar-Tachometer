@@ -42,6 +42,8 @@ class SettingsActivity : BaseActivity() {
                 }
             }
         }, speedWatcher!!.currentSpeed)
+
+        Dialogs.showIntroMessage(context, settings)
     }
 
     private fun updateSpeedViews(speed: Float) {

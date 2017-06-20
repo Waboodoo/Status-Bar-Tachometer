@@ -18,4 +18,7 @@
     <string name="speed_format_without_unit">%1$.1f</string>
     <string name="permission_missing">Permission not granted</string>
     <string name="idle_speed">---</string>
+    <string name="intro_title">Welcome</string>
+    <string name="intro_message">Please be responsible and don\'t use this app while driving.\n\nThank you.</string>
+    <string name="button_ok">OK</string>
 </resources>

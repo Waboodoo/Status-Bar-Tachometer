@@ -30,11 +30,21 @@ class Settings(context: Context) {
             editor.commit()
         }
 
+    var isFirstRun: Boolean
+        get() = preferences.getBoolean(PREF_FIRST_RUN, true)
+        set(value) {
+            val editor = preferences.edit()
+            editor.putBoolean(PREF_FIRST_RUN, value)
+            editor.commit()
+        }
+
     companion object {
 
         private val PREF = "pref"
         private val PREF_SERVICE = "service"
         private val PREF_UNIT = "unit"
+        private val PREF_FIRST_RUN = "first_run"
+
     }
 
 }
