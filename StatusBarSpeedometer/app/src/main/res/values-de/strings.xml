@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tachometer</string>
+    <string name="current_speed">Geschwindigkeit</string>
+    <string name="unknown">unbekannt</string>
+    <string name="unit_kmh">km/h</string>
+    <string name="unit_mph">mi/h</string>
+    <string name="unit_ms">m/s</string>
+    <string name="unit_fts">ft/s</string>
+    <string name="toggle_off">Tachometer deaktiviert</string>
+    <string name="toggle_on">Tachometer aktiviert</string>
+    <string name="shortcut_on">Tachometer aktivieren</string>
+    <string name="shortcut_off">Tachometer deaktivieren</string>
+    <string name="shortcut_toggle">Tachometer umschalten</string>
+    <string name="gps_disabled">GPS deaktiviert</string>
+    <string name="github">Auf Github anzeigen</string>
+    <string name="permission_missing">nicht erlaubt</string>
+    <string name="button_ok">OK</string>
+    <string name="idle_speed">---</string>
+    <string name="intro_message">Bitte sei vernünftig und verwende diese App nicht während dem
+        Autofahren. Danke.
+    </string>
+    <string name="intro_title">Willkommen</string>
+    <string name="speed_format_with_unit">%1$.1f %2$s</string>
+    <string name="speed_format_without_unit">%1$.1f</string>
+</resources>
