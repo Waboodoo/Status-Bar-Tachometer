@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Speedometer</string>
+    <string name="current_speed">Velocidade Atual</string>
+    <string name="unknown">desconhecida</string>
+    <string name="unit_kmh">km/h</string>
+    <string name="unit_mph">mi/h</string>
+    <string name="unit_ms">m/s</string>
+    <string name="unit_fts">pés/s</string>
+    <string name="toggle_off">Speedometer desabilitado</string>
+    <string name="toggle_on">Speedometer habilitado</string>
+    <string name="shortcut_on">Habilitar speedometer</string>
+    <string name="shortcut_off">Desabilitar speedometer</string>
+    <string name="shortcut_toggle">Alternar speedometer</string>
+    <string name="gps_disabled">GPS desabilitado</string>
+    <string name="github">Ver no Github</string>
+    <string name="speed_format_with_unit">%1$.1f %2$s</string>
+    <string name="speed_format_without_unit">%1$.1f</string>
+    <string name="permission_missing">Permissão não concedida</string>
+    <string name="idle_speed">---</string>
+    <string name="intro_title">Bem-vindo</string>
+    <string name="intro_message">Por favor seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
+    <string name="button_ok">OK</string>
+</resources>
