@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- The name of the app itself -->
     <string name="app_name">Speedometer</string>
+    <!-- Notification title, shown above current speed -->
     <string name="current_speed">Current Speed</string>
+    <!-- Shown in notification when current speed is unknown -->
     <string name="unknown">unknown</string>
+    <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
+    <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
+    <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/s</string>
+    <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
+    <!-- Button text: Shown when speedometer is disabled -->
     <string name="toggle_off">Speedometer disabled</string>
+    <!-- Button text: Shown when speedometer is enabled -->
     <string name="toggle_on">Speedometer enabled</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
     <string name="shortcut_on">Enable speedometer</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
     <string name="shortcut_off">Disable speedometer</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Toggle speedometer</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS disabled</string>
+    <!-- Button text on toolbar, clicking it opens the app's Github page -->
     <string name="github">View on Github</string>
+    <!-- Format string for displaying the current speed. %s$.1f is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$.1f %2$s</string>
+    <!-- Format string for displaying the current speed without a unit. %s$.1f is the placeholder for the speed -->
     <string name="speed_format_without_unit">%1$.1f</string>
+    <!-- Status message, shown when location permission is not granted by the user and speed cannot be displayed -->
     <string name="permission_missing">Permission not granted</string>
+    <!-- Placeholder shown instead of speed when speedometer is disabled -->
     <string name="idle_speed">---</string>
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
     <string name="intro_title">Welcome</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
     <string name="intro_message">Please be responsible and don\'t use this app while driving.\n\nThank you.</string>
+    <!-- Generic button text for dialog buttons -->
     <string name="button_ok">OK</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">Speed Updates</string>
 </resources>

@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="ch.rmy.android.statusbar_tacho"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.rmy.android.statusbar_tacho">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
 
     <application
+        android:supportsRtl="false"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/LightTheme">
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -25,7 +29,7 @@
             android:name=".activities.ShortcutActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
         </activity>
         <activity
@@ -36,13 +40,23 @@
             android:noHistory="true"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
-                <action android:name="ch.rmy.android.statusbar_tacho.enable"/>
-                <action android:name="ch.rmy.android.statusbar_tacho.disable"/>
-                <action android:name="ch.rmy.android.statusbar_tacho.toggle"/>
+                <action android:name="ch.rmy.android.statusbar_tacho.enable" />
+                <action android:name="ch.rmy.android.statusbar_tacho.disable" />
+                <action android:name="ch.rmy.android.statusbar_tacho.toggle" />
             </intent-filter>
         </activity>
 
-        <service android:name=".services.SpeedometerService"/>
+        <service
+            android:name=".services.SpeedometerService"
+            android:foregroundServiceType="location" />
+
+        <receiver
+            android:name=".receivers.DeviceBootReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
