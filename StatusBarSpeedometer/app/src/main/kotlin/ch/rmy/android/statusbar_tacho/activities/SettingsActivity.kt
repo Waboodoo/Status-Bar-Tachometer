@@ -17,6 +17,7 @@ import ch.rmy.android.statusbar_tacho.utils.Links
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SimpleItemSelectedListener
+import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : BaseActivity() {
@@ -74,21 +75,10 @@ class SettingsActivity : BaseActivity() {
         val convertedSpeed = unit.convertSpeed(speed)
         speedGauge.value = convertedSpeed
         speedText.text = when {
-            !toggleButton.isChecked -> {
-                getString(R.string.idle_speed)
-            }
-            !speedWatcher.isGPSEnabled -> {
-                getString(R.string.gps_disabled)
-            }
-            !speedWatcher.hasLocationPermission() -> {
-                getString(R.string.permission_missing)
-            }
-            else -> {
-                getString(
-                    R.string.speed_format_without_unit,
-                    convertedSpeed
-                )
-            }
+            !toggleButton.isChecked -> getString(R.string.idle_speed)
+            !speedWatcher.isGPSEnabled -> getString(R.string.gps_disabled)
+            !speedWatcher.hasLocationPermission() -> getString(R.string.permission_missing)
+            else -> SpeedFormatter.formatSpeed(context, convertedSpeed)
         }
     }
 

@@ -21,8 +21,7 @@
         Autofahren. Danke.
     </string>
     <string name="intro_title">Willkommen</string>
-    <string name="speed_format_with_unit">%1$.1f %2$s</string>
-    <string name="speed_format_without_unit">%1$.1f</string>
+    <string name="speed_format_with_unit">%1$s %2$s</string>
     <string name="notification_channel">Geschwindigkeits-Updates</string>
     <string name="quick_settings_tile_label">Tachometer</string>
 </resources>

@@ -28,10 +28,8 @@
     <string name="gps_disabled">GPS disabled</string>
     <!-- Button text on toolbar, clicking it opens the app's Github page -->
     <string name="github">View on Github</string>
-    <!-- Format string for displaying the current speed. %s$.1f is the placeholder for the speed, %2$s is the placeholder for the unit -->
-    <string name="speed_format_with_unit">%1$.1f %2$s</string>
-    <!-- Format string for displaying the current speed without a unit. %s$.1f is the placeholder for the speed -->
-    <string name="speed_format_without_unit">%1$.1f</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Status message, shown when location permission is not granted by the user and speed cannot be displayed -->
     <string name="permission_missing">Permission not granted</string>
     <!-- Placeholder shown instead of speed when speedometer is disabled -->

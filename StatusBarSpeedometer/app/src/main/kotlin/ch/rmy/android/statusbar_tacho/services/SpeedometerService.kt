@@ -14,6 +14,7 @@ import ch.rmy.android.statusbar_tacho.notifications.NotificationProvider
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 import ch.rmy.android.statusbar_tacho.utils.ScreenStateWatcher
 import ch.rmy.android.statusbar_tacho.utils.Settings
+import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
 import kotlin.math.roundToInt
 
 class SpeedometerService : BaseService() {
@@ -74,11 +75,7 @@ class SpeedometerService : BaseService() {
         } else {
             val convertedSpeed = unit.convertSpeed(currentSpeed)
 
-            message = getString(
-                R.string.speed_format_with_unit,
-                convertedSpeed,
-                getString(unit.nameRes)
-            )
+            message = SpeedFormatter.formatSpeed(context, convertedSpeed, unit)
             iconRes = iconProvider.getIconForNumber(convertedSpeed.roundToInt())
         }
         notificationProvider.updateNotification(message, iconRes)
