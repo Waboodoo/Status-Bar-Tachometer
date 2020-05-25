@@ -44,4 +44,6 @@
     <string name="button_ok">OK</string>
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">Speed Updates</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <string name="quick_settings_tile_label">Speedometer</string>
 </resources>

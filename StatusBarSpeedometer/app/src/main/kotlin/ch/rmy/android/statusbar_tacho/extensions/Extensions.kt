@@ -1,5 +1,7 @@
 package ch.rmy.android.statusbar_tacho.extensions
 
+import android.app.Service
+import android.content.Context
 import android.content.SharedPreferences
 import ch.rmy.android.statusbar_tacho.utils.Destroyer
 import io.reactivex.disposables.Disposable
@@ -21,3 +23,6 @@ fun Disposable.ownedBy(destroyer: Destroyer) {
         dispose()
     }
 }
+
+val Service.context: Context
+    get() = this

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.StringRes
 import ch.rmy.android.statusbar_tacho.R
+import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
 import ch.rmy.android.statusbar_tacho.icons.IconProvider
 import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
@@ -104,6 +105,10 @@ class SpeedometerService : BaseService() {
             } else {
                 context.stopService(intent)
             }
+        }
+
+        fun toggleRunningState(context: Context) {
+            setRunningState(context, !isRunning(context))
         }
 
         fun isRunning(context: Context): Boolean =

@@ -21,4 +21,5 @@
     <string name="intro_title">Bem-vindo</string>
     <string name="intro_message">Por favor seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
     <string name="button_ok">OK</string>
+    <string name="quick_settings_tile_label">Speedometer</string>
 </resources>

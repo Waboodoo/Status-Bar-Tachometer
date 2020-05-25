@@ -18,7 +18,7 @@ class DummyActivity : Activity() {
                 SpeedometerService.setRunningState(this, false)
             }
             ShortcutActivity.SHORTCUT_TOGGLE -> {
-                SpeedometerService.setRunningState(this, !SpeedometerService.isRunning(this))
+                SpeedometerService.toggleRunningState(this)
             }
         }
 
