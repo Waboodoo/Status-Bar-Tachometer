@@ -44,4 +44,6 @@
     <string name="notification_channel">Speed Updates</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Speedometer</string>
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">Keep updating while screen is off</string>
 </resources>

@@ -28,12 +28,19 @@ class Settings(context: Context) {
             putBoolean(PREF_FIRST_RUN, value)
         }
 
+    var shouldKeepUpdatingWhileScreenIsOff: Boolean
+        get() = preferences.getBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, false)
+        set(value) = preferences.edit {
+            putBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, value)
+        }
+
     companion object {
 
         private const val PREF = "pref"
         private const val PREF_SERVICE = "service"
         private const val PREF_SPEED_UNIT = "speed_unit"
         private const val PREF_FIRST_RUN = "first_run"
+        private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
 
     }
 

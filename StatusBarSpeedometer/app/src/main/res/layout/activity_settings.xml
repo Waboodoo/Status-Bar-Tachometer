@@ -54,6 +54,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp" />
 
+                    <CheckBox
+                        android:id="@+id/keepOnWhileScreenOffCheckbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/checkbox_label_keep_updating_when_screen_off" />
+
                 </LinearLayout>
 
             </LinearLayout>

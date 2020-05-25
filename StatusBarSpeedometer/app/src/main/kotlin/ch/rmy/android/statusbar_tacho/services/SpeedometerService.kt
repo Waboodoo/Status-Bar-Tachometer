@@ -50,6 +50,19 @@ class SpeedometerService : BaseService() {
             }
             .ownedBy(destroyer)
 
+        if (settings.shouldKeepUpdatingWhileScreenIsOff) {
+            speedWatcher.enable()
+        } else {
+            setupScreenStateWatcher()
+        }
+
+        settings.isRunning = true
+        destroyer.own {
+            settings.isRunning = false
+        }
+    }
+
+    private fun setupScreenStateWatcher() {
         screenStateWatcher.screenState
             .subscribe { isScreenOn ->
                 if (isScreenOn) {
@@ -59,11 +72,6 @@ class SpeedometerService : BaseService() {
                 }
             }
             .ownedBy(destroyer)
-
-        settings.isRunning = true
-        destroyer.own {
-            settings.isRunning = false
-        }
     }
 
     private fun updateNotification(currentSpeed: Float?) {

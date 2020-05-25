@@ -24,4 +24,5 @@
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <string name="notification_channel">Geschwindigkeits-Updates</string>
     <string name="quick_settings_tile_label">Tachometer</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Updaten auch bei ausgeschaltetem Bildschirm</string>
 </resources>

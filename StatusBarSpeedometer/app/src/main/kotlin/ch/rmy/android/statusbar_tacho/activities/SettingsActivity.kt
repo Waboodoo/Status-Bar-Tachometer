@@ -3,11 +3,12 @@ package ch.rmy.android.statusbar_tacho.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import android.widget.ArrayAdapter
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.consume
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
+import ch.rmy.android.statusbar_tacho.extensions.setOnItemSelectedListener
 import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
@@ -16,7 +17,6 @@ import ch.rmy.android.statusbar_tacho.utils.Dialogs
 import ch.rmy.android.statusbar_tacho.utils.Links
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
-import ch.rmy.android.statusbar_tacho.utils.SimpleItemSelectedListener
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -38,11 +38,8 @@ class SettingsActivity : BaseActivity() {
         set(value) {
             if (value != settings.unit) {
                 settings.unit = value
-                onUnitChanged()
-
-                if (SpeedometerService.isRunning(context)) {
-                    SpeedometerService.restart(context)
-                }
+                restartSpeedWatchers()
+                updateViews()
             }
         }
 
@@ -50,8 +47,8 @@ class SettingsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        onUnitChanged()
         setupUnitSelector()
+        setupCheckbox()
 
         toggleButton.setOnCheckedChangeListener { _, isChecked -> toggleState(isChecked) }
 
@@ -82,24 +79,43 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    private fun onUnitChanged() {
-        speedGauge.maxValue = unit.maxValue.toFloat()
-        speedGauge.markCount = unit.steps + 1
+    private fun restartSpeedWatchers() {
         if (speedWatcher.enabled) {
             speedWatcher.disable()
             speedWatcher.enable()
+        }
+
+        if (SpeedometerService.isRunning(context)) {
+            SpeedometerService.restart(context)
+        }
+    }
+
+    private fun updateViews() {
+        val isRunning = settings.isRunning
+        toggleButton.isChecked = isRunning
+        speedGauge.maxValue = unit.maxValue.toFloat()
+        speedGauge.markCount = unit.steps + 1
+        keepOnWhileScreenOffCheckbox.isEnabled = !isRunning
+        keepScreenOn(isRunning)
+    }
+
+    private fun keepScreenOn(enabled: Boolean) {
+        if (enabled) {
+            window.addFlags(FLAG_KEEP_SCREEN_ON)
+        } else {
+            window.clearFlags(FLAG_KEEP_SCREEN_ON)
         }
     }
 
     override fun onStart() {
         super.onStart()
         initState()
+        updateViews()
     }
 
     private fun initState() {
         val state = SpeedometerService.isRunning(context)
         SpeedometerService.setRunningState(context, state)
-        toggleButton.isChecked = SpeedometerService.isRunning(context)
         speedWatcher.toggle(state)
     }
 
@@ -115,15 +131,11 @@ class SettingsActivity : BaseActivity() {
             return
         }
 
-        if (state) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        } else {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        }
-
+        settings.isRunning = state
         speedWatcher.toggle(state)
         SpeedometerService.setRunningState(context, state)
         updateSpeedViews(0f)
+        updateViews()
     }
 
     private fun setupUnitSelector() {
@@ -132,10 +144,15 @@ class SettingsActivity : BaseActivity() {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         unitSpinner.adapter = dataAdapter
         unitSpinner.setSelection(SpeedUnit.values().indexOf(unit))
-        unitSpinner.onItemSelectedListener = object : SimpleItemSelectedListener() {
-            override fun onItemSelected(position: Int) {
-                unit = SpeedUnit.values()[position]
-            }
+        unitSpinner.setOnItemSelectedListener { position ->
+            unit = SpeedUnit.values()[position]
+        }
+    }
+
+    private fun setupCheckbox() {
+        keepOnWhileScreenOffCheckbox.isChecked = settings.shouldKeepUpdatingWhileScreenIsOff
+        keepOnWhileScreenOffCheckbox.setOnCheckedChangeListener { _, checked ->
+            settings.shouldKeepUpdatingWhileScreenIsOff = checked
         }
     }
 
