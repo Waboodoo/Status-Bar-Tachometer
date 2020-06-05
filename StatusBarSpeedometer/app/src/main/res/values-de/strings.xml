@@ -16,7 +16,6 @@
     <string name="github">Auf Github anzeigen</string>
     <string name="permission_missing">nicht erlaubt</string>
     <string name="button_ok">OK</string>
-    <string name="idle_speed">---</string>
     <string name="intro_message">Bitte sei vernünftig und verwende diese App nicht während dem
         Autofahren. Danke.
     </string>

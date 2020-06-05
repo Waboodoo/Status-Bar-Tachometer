@@ -72,7 +72,7 @@ class SettingsActivity : BaseActivity() {
         val convertedSpeed = unit.convertSpeed(speed)
         speedGauge.value = convertedSpeed
         speedText.text = when {
-            !toggleButton.isChecked -> getString(R.string.idle_speed)
+            !toggleButton.isChecked -> IDLE_SPEED_PLACEHOLDER
             !speedWatcher.isGPSEnabled -> getString(R.string.gps_disabled)
             !speedWatcher.hasLocationPermission() -> getString(R.string.permission_missing)
             else -> SpeedFormatter.formatSpeed(context, convertedSpeed)
@@ -173,6 +173,12 @@ class SettingsActivity : BaseActivity() {
         if (permissionManager.wasGranted(grantResults)) {
             toggleButton.isChecked = true
         }
+    }
+
+    companion object {
+
+        private const val IDLE_SPEED_PLACEHOLDER = "---"
+
     }
 
 }
