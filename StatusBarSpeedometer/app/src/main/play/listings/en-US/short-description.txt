@@ -1,0 +1,1 @@
+Displays your current speed in your status bar

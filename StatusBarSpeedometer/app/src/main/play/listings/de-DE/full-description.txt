@@ -1,0 +1,5 @@
+Diese simple App zeigt deine aktuelle Geschwindigkeit (GPS) als Notification in der Statuszeile am oberen Rand deines Displays, so dass du dein Tempo immer im Blick hast, ohne zwischen Applikationen wechseln zu müssen.
+
+Bitte nutze diese App verantwortungsvoll und bedenke die Gefahren des Handygebrauchs während des Autofahrens.
+
+Diese App ist Open Source, finde Sie auf Github: https://github.com/Waboodoo/Status-Bar-Tachometer

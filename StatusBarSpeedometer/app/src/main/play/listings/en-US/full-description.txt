@@ -1,0 +1,7 @@
+This simplistic app displays your current speed, obtained from GPS readings, as an icon in your status bar at the top of your screen. This speedometer allows you to check how fast you are travelling without having to switch between apps.
+
+Please be aware of the dangers of using your phone while driving.
+
+This app is open source, find it on Github: https://github.com/Waboodoo/Status-Bar-Tachometer
+
+If you have any questions, feature requests or other comments feel free to contact me: android@rmy.ch.
