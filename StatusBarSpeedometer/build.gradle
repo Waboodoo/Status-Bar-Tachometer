@@ -9,18 +9,6 @@ buildscript {
     }
 }
 
-ext {
-    versionName = project['version.major'] + '.' +
-            project['version.minor'] + '.' +
-            project['version.patch']
-
-
-    versionCode = (project['version.major'].toInteger() * 1000 * 1000 * 1000) +
-            (project['version.minor'].toInteger() * 1000 * 1000) +
-            (project['version.patch'].toInteger() * 1000) +
-            project['version.build'].toInteger()
-}
-
 allprojects {
     repositories {
         jcenter()
