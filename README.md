@@ -3,7 +3,7 @@ A simple Android app that displays your current speed as a notification in the s
 
 ![Version](https://img.shields.io/badge/version-3.0.0-green.svg)
 
-Great for outdoor activities and playing AR games like Pokémon GO or Ingress.
+Great for outdoor activities and playing AR games.
 
 <a href="https://play.google.com/store/apps/details?id=ch.rmy.android.statusbar_tacho">
 <img alt="Get it on Google Play" src="http://steverichey.github.io/google-play-badge-svg/img/en_get.svg" width="280" />
