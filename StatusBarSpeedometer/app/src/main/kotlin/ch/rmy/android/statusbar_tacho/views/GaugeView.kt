@@ -17,7 +17,7 @@ import kotlin.math.min
 class GaugeView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
 
     private val arcPaint = Paint()

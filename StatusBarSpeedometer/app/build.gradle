@@ -31,6 +31,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    kotlinOptions {
+        languageVersion = '1.4'
+    }
 }
 
 project.configure(project.android, {
@@ -40,7 +44,7 @@ project.configure(project.android, {
 })
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.0'
 
     /* Support libraries */
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
