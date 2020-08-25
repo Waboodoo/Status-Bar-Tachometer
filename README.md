@@ -17,4 +17,5 @@ Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.
 - Uses GPS to determine your current speed and displays it as a notification in the unit of your choice: **m/s**, **km/h**, **mi/h**, **ft/s**
 - Can be toggled through a home screen widget or through quick settings tile
 - Will automatically restart when device reboots
-- Translated into English, German and Brazilian Portuguese
+- Translated into English, French, German, Russian and Brazilian Portuguese
+
