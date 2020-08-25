@@ -9,7 +9,7 @@ Great for outdoor activities and playing AR games.
 <img alt="Get it on Google Play" src="http://steverichey.github.io/google-play-badge-svg/img/en_get.svg" width="280" />
 </a>
 
-Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.android.statusbar_tacho) or [download the latest APK](https://github.com/Waboodoo/Status-Bar-Tachometer/releases) directly.
+Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.android.statusbar_tacho), on [F-Droid](https://f-droid.org/en/packages/ch.rmy.android.statusbar_tacho/) or [download the latest APK](https://github.com/Waboodoo/Status-Bar-Tachometer/releases) directly.
 
 <img src="StatusBarSpeedometer/app/src/main/play/listings/en-US/graphics/phone-screenshots/02.png" width="480" />
 
