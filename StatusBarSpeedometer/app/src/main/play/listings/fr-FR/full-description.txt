@@ -1,0 +1,3 @@
+Cette application simpliste affiche votre vitesse actuelle, obtenue à partir des lectures GPS, sous forme d'icône dans votre barre d'état en haut de votre écran. Ce compteur de vitesse vous permet de vérifier à quelle vitesse vous voyagez sans avoir à basculer entre les applications.
+
+Soyez conscient des dangers liés à l'utilisation de votre téléphone en conduisant.

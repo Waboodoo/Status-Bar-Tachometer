@@ -1,0 +1,3 @@
+Esta aplicación simplista muestra tu velocidad actual, obtenida de las lecturas del GPS, como un icono en tu barra de estado en la parte superior de tu pantalla. Este velocímetro te permite comprobar la velocidad a la que viajas sin tener que cambiar de aplicación.
+
+Ten en cuenta los peligros de usar tu teléfono mientras conduces.
