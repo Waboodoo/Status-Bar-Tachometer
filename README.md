@@ -1,7 +1,7 @@
 # Status Bar Speedometer
 A simple Android app that displays your current speed as a notification in the status bar.
 
-![Version](https://img.shields.io/badge/version-3.1.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.2.0-green.svg)
 
 Great for outdoor activities and playing AR games.
 

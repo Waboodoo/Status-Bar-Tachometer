@@ -18,7 +18,6 @@ enum class SpeedUnit {
 
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 3.6f
-
     },
 
     METERS_PER_SECOND {
