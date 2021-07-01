@@ -1,0 +1,1 @@
+Wyświetla Twoją aktualną prędkość na pasku stanu
