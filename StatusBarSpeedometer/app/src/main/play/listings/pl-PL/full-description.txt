@@ -1,0 +1,7 @@
+Ta prosta aplikacja wyświetla Twoją aktualną prędkość otrzymaną z odczytów GPS jako ikonę na pasku stanu u góry ekranu. Prędkościomierz ten pozwala sprawdzić, jak szybko podróżujesz, bez konieczności przełączania się między aplikacjami.
+
+Należy pamiętać o niebezpieczeństwach związanych z używaniem telefonu podczas prowadzenia samochodu. 
+
+Ta aplikacja jest otwartoźródłowa, znajdziesz ją na GitHubie: https://github.com/Waboodoo/Status-Bar-Tachometer
+
+Jeśli masz jakieś pytania, prośby o nowe funkcjonalności lub inne uwagi, nie wahaj się ze mną skontaktować: android@rmy.ch.
