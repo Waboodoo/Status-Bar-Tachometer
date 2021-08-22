@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General Styling -->
+    <item name="primary" type="color">#35454D</item>
+    <item name="primary_dark" type="color">#12171A</item>
+
+    <!-- Speed Text -->
+    <item name="speed_text" type="color">#FFFFFF</item>
+</resources>
