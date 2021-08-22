@@ -3,6 +3,7 @@ package ch.rmy.android.statusbar_tacho.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import android.widget.ArrayAdapter
 import ch.rmy.android.statusbar_tacho.R
@@ -95,7 +96,7 @@ class SettingsActivity : BaseActivity() {
         toggleButton.isChecked = isRunning
         speedGauge.maxValue = unit.maxValue.toFloat()
         speedGauge.markCount = unit.steps + 1
-        keepOnWhileScreenOffCheckbox.isEnabled = !isRunning
+        keepOnWhileScreenOffCheckbox.visibility = if (isRunning) View.GONE else View.VISIBLE
         keepScreenOn(isRunning)
     }
 
