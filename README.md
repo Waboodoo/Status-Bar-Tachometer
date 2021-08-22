@@ -1,7 +1,7 @@
 # Status Bar Speedometer
 A simple Android app that displays your current speed as a notification in the status bar.
 
-![Version](https://img.shields.io/badge/version-3.2.0-green.svg)
+![Version](https://img.shields.io/badge/version-3.3.0-green.svg)
 
 Great for outdoor activities and playing AR games.
 
@@ -15,7 +15,8 @@ Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.
 
 ## Features
 - Uses GPS to determine your current speed and displays it as a notification in the unit of your choice: **m/s**, **km/h**, **mi/h**, **ft/s**
+- Dark Mode support
 - Can be toggled through a home screen widget or through quick settings tile
 - Will automatically restart when device reboots
-- Translated into English, French, German, Russian and Brazilian Portuguese
+- Translated into English, French, German, Polish, Russian and Brazilian Portuguese
 
