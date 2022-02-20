@@ -1,0 +1,7 @@
+Bu basit uygulama, GPS okuyarak elde edilen anlık hızınızı, ekranınızın üst kısmındaki durum çubuğunuzda bir simge olarak görüntüler. Bu hız göstergesi, uygulamalar arasında geçiş yapmak zorunda kalmadan ne kadar hızlı gittiğinizi görmenizi sağlar.
+
+Lütfen sürüş sırasında telefonunuzu kullanmanın tehlikeli olduğunu unutmayın.
+
+Bu uygulama açık kaynaklıdır, Github'da bulabilirsiniz: https://github.com/Waboodoo/Status-Bar-Tachometer
+
+Herhangi bir sorunuz, özellik isteğiniz veya başka yorumlarınız varsa benimle iletişime geçmekten çekinmeyin: android@rmy.ch
