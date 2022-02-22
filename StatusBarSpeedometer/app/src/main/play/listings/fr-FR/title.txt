@@ -1,1 +1,1 @@
-Barre de statut compteur de vitesse
+Compteur de vitesse
