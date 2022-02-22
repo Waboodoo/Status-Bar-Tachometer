@@ -18,5 +18,5 @@ Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.
 - Dark Mode support
 - Can be toggled through a home screen widget or through quick settings tile
 - Will automatically restart when device reboots
-- Translated into English, French, German, Polish, Russian and Brazilian Portuguese
+- Translated into English, French, German, Polish, Russian, Brazilian Portuguese and Turkish
 

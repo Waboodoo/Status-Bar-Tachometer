@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The name of the app itself -->
+    <string name="app_name">Hız Göstergesi</string>
+    <!-- Notification title, shown above current speed -->
+    <string name="current_speed">Şu Anki Hız</string>
+    <!-- Shown in notification when current speed is unknown -->
+    <string name="unknown">bilinmiyor</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh">km/sa</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph">mi/sa</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms">m/sn</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts">ft/sn</string>
+    <!-- Button text: Shown when speedometer is disabled -->
+    <string name="toggle_off">Hız göstergesi devre dışı</string>
+    <!-- Button text: Shown when speedometer is enabled -->
+    <string name="toggle_on">Hız göstergesi etkin</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
+    <string name="shortcut_on">Hız göstergesini etkinleştir</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
+    <string name="shortcut_off">Hız göstergesini devre dışı bırak</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
+    <string name="shortcut_toggle">Hız göstergesini aç/kapat</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
+    <string name="gps_disabled">GPS devre dışı</string>
+    <!-- Button text on toolbar, clicking it opens the app's Github page -->
+    <string name="github">Github\'da görüntüle</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
+    <!-- Status message, shown when location permission is not granted by the user and speed cannot be displayed -->
+    <string name="permission_missing">İzin verilmedi</string>
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
+    <string name="intro_title">Hoş geldiniz</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
+    <string name="intro_message">Lütfen sorumlu davranın ve sürüş sırasında bu uygulamayı kullanmayın.\n\nTeşekkürler.</string>
+    <!-- Generic button text for dialog buttons -->
+    <string name="button_ok">Tamam</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">Hız Güncellemeleri</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <string name="quick_settings_tile_label">Hız göstergesi</string>
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">Ekran kapalıyken güncellemeye devam et</string>
+</resources>
