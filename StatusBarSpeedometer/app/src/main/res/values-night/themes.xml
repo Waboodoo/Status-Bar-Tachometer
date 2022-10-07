@@ -2,7 +2,7 @@
 <resources>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:background">@color/primary</item>
+        <item name="android:background">#121212</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="android:itemTextAppearance">@android:color/white</item>
