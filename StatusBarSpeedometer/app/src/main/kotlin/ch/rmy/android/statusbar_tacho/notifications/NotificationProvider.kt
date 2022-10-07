@@ -23,7 +23,12 @@ class NotificationProvider(context: Context) {
 
     init {
         val intent = Intent(context, SettingsActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_IMMUTABLE
+            } else {
+                0
+            })
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createNotificationChannel(createChannel(context))
@@ -64,11 +69,12 @@ class NotificationProvider(context: Context) {
             NotificationChannel(
                 CHANNEL_ID,
                 context.getString(R.string.notification_channel),
-                NotificationManager.IMPORTANCE_MIN
+                NotificationManager.IMPORTANCE_LOW
             )
                 .apply {
                     enableLights(false)
                     enableVibration(false)
+                    setShowBadge(false)
                 }
 
     }

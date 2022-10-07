@@ -42,7 +42,7 @@ class GaugeView @JvmOverloads constructor(
             animation = ValueAnimator.ofFloat(previousValue, newValue)
             animation.duration = ANIMATION_DURATION
             animation.addUpdateListener { valueAnimator ->
-                field = valueAnimator!!.animatedValue as Float
+                field = valueAnimator.animatedValue as Float
                 invalidate()
             }
             animation.start()
@@ -120,7 +120,7 @@ class GaugeView @JvmOverloads constructor(
             centerX - radius,
             centerY - radius,
             centerX + radius,
-            centerY + radius
+            centerY + radius,
         )
         updatePaintSizes()
 
@@ -186,7 +186,7 @@ class GaugeView @JvmOverloads constructor(
             centerY + factorY * start,
             centerX + factorX * end,
             centerY + factorY * end,
-            paint
+            paint,
         )
     }
 

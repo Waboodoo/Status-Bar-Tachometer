@@ -3,9 +3,9 @@ package ch.rmy.android.statusbar_tacho.activities
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.consume
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
@@ -96,7 +96,7 @@ class SettingsActivity : BaseActivity() {
         toggleButton.isChecked = isRunning
         speedGauge.maxValue = unit.maxValue.toFloat()
         speedGauge.markCount = unit.steps + 1
-        keepOnWhileScreenOffCheckbox.visibility = if (isRunning) View.GONE else View.VISIBLE
+        keepOnWhileScreenOffCheckbox.isVisible = !isRunning
         keepScreenOn(isRunning)
     }
 
@@ -126,9 +126,9 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun toggleState(state: Boolean) {
-        if (state && !permissionManager.hasLocationPermission()) {
+        if (state && !permissionManager.hasPermission()) {
             toggleButton.isChecked = false
-            permissionManager.requestLocationPermission(this)
+            permissionManager.requestPermissions(this)
             return
         }
 

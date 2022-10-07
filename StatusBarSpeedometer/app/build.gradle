@@ -10,6 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 33
         versionName '3.5.0'
+        //noinspection HighAppVersionCode
         versionCode 2003050000
         // 20,(2 digits major),(2 digits minor),(2 digits patch),(2 digits build)
 
@@ -46,6 +47,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10'
 
     /* Support libraries */
+    implementation 'androidx.core:core-ktx:1.9.0@aar'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.annotation:annotation:1.5.0'

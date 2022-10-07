@@ -2,7 +2,6 @@ package ch.rmy.android.statusbar_tacho.extensions
 
 import android.app.Service
 import android.content.Context
-import android.content.SharedPreferences
 import android.widget.Spinner
 import ch.rmy.android.statusbar_tacho.utils.Destroyer
 import ch.rmy.android.statusbar_tacho.utils.SimpleItemSelectedListener
@@ -11,13 +10,6 @@ import io.reactivex.disposables.Disposable
 inline fun consume(f: () -> Unit): Boolean {
     f()
     return true
-}
-
-fun SharedPreferences.edit(block: SharedPreferences.Editor.() -> Unit) {
-    edit().apply {
-        block()
-        apply()
-    }
 }
 
 fun Disposable.ownedBy(destroyer: Destroyer) {

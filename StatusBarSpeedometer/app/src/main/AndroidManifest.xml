@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.rmy.android.statusbar_tacho">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
@@ -11,15 +13,15 @@
         android:required="true" />
 
     <application
-        android:supportsRtl="false"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,8 +30,8 @@
 
         <activity
             android:name=".activities.ShortcutActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
@@ -37,11 +39,11 @@
         <activity
             android:name=".activities.DummyActivity"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
             android:noHistory="true"
-            android:theme="@style/Theme.Transparent"
-            android:exported="true">
+            android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="ch.rmy.android.statusbar_tacho.enable" />
                 <action android:name="ch.rmy.android.statusbar_tacho.disable" />
@@ -64,10 +66,10 @@
 
         <service
             android:name=".services.QuickSettingsTitleService"
-            android:label="@string/quick_settings_tile_label"
+            android:exported="true"
             android:icon="@drawable/ic_quick_settings_title"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
+            android:label="@string/quick_settings_tile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>

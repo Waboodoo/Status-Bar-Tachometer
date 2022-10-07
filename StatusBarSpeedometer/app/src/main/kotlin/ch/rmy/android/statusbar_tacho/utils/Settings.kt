@@ -2,7 +2,7 @@ package ch.rmy.android.statusbar_tacho.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import ch.rmy.android.statusbar_tacho.extensions.edit
+import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 
 class Settings(context: Context) {

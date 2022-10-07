@@ -75,7 +75,7 @@ class SpeedWatcher(context: Context) : Destroyable {
         enabled = true
         updateGPSState()
 
-        if (permissionManager.hasLocationPermission() && provider != null) {
+        if (permissionManager.hasPermission() && provider != null) {
             locationManager.requestLocationUpdates(provider, 800, 0f, locationListener)
             sendSpeedUpdate(null)
         }
@@ -87,7 +87,7 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
         enabled = false
         updateGPSState()
-        if (permissionManager.hasLocationPermission() && provider != null) {
+        if (permissionManager.hasPermission() && provider != null) {
             locationManager.removeUpdates(locationListener)
         }
     }
@@ -108,6 +108,6 @@ class SpeedWatcher(context: Context) : Destroyable {
         speedUpdatesSubject.onComplete()
     }
 
-    fun hasLocationPermission() = permissionManager.hasLocationPermission()
+    fun hasLocationPermission() = permissionManager.hasPermission()
 
 }
