@@ -34,12 +34,7 @@ class ScreenStateWatcher(private val context: Context) : Destroyable {
         get() = context.getSystemService(Context.POWER_SERVICE) as PowerManager
 
     init {
-        isScreenOn = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            powerManager.isInteractive
-        } else {
-            @Suppress("DEPRECATION")
-            powerManager.isScreenOn
-        }
+        isScreenOn = powerManager.isInteractive
         register()
     }
 

@@ -55,12 +55,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
     private fun updateStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.apply {
-                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                statusBarColor = ContextCompat.getColor(context, R.color.primary_dark)
-            }
+        window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            statusBarColor = ContextCompat.getColor(context, R.color.primary_dark)
         }
     }
 

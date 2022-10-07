@@ -16,7 +16,7 @@ class PermissionManager(private val context: Context) {
 
     fun requestPermissions(activity: Activity) {
         val permissions =
-            if (Build.VERSION.SDK_INT >= 33) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 arrayOf(ACCESS_FINE_LOCATION, POST_NOTIFICATIONS)
             } else {
                 arrayOf(ACCESS_FINE_LOCATION)
