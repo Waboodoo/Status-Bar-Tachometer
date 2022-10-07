@@ -38,6 +38,7 @@ class SpeedWatcher(context: Context) : Destroyable {
 
         override fun onProviderEnabled(provider: String) {
             isGPSEnabled = true
+            sendSpeedUpdate(null)
             sendSpeedUpdate(currentSpeed)
         }
 
