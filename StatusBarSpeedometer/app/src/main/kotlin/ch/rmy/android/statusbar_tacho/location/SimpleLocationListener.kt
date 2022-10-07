@@ -10,6 +10,7 @@ abstract class SimpleLocationListener : LocationListener {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
 
     }
