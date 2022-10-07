@@ -1,9 +1,9 @@
 package ch.rmy.android.statusbar_tacho.location
 
-sealed class SpeedUpdate {
+sealed interface SpeedUpdate {
 
-    class SpeedChanged(val speed: Float) : SpeedUpdate()
+    data class SpeedChanged(val speed: Float) : SpeedUpdate
 
-    object SpeedUnavailable : SpeedUpdate()
+    object SpeedUnavailable : SpeedUpdate
 
 }

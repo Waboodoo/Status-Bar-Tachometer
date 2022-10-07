@@ -5,16 +5,16 @@ import android.content.Context
 import android.widget.Spinner
 import ch.rmy.android.statusbar_tacho.utils.Destroyer
 import ch.rmy.android.statusbar_tacho.utils.SimpleItemSelectedListener
-import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.Job
 
 inline fun consume(f: () -> Unit): Boolean {
     f()
     return true
 }
 
-fun Disposable.ownedBy(destroyer: Destroyer) {
+fun Job.ownedBy(destroyer: Destroyer) {
     destroyer.own {
-        dispose()
+        cancel()
     }
 }
 

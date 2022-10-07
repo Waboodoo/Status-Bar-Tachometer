@@ -6,9 +6,11 @@ import android.view.MenuItem
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.consume
-import ch.rmy.android.statusbar_tacho.extensions.ownedBy
 import ch.rmy.android.statusbar_tacho.extensions.setOnItemSelectedListener
 import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
@@ -20,6 +22,7 @@ import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.coroutines.launch
 
 class SettingsActivity : BaseActivity() {
 
@@ -53,18 +56,20 @@ class SettingsActivity : BaseActivity() {
 
         toggleButton.setOnCheckedChangeListener { _, isChecked -> toggleState(isChecked) }
 
-        speedWatcher.speedUpdates
-            .subscribe { speedUpdate ->
-                when (speedUpdate) {
-                    is SpeedUpdate.SpeedChanged -> {
-                        updateSpeedViews(speedUpdate.speed)
-                    }
-                    is SpeedUpdate.SpeedUnavailable -> {
-                        updateSpeedViews(0f)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                speedWatcher.speedUpdates.collect { speedUpdate ->
+                    when (speedUpdate) {
+                        is SpeedUpdate.SpeedChanged -> {
+                            updateSpeedViews(speedUpdate.speed)
+                        }
+                        is SpeedUpdate.SpeedUnavailable -> {
+                            updateSpeedViews(0f)
+                        }
                     }
                 }
             }
-            .ownedBy(destroyer)
+        }
 
         Dialogs.showIntroMessage(context, settings)
     }

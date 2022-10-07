@@ -1,8 +1,10 @@
 package ch.rmy.android.statusbar_tacho.services
 
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.IBinder
 import androidx.annotation.StringRes
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
@@ -12,12 +14,16 @@ import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.notifications.NotificationProvider
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
+import ch.rmy.android.statusbar_tacho.utils.Destroyer
 import ch.rmy.android.statusbar_tacho.utils.ScreenStateWatcher
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
+import kotlinx.coroutines.*
 import kotlin.math.roundToInt
 
-class SpeedometerService : BaseService() {
+class SpeedometerService : Service() {
+
+    private val destroyer = Destroyer()
 
     private val speedWatcher: SpeedWatcher by lazy {
         destroyer.own(SpeedWatcher(context))
@@ -39,15 +45,18 @@ class SpeedometerService : BaseService() {
     private val unit: SpeedUnit
         get() = settings.unit
 
+    private val scope = CoroutineScope(Dispatchers.Main)
+
     override fun onCreate() {
         super.onCreate()
 
         notificationProvider.initializeNotification(this)
 
-        speedWatcher.speedUpdates
-            .subscribe {
-                updateNotification((it as? SpeedUpdate.SpeedChanged)?.speed)
+        scope.launch {
+            speedWatcher.speedUpdates.collect { speedUpdate ->
+                updateNotification((speedUpdate as? SpeedUpdate.SpeedChanged)?.speed)
             }
+        }
             .ownedBy(destroyer)
 
         if (settings.shouldKeepUpdatingWhileScreenIsOff) {
@@ -63,14 +72,15 @@ class SpeedometerService : BaseService() {
     }
 
     private fun setupScreenStateWatcher() {
-        screenStateWatcher.screenState
-            .subscribe { isScreenOn ->
+        scope.launch {
+            screenStateWatcher.screenState.collect { isScreenOn ->
                 if (isScreenOn) {
                     speedWatcher.enable()
                 } else {
                     speedWatcher.disable()
                 }
             }
+        }
             .ownedBy(destroyer)
     }
 
@@ -96,6 +106,13 @@ class SpeedometerService : BaseService() {
             !speedWatcher.hasLocationPermission() -> R.string.permission_missing
             else -> R.string.unknown
         }
+
+    override fun onBind(intent: Intent): IBinder? = null
+
+    override fun onDestroy() {
+        super.onDestroy()
+        destroyer.destroy()
+    }
 
     companion object {
 

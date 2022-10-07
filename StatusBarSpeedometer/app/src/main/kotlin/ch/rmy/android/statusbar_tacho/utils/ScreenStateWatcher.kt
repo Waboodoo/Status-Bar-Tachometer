@@ -6,15 +6,14 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.PowerManager
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class ScreenStateWatcher(private val context: Context) : Destroyable {
 
     private val screenStateReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            isScreenOn = Intent.ACTION_SCREEN_ON == intent.action
-
+            isScreenOn = intent.action == Intent.ACTION_SCREEN_ON
         }
     }
 
@@ -22,14 +21,14 @@ class ScreenStateWatcher(private val context: Context) : Destroyable {
         set(value) {
             if (field != value) {
                 field = value
-                screenStateSubject.onNext(isScreenOn)
+                _screenState.value = value
             }
         }
 
-    val screenState: Observable<Boolean>
-        get() = screenStateSubject
+    val screenState: StateFlow<Boolean>
+        get() = _screenState
 
-    private val screenStateSubject = BehaviorSubject.createDefault(isScreenOn)
+    private val _screenState = MutableStateFlow(isScreenOn)
 
     private val powerManager
         get() = context.getSystemService(Context.POWER_SERVICE) as PowerManager

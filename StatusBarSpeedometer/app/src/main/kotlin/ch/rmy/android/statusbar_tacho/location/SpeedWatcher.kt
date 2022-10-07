@@ -5,21 +5,21 @@ import android.content.Context
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationManager
+import androidx.core.content.getSystemService
 import ch.rmy.android.statusbar_tacho.utils.Destroyable
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
-import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class SpeedWatcher(context: Context) : Destroyable {
 
     private val locationManager: LocationManager =
-        context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        context.getSystemService()!!
 
-    val speedUpdates: Observable<SpeedUpdate>
-        get() = speedUpdatesSubject
+    val speedUpdates: StateFlow<SpeedUpdate>
+        get() = _speedUpdates
 
-    private val speedUpdatesSubject =
-        BehaviorSubject.createDefault<SpeedUpdate>(SpeedUpdate.SpeedUnavailable)
+    private val _speedUpdates = MutableStateFlow<SpeedUpdate>(SpeedUpdate.SpeedUnavailable)
 
     private val permissionManager = PermissionManager(context)
 
@@ -95,17 +95,16 @@ class SpeedWatcher(context: Context) : Destroyable {
     private fun sendSpeedUpdate(speed: Float?) {
         if (speed == null || currentSpeed != speed) {
             currentSpeed = speed
-            speedUpdatesSubject.onNext(if (speed == null) {
+            _speedUpdates.value = if (speed == null) {
                 SpeedUpdate.SpeedUnavailable
             } else {
                 SpeedUpdate.SpeedChanged(speed)
-            })
+            }
         }
     }
 
     override fun destroy() {
         disable()
-        speedUpdatesSubject.onComplete()
     }
 
     fun hasLocationPermission() = permissionManager.hasPermission()

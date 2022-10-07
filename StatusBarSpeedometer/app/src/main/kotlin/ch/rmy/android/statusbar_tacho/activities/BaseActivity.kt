@@ -15,7 +15,7 @@ import ch.rmy.android.statusbar_tacho.utils.Destroyer
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    internal val destroyer = Destroyer()
+    protected val destroyer = Destroyer()
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
@@ -29,10 +29,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    internal val context: Context
+    protected val context: Context
         get() = this
 
-    internal open val navigateUpIcon: Int
+    protected open val navigateUpIcon: Int
         get() = R.drawable.up_arrow
 
     private fun enableNavigateUpButton(iconResource: Int) {
