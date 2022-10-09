@@ -4,6 +4,8 @@
     <item name="primary" type="color">#FFFFFF</item>
     <item name="primary_dark" type="color">#C0C0C0</item>
 
+    <item name="status_bar" type="color">#141B1E</item>
+
     <!-- GaugeView -->
     <item name="gauge_arc_background" type="color">#141B1E</item>
 

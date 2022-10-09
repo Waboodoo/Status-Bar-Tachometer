@@ -58,7 +58,7 @@ abstract class BaseActivity : AppCompatActivity() {
         window.apply {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            statusBarColor = ContextCompat.getColor(context, R.color.primary_dark)
+            statusBarColor = ContextCompat.getColor(context, R.color.status_bar)
         }
     }
 
