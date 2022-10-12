@@ -6,4 +6,8 @@ sealed interface SpeedUpdate {
 
     object SpeedUnavailable : SpeedUpdate
 
+    object GPSDisabled : SpeedUpdate
+
+    object Disabled : SpeedUpdate
+
 }

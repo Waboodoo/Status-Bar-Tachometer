@@ -58,30 +58,25 @@ class SettingsActivity : BaseActivity() {
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                speedWatcher.speedUpdates.collect { speedUpdate ->
-                    when (speedUpdate) {
-                        is SpeedUpdate.SpeedChanged -> {
-                            updateSpeedViews(speedUpdate.speed)
-                        }
-                        is SpeedUpdate.SpeedUnavailable -> {
-                            updateSpeedViews(0f)
-                        }
-                    }
-                }
+                speedWatcher.speedUpdates.collect(::updateSpeedViews)
             }
         }
 
         Dialogs.showIntroMessage(context, settings)
     }
 
-    private fun updateSpeedViews(speed: Float) {
-        val convertedSpeed = unit.convertSpeed(speed)
+    private fun updateSpeedViews(speedUpdate: SpeedUpdate) {
+        val convertedSpeed = unit.convertSpeed(when (speedUpdate) {
+            is SpeedUpdate.SpeedChanged -> speedUpdate.speed
+            else -> 0.0f
+        })
         speedGauge.value = convertedSpeed
-        speedText.text = when {
-            !toggleButton.isChecked -> IDLE_SPEED_PLACEHOLDER
-            !speedWatcher.isGPSEnabled -> getString(R.string.gps_disabled)
-            !speedWatcher.hasLocationPermission() -> getString(R.string.permission_missing)
-            else -> SpeedFormatter.formatSpeed(context, convertedSpeed)
+        speedText.text = when (speedUpdate) {
+            is SpeedUpdate.GPSDisabled -> getString(R.string.gps_disabled)
+            is SpeedUpdate.SpeedChanged -> SpeedFormatter.formatSpeed(context, convertedSpeed)
+            is SpeedUpdate.SpeedUnavailable,
+            is SpeedUpdate.Disabled,
+            -> IDLE_SPEED_PLACEHOLDER
         }
     }
 
@@ -140,7 +135,6 @@ class SettingsActivity : BaseActivity() {
         settings.isRunning = state
         speedWatcher.toggle(state)
         SpeedometerService.setRunningState(context, state)
-        updateSpeedViews(0f)
         updateViews()
     }
 

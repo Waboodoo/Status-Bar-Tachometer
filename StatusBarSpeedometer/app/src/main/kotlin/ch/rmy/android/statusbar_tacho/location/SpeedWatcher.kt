@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Criteria
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import androidx.core.content.getSystemService
 import ch.rmy.android.statusbar_tacho.utils.Destroyable
@@ -19,40 +20,50 @@ class SpeedWatcher(context: Context) : Destroyable {
     val speedUpdates: StateFlow<SpeedUpdate>
         get() = _speedUpdates
 
-    private val _speedUpdates = MutableStateFlow<SpeedUpdate>(SpeedUpdate.SpeedUnavailable)
+    private val _speedUpdates = MutableStateFlow<SpeedUpdate>(SpeedUpdate.Disabled)
 
     private val permissionManager = PermissionManager(context)
 
-    private val provider: String?
+    private val provider: String? = locationManager.getBestProvider(
+        Criteria()
+            .apply { isSpeedRequired = true },
+        false,
+    )
+
     private var currentSpeed: Float? = null
+        private set(value) {
+            field = value
+            sendSpeedUpdate()
+        }
+
     var enabled: Boolean = false
-        private set
+        private set(value) {
+            field = value
+            sendSpeedUpdate()
+        }
 
     var isGPSEnabled = false
-        private set
+        private set(value) {
+            field = value
+            sendSpeedUpdate()
+        }
 
-    private val locationListener = object : SimpleLocationListener() {
+    private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            sendSpeedUpdate(location.speed)
+            currentSpeed = location.speed
         }
 
         override fun onProviderEnabled(provider: String) {
             isGPSEnabled = true
-            sendSpeedUpdate(null)
-            sendSpeedUpdate(currentSpeed)
         }
 
         override fun onProviderDisabled(provider: String) {
             isGPSEnabled = false
-            sendSpeedUpdate(null)
+            currentSpeed = null
         }
     }
 
     init {
-        val criteria = Criteria()
-        criteria.isSpeedRequired = true
-        provider = locationManager.getBestProvider(criteria, false)
-
         updateGPSState()
     }
 
@@ -73,13 +84,12 @@ class SpeedWatcher(context: Context) : Destroyable {
         if (enabled) {
             return
         }
-        enabled = true
         updateGPSState()
 
         if (permissionManager.hasPermission() && provider != null) {
             locationManager.requestLocationUpdates(provider, 800, 0f, locationListener)
-            sendSpeedUpdate(null)
         }
+        enabled = true
     }
 
     fun disable() {
@@ -88,26 +98,20 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
         enabled = false
         updateGPSState()
-        if (permissionManager.hasPermission() && provider != null) {
-            locationManager.removeUpdates(locationListener)
-        }
+        locationManager.removeUpdates(locationListener)
     }
 
-    private fun sendSpeedUpdate(speed: Float?) {
-        if (speed == null || currentSpeed != speed) {
-            currentSpeed = speed
-            _speedUpdates.value = if (speed == null) {
-                SpeedUpdate.SpeedUnavailable
-            } else {
-                SpeedUpdate.SpeedChanged(speed)
-            }
+    private fun sendSpeedUpdate() {
+        val speed = currentSpeed
+        _speedUpdates.value = when {
+            !enabled -> SpeedUpdate.Disabled
+            speed != null -> SpeedUpdate.SpeedChanged(speed)
+            !isGPSEnabled -> SpeedUpdate.GPSDisabled
+            else -> SpeedUpdate.SpeedUnavailable
         }
     }
 
     override fun destroy() {
         disable()
     }
-
-    fun hasLocationPermission() = permissionManager.hasPermission()
-
 }

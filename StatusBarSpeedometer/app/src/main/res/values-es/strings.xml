@@ -30,8 +30,6 @@
     <string name="github">Ver en Github</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
-    <!-- Status message, shown when location permission is not granted by the user and speed cannot be displayed -->
-    <string name="permission_missing">Permiso no concedido</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
     <string name="intro_title">Bienvenidos</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->

@@ -15,7 +15,6 @@
     <string name="gps_disabled">GPS desabilitado</string>
     <string name="github">Ver no Github</string>
     <string name="speed_format_with_unit">%1$s %2$s</string>
-    <string name="permission_missing">Permissão não concedida</string>
     <string name="intro_title">Bem-vindo</string>
     <string name="intro_message">Por favor seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
     <string name="button_ok">OK</string>

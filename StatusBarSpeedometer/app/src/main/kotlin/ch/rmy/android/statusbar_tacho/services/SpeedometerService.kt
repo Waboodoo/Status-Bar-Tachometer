@@ -54,7 +54,7 @@ class SpeedometerService : Service() {
 
         scope.launch {
             speedWatcher.speedUpdates.collect { speedUpdate ->
-                updateNotification((speedUpdate as? SpeedUpdate.SpeedChanged)?.speed)
+                updateNotification(speedUpdate)
             }
         }
             .ownedBy(destroyer)
@@ -84,28 +84,22 @@ class SpeedometerService : Service() {
             .ownedBy(destroyer)
     }
 
-    private fun updateNotification(currentSpeed: Float?) {
-        val message: String
-        val iconRes: Int
-        if (currentSpeed == null) {
-            message = getString(specialStateMessage)
-            iconRes = R.drawable.icon_unknown
-        } else {
-            val convertedSpeed = unit.convertSpeed(currentSpeed)
+    private fun updateNotification(speedUpdate: SpeedUpdate) {
+        val convertedSpeed = (speedUpdate as? SpeedUpdate.SpeedChanged)?.speed?.let(unit::convertSpeed) ?: 0.0f
 
-            message = SpeedFormatter.formatSpeed(context, convertedSpeed, unit)
-            iconRes = iconProvider.getIconForNumber(convertedSpeed.roundToInt())
+        val message = when (speedUpdate) {
+            is SpeedUpdate.SpeedChanged -> SpeedFormatter.formatSpeed(context, convertedSpeed, unit)
+            is SpeedUpdate.GPSDisabled -> getString(R.string.gps_disabled)
+            is SpeedUpdate.SpeedUnavailable,
+            is SpeedUpdate.Disabled,
+            -> getString(R.string.unknown)
+        }
+        val iconRes = when (speedUpdate) {
+            is SpeedUpdate.SpeedChanged -> iconProvider.getIconForNumber(convertedSpeed.roundToInt())
+            else -> R.drawable.icon_unknown
         }
         notificationProvider.updateNotification(message, iconRes)
     }
-
-    private val specialStateMessage: Int
-        @StringRes
-        get() = when {
-            !speedWatcher.isGPSEnabled -> R.string.gps_disabled
-            !speedWatcher.hasLocationPermission() -> R.string.permission_missing
-            else -> R.string.unknown
-        }
 
     override fun onBind(intent: Intent): IBinder? = null
 
