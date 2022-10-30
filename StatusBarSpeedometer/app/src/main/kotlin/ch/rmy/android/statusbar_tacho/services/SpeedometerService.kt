@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
-import androidx.annotation.StringRes
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
@@ -53,6 +52,7 @@ class SpeedometerService : Service() {
         notificationProvider.initializeNotification(this)
 
         scope.launch {
+            updateNotification(SpeedUpdate.SpeedUnavailable)
             speedWatcher.speedUpdates.collect { speedUpdate ->
                 updateNotification(speedUpdate)
             }
