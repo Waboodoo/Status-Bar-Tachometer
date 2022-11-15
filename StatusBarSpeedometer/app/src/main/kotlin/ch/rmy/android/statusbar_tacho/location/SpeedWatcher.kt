@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Criteria
 import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import androidx.core.content.getSystemService
+import androidx.core.location.LocationListenerCompat
 import ch.rmy.android.statusbar_tacho.utils.Destroyable
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,7 +48,7 @@ class SpeedWatcher(context: Context) : Destroyable {
             sendSpeedUpdate()
         }
 
-    private val locationListener = object : LocationListener {
+    private val locationListener = object : LocationListenerCompat {
         override fun onLocationChanged(location: Location) {
             currentSpeed = location.speed
         }
