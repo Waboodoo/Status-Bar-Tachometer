@@ -26,8 +26,6 @@
     <string name="shortcut_toggle">Hız göstergesini aç/kapat</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS devre dışı</string>
-    <!-- Button text on toolbar, clicking it opens the app's Github page -->
-    <string name="github">Github\'da görüntüle</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->

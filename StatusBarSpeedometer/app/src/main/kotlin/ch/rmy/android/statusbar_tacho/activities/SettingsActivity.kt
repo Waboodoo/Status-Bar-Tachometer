@@ -1,8 +1,6 @@
 package ch.rmy.android.statusbar_tacho.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
@@ -14,14 +12,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import ch.rmy.android.statusbar_tacho.R
-import ch.rmy.android.statusbar_tacho.extensions.consume
 import ch.rmy.android.statusbar_tacho.extensions.setOnItemSelectedListener
 import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 import ch.rmy.android.statusbar_tacho.utils.Dialogs
-import ch.rmy.android.statusbar_tacho.utils.Links
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
@@ -167,19 +163,6 @@ class SettingsActivity : BaseActivity() {
             settings.shouldKeepUpdatingWhileScreenIsOff = checked
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.settings_activity_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        when (item.itemId) {
-            R.id.action_github -> consume {
-                Links.openGithub(context)
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
