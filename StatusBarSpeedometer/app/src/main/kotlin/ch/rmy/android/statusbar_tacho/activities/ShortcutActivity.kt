@@ -3,8 +3,9 @@ package ch.rmy.android.statusbar_tacho.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.RadioGroup
 import ch.rmy.android.statusbar_tacho.R
-import kotlinx.android.synthetic.main.activity_shortcut.*
 
 class ShortcutActivity : BaseActivity() {
 
@@ -12,14 +13,14 @@ class ShortcutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shortcut)
 
-        btn_shortcut_ok.setOnClickListener { onClickButton() }
+        findViewById<View>(R.id.btn_shortcut_ok).setOnClickListener { onClickButton() }
     }
 
     private fun onClickButton() {
         val name: Int
         val action: String
 
-        when (radio_shortcut.checkedRadioButtonId) {
+        when (findViewById<RadioGroup>(R.id.radio_shortcut).checkedRadioButtonId) {
             R.id.radio_shortcut_enable -> {
                 name = R.string.shortcut_on
                 action = SHORTCUT_ENABLE
