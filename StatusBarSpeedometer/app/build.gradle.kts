@@ -12,9 +12,9 @@ android {
         applicationId = "ch.rmy.android.statusbar_tacho"
         minSdk =  21
         targetSdk = 33
-        versionName = "3.5.1"
+        versionName = "3.6.0"
         //noinspection HighAppVersionCode
-        versionCode = 2003050100
+        versionCode = 2003060000
         // 20,(2 digits major),(2 digits minor),(2 digits patch),(2 digits build)
 
         vectorDrawables.useSupportLibrary = true
