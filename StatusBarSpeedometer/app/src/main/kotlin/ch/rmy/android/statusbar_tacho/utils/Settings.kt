@@ -2,6 +2,7 @@ package ch.rmy.android.statusbar_tacho.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.compose.ui.text.intl.Locale
 import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 
@@ -17,9 +18,16 @@ class Settings(context: Context) {
         }
 
     var unit: SpeedUnit
-        get() = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, SpeedUnit.KILOMETERS_PER_HOUR.name)!!)
+        get() = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, getDefaultUnit().name)!!)
         set(unit) = preferences.edit {
             putString(PREF_SPEED_UNIT, unit.name)
+        }
+
+    private fun getDefaultUnit() =
+        if (Locale.current.toLanguageTag() == "en-US") {
+            SpeedUnit.MILES_PER_HOUR
+        } else {
+            SpeedUnit.KILOMETERS_PER_HOUR
         }
 
     var isFirstRun: Boolean
