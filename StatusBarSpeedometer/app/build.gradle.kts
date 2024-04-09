@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ch.rmy.android.statusbar_tacho"
-        minSdk =  21
+        minSdk = 21
         targetSdk = 33
         versionName = "3.6.0"
         //noinspection HighAppVersionCode
@@ -50,8 +50,13 @@ android {
         kotlinCompilerExtensionVersion = "1.5.11"
     }
 
+    packaging {
+        resources {
+            excludes.add("DebugProbesKt.bin")
+        }
+    }
+
     kotlinOptions {
-        languageVersion = "1.6"
         jvmTarget = "1.8"
     }
 
