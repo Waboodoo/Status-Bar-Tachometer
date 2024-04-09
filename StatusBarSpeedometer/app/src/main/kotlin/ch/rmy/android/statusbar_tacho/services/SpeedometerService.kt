@@ -3,8 +3,10 @@ package ch.rmy.android.statusbar_tacho.services
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
+import androidx.core.app.ServiceCompat
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
@@ -44,6 +46,21 @@ class SpeedometerService : Service() {
         get() = settings.unit
 
     private val scope = CoroutineScope(Dispatchers.Main)
+
+    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+        ServiceCompat.startForeground(
+            this,
+            NotificationProvider.NOTIFICATION_ID,
+            notificationProvider.getInitialNotification(),
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+            } else {
+                0
+            },
+        )
+
+        return super.onStartCommand(intent, flags, startId)
+    }
 
     override fun onCreate() {
         super.onCreate()

@@ -50,6 +50,9 @@ class NotificationProvider(context: Context) {
         service.startForeground(NOTIFICATION_ID, builder.build())
     }
 
+    fun getInitialNotification(): Notification =
+        builder.build()
+
     fun updateNotification(message: String, @DrawableRes smallIcon: Int) {
         val notification = builder
             .setContentText(message)
@@ -61,7 +64,7 @@ class NotificationProvider(context: Context) {
 
     companion object {
 
-        private const val NOTIFICATION_ID = 1
+        const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "notification"
 
         @RequiresApi(Build.VERSION_CODES.O)

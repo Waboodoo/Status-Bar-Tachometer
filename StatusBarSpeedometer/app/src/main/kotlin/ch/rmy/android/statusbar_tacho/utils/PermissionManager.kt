@@ -1,5 +1,6 @@
 package ch.rmy.android.statusbar_tacho.utils
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.app.Activity
@@ -12,7 +13,8 @@ import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 class PermissionManager(private val context: Context) {
 
     fun hasPermission(): Boolean =
-        PermissionChecker.checkSelfPermission(context, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
+        (PermissionChecker.checkSelfPermission(context, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
+            || PermissionChecker.checkSelfPermission(context, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED)
 
     fun requestPermissions(activity: Activity) {
         val permissions =
