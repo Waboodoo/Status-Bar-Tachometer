@@ -13,7 +13,7 @@ class DeviceBootReceiver : BroadcastReceiver() {
         if (intent.action != Intent.ACTION_BOOT_COMPLETED) {
             return
         }
-        if (Settings(context).isRunning) {
+        if (Settings.isRunning) {
             SpeedometerService.setRunningState(context, true)
         }
     }

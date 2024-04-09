@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
-import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
@@ -16,9 +15,10 @@ import kotlin.math.min
 
 class GaugeView @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-) : View(context, attrs, defStyleAttr) {
+    value: Float,
+    maxValue: Float,
+    markCount: Int,
+) : View(context) {
 
     private val arcPaint = Paint()
     private val needlePaint = Paint()
@@ -33,10 +33,10 @@ class GaugeView @JvmOverloads constructor(
 
     private var animation: ValueAnimator = ValueAnimator.ofFloat(0F, 0F)
 
-    var value = 0f
+    var value = value
         set(value) {
             val previousValue = field
-            val newValue = max(0f, min(DEFAULT_MAX_VALUE, value))
+            val newValue = max(0f, min(maxValue, value))
 
             animation.cancel()
             animation = ValueAnimator.ofFloat(previousValue, newValue)
@@ -49,13 +49,13 @@ class GaugeView @JvmOverloads constructor(
             invalidate()
         }
 
-    var maxValue = DEFAULT_MAX_VALUE
+    var maxValue = maxValue
         set(maxValue) {
             field = maxValue
             reset()
         }
 
-    var markCount = DEFAULT_MARK_COUNT
+    var markCount = markCount
         set(markCount) {
             field = markCount
             reset()
@@ -104,7 +104,7 @@ class GaugeView @JvmOverloads constructor(
         val availableHeight = totalHeight - 2 * inset
 
         val openAngle = 360 - ARC_ANGLE
-        val aspectRatio = (Trigonometry.cos((openAngle / 2)) + 1) / 2
+        val aspectRatio = (Trigonometry.cos(openAngle / 2) + 1) / 2
 
         val width = if (availableWidth * aspectRatio > availableHeight) {
             (availableHeight / aspectRatio)
@@ -112,8 +112,18 @@ class GaugeView @JvmOverloads constructor(
             availableWidth
         }
 
+        val finalWidth: Int
+        val finalHeight: Int
+        if (availableWidth * aspectRatio > availableHeight) {
+            finalWidth = (totalHeight / aspectRatio).toInt()
+            finalHeight = totalHeight
+        } else {
+            finalWidth = totalWidth
+            finalHeight = (totalWidth * aspectRatio).toInt()
+        }
+
         radius = width / 2f
-        centerX = totalWidth / 2f
+        centerX = finalWidth / 2f
         centerY = inset + radius
 
         arcRect.set(
@@ -124,7 +134,7 @@ class GaugeView @JvmOverloads constructor(
         )
         updatePaintSizes()
 
-        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec)
+        setMeasuredDimension(finalWidth, finalHeight)
     }
 
     private fun updatePaintSizes() {
@@ -168,7 +178,7 @@ class GaugeView @JvmOverloads constructor(
         }
 
         // Draw needle
-        val progress = value / DEFAULT_MAX_VALUE
+        val progress = value / maxValue
         needlePaint.style = Paint.Style.STROKE
         drawLine(canvas, needlePaint, progress, 0f, NEEDLE_LENGTH)
         needlePaint.style = Paint.Style.FILL
@@ -190,10 +200,10 @@ class GaugeView @JvmOverloads constructor(
         )
     }
 
-    companion object {
+    private fun getAngle(progress: Float): Float =
+        ARC_ANGLE * progress + START_ANGLE
 
-        private const val DEFAULT_MAX_VALUE = 180f
-        private const val DEFAULT_MARK_COUNT = 10
+    companion object {
 
         private const val ANIMATION_DURATION = 1000L
 
@@ -207,14 +217,11 @@ class GaugeView @JvmOverloads constructor(
         private const val SMALL_MARK_END = 0.95f
         private const val NUMBER_START = 0.77f
 
-        private const val NEEDLE_STROKE_WIDTH_FACTOR = 0.025f
+        private const val NEEDLE_STROKE_WIDTH_FACTOR = 0.029f
         private const val ARC_STROKE_WIDTH_FACTOR = 0.04f
         private const val NUMBER_SIZE_FACTOR = 0.09f
         private const val BIG_MARK_STROKE_WIDTH_FACTOR = 0.01f
         private const val SMALL_MARK_STROKE_WIDTH_FACTOR = 0.005f
-
-        private fun getAngle(progress: Float): Float =
-            ARC_ANGLE * progress + START_ANGLE
 
     }
 

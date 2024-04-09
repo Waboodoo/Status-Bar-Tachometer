@@ -6,10 +6,19 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 
-class Settings(context: Context) {
+object Settings {
 
-    private val preferences: SharedPreferences =
-        context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
+    fun init(context: Context) {
+        preferences = context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
+    }
+
+    private lateinit var preferences: SharedPreferences
+
+    private const val PREF = "pref"
+    private const val PREF_SERVICE = "service"
+    private const val PREF_SPEED_UNIT = "speed_unit"
+    private const val PREF_FIRST_RUN = "first_run"
+    private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
 
     var isRunning: Boolean
         get() = preferences.getBoolean(PREF_SERVICE, false)
@@ -41,15 +50,5 @@ class Settings(context: Context) {
         set(value) = preferences.edit {
             putBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, value)
         }
-
-    companion object {
-
-        private const val PREF = "pref"
-        private const val PREF_SERVICE = "service"
-        private const val PREF_SPEED_UNIT = "speed_unit"
-        private const val PREF_FIRST_RUN = "first_run"
-        private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
-
-    }
 
 }

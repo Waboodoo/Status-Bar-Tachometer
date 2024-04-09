@@ -14,10 +14,6 @@
     <string name="unit_ms">m/s</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
-    <!-- Button text: Shown when speedometer is disabled -->
-    <string name="toggle_off">Compteur de vitesse désactivé</string>
-    <!-- Button text: Shown when speedometer is enabled -->
-    <string name="toggle_on">Compteur de vitesse activé</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
     <string name="shortcut_on">Activer le compteur de vitesse</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->

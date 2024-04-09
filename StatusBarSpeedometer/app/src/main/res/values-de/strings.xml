@@ -7,8 +7,6 @@
     <string name="unit_mph">mi/h</string>
     <string name="unit_ms">m/s</string>
     <string name="unit_fts">ft/s</string>
-    <string name="toggle_off">Tachometer deaktiviert</string>
-    <string name="toggle_on">Tachometer aktiviert</string>
     <string name="shortcut_on">Tachometer aktivieren</string>
     <string name="shortcut_off">Tachometer deaktivieren</string>
     <string name="shortcut_toggle">Tachometer umschalten</string>

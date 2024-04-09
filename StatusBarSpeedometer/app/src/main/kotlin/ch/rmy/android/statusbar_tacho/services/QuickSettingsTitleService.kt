@@ -5,12 +5,13 @@ import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 import ch.rmy.android.statusbar_tacho.extensions.context
+import ch.rmy.android.statusbar_tacho.utils.Settings
 
 @RequiresApi(Build.VERSION_CODES.N)
 class QuickSettingsTitleService : TileService() {
 
     override fun onStartListening() {
-        updateState(SpeedometerService.isRunning(context))
+        updateState(Settings.isRunning)
     }
 
     private fun updateState(running: Boolean) {
@@ -25,7 +26,7 @@ class QuickSettingsTitleService : TileService() {
     }
 
     override fun onClick() {
-        updateState(!SpeedometerService.isRunning(context))
+        updateState(!Settings.isRunning)
         SpeedometerService.toggleRunningState(context)
     }
 

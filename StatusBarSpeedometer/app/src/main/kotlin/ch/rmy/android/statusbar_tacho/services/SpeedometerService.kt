@@ -37,9 +37,8 @@ class SpeedometerService : Service() {
         destroyer.own(ScreenStateWatcher(context))
     }
 
-    private val settings by lazy {
-        Settings(this)
-    }
+    private val settings: Settings
+        get() = Settings
 
     private val unit: SpeedUnit
         get() = settings.unit
@@ -124,15 +123,7 @@ class SpeedometerService : Service() {
         }
 
         fun toggleRunningState(context: Context) {
-            setRunningState(context, !isRunning(context))
-        }
-
-        fun isRunning(context: Context): Boolean =
-            Settings(context).isRunning
-
-        fun restart(context: Context) {
-            setRunningState(context, false)
-            setRunningState(context, true)
+            setRunningState(context, !Settings.isRunning)
         }
     }
 

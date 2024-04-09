@@ -4,17 +4,14 @@
     <item name="transparent" type="color">#00000000</item>
     <item name="primary" type="color">#FF607D8B</item>
     <item name="primary_dark" type="color">#FF37474F</item>
-
-    <item name="status_bar" type="color">#FF37474F</item>
+    <item name="main_background" type="color">#FFFAFAFA</item>
+    <item name="main_foreground" type="color">#141B1E</item>
+    <item name="main_foreground_secondary" type="color">#99141B1E</item>
 
     <!-- GaugeView -->
-    <item name="gauge_arc_background" type="color">#263238</item>
     <item name="gauge_arc_stroke" type="color">@color/primary</item>
     <item name="gauge_needle" type="color">#AA0000</item>
-    <item name="gauge_big_mark" type="color">#FFFFFF</item>
+    <item name="gauge_big_mark" type="color">#141B1E</item>
     <item name="gauge_small_mark" type="color">@color/primary</item>
-    <item name="gauge_numbers" type="color">#FFFFFF</item>
-
-    <!-- Speed Text -->
-    <item name="speed_text" type="color">#263238</item>
+    <item name="gauge_numbers" type="color">#141B1E</item>
 </resources>

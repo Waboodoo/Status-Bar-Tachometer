@@ -14,10 +14,6 @@
     <string name="unit_ms">m/sn</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/sn</string>
-    <!-- Button text: Shown when speedometer is disabled -->
-    <string name="toggle_off">Hız göstergesi devre dışı</string>
-    <!-- Button text: Shown when speedometer is enabled -->
-    <string name="toggle_on">Hız göstergesi etkin</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
     <string name="shortcut_on">Hız göstergesini etkinleştir</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
