@@ -24,11 +24,13 @@ class NotificationProvider(context: Context) {
     init {
         val intent = Intent(context, SettingsActivity::class.java)
         val pendingIntent =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PendingIntent.FLAG_IMMUTABLE
-            } else {
-                0
-            })
+            PendingIntent.getActivity(
+                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    PendingIntent.FLAG_IMMUTABLE
+                } else {
+                    0
+                }
+            )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createNotificationChannel(createChannel(context))
@@ -44,6 +46,13 @@ class NotificationProvider(context: Context) {
             .setContentTitle(context.getString(R.string.current_speed))
             .setContentText(context.getString(R.string.unknown))
             .setContentIntent(pendingIntent)
+            .let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    it.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+                } else {
+                    it
+                }
+            }
     }
 
     fun initializeNotification(service: Service) {
