@@ -2,9 +2,10 @@ package ch.rmy.android.statusbar_tacho.location
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Criteria
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
+import android.os.SystemClock
 import androidx.core.content.getSystemService
 import androidx.core.location.LocationListenerCompat
 import ch.rmy.android.statusbar_tacho.utils.Destroyable
@@ -24,18 +25,12 @@ class SpeedWatcher(context: Context) : Destroyable {
 
     private val permissionManager = PermissionManager(context)
 
-    private val provider: String?
-        get() = locationManager.getBestProvider(
-            Criteria()
-                .apply { isSpeedRequired = true },
-            false,
-        )
-
     private var currentSpeed: Float? = null
         private set(value) {
             field = value
             sendSpeedUpdate()
         }
+    private var lastGpsUpdate = 0L
 
     var enabled: Boolean = false
         private set(value) {
@@ -49,9 +44,10 @@ class SpeedWatcher(context: Context) : Destroyable {
             sendSpeedUpdate()
         }
 
-    private val locationListener = object : LocationListenerCompat {
+    private val gpsLocationListener = object : LocationListenerCompat {
         override fun onLocationChanged(location: Location) {
             currentSpeed = location.speed
+            lastGpsUpdate = SystemClock.elapsedRealtime()
         }
 
         override fun onProviderEnabled(provider: String) {
@@ -64,12 +60,18 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
     }
 
+    private val fusedLocationListener = LocationListenerCompat { location ->
+        if (currentSpeed == null || SystemClock.elapsedRealtime() - lastGpsUpdate > 10000) {
+            currentSpeed = location.speed
+        }
+    }
+
     init {
         updateGPSState()
     }
 
     private fun updateGPSState() {
-        isGPSEnabled = provider?.let(locationManager::isProviderEnabled) == true
+        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
     fun toggle(state: Boolean) {
@@ -88,8 +90,9 @@ class SpeedWatcher(context: Context) : Destroyable {
         updateGPSState()
 
         if (permissionManager.hasPermission()) {
-            provider?.let {
-                locationManager.requestLocationUpdates(it, 800, 0f, locationListener)
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 800, 0f, gpsLocationListener)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                locationManager.requestLocationUpdates(LocationManager.FUSED_PROVIDER, 800, 0f, fusedLocationListener)
             }
         }
         enabled = true
@@ -101,7 +104,10 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
         enabled = false
         updateGPSState()
-        locationManager.removeUpdates(locationListener)
+        locationManager.removeUpdates(gpsLocationListener)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            locationManager.removeUpdates(fusedLocationListener)
+        }
     }
 
     private fun sendSpeedUpdate() {
