@@ -1,42 +1,42 @@
 <resources>
     <!-- The name of the app itself -->
-    <string name="app_name">Compteur de vitesse</string>
+    <string name="app_name">Velocímetro</string>
     <!-- Notification title, shown above current speed -->
-    <string name="current_speed">Vitesse actuelle</string>
+    <string name="current_speed">Velocidade atual</string>
     <!-- Shown in notification when current speed is unknown -->
-    <string name="unknown">inconnu</string>
+    <string name="unknown">desconhecido</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
     <!-- Speed unit: meters per second -->
-    <string name="unit_ms">m/s</string>
+    <string name="unit_ms">EM</string>
     <!-- Speed unit: feet per second -->
-    <string name="unit_fts">ft/s</string>
+    <string name="unit_fts">pés/s</string>
     <!-- Label for unit dropdown -->
-    <string name="label_unit">Unité</string>
+    <string name="label_unit">Unidade</string>
     <!-- Instructions shown below gauge on main screen -->
-    <string name="main_instructions">Appuyez sur l\'écran pour allumer le compteur de vitesse</string>
+    <string name="main_instructions">Toque na tela para ligar o velocímetro</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
-    <string name="shortcut_toggle">Activer le compteur de vitesse</string>
+    <string name="shortcut_toggle">Alternar velocímetro</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
-    <string name="gps_disabled">GPS désactivé</string>
+    <string name="gps_disabled">GPS desativado</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
-    <string name="intro_title">Bienvenue</string>
+    <string name="intro_title">Bem-vindo</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
-    <string name="intro_message">Soyez responsable et n\'utilisez pas cette application en conduisant.\n\nMerci.</string>
+    <string name="intro_message">Seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
     <!-- Generic button text for dialog buttons -->
     <string name="button_ok">OK</string>
     <!-- Button label for closing a dialog -->
-    <string name="button_close">Fermer</string>
+    <string name="button_close">Fechar</string>
     <!-- Name of notification channel for notification which shows the current speed -->
-    <string name="notification_channel">Mises à jour vitesse</string>
+    <string name="notification_channel">Atualizações de velocidade</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
-    <string name="quick_settings_tile_label">Compteur de vitesse</string>
+    <string name="quick_settings_tile_label">Velocímetro</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Continuez à mettre à jour lorsque l\'écran est éteint</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Continue atualizando enquanto a tela está desligada</string>
     <!-- Dialog title for settings -->
-    <string name="settings_title">Paramètres</string>
+    <string name="settings_title">Configurações</string>
 </resources>

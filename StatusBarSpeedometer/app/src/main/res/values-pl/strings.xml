@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The name of the app itself -->
     <string name="app_name">Prędkościomierz</string>
@@ -14,6 +13,10 @@
     <string name="unit_ms">m/s</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
+    <!-- Label for unit dropdown -->
+    <string name="label_unit">Jednostka</string>
+    <!-- Instructions shown below gauge on main screen -->
+    <string name="main_instructions">Dotknij ekranu, aby włączyć prędkościomierz</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Przełącz prędkościomierz</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
@@ -26,10 +29,14 @@
     <string name="intro_message">Bądź odpowiedzialny/a i nie używaj tej aplikacji podczas prowadzenia samochodu.\n\nDziękuję.</string>
     <!-- Generic button text for dialog buttons -->
     <string name="button_ok">OK</string>
+    <!-- Button label for closing a dialog -->
+    <string name="button_close">Zamknąć</string>
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">Aktualizacje prędkości</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Prędkościomierz</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
     <string name="checkbox_label_keep_updating_when_screen_off">Aktualizuj nadal, gdy ekran jest wyłączony</string>
+    <!-- Dialog title for settings -->
+    <string name="settings_title">Ustawienia</string>
 </resources>

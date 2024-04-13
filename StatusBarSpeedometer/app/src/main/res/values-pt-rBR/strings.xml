@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Speedometer</string>
-    <string name="current_speed">Velocidade Atual</string>
+    <string name="current_speed">Velocidade atual</string>
     <string name="unknown">desconhecida</string>
     <string name="unit_kmh">km/h</string>
     <string name="unit_mph">mi/h</string>
@@ -16,4 +16,8 @@
     <string name="quick_settings_tile_label">Speedometer</string>
     <string name="notification_channel">Atualizações de velocidade</string>
     <string name="checkbox_label_keep_updating_when_screen_off">Continue atualizando enquanto a tela estiver desligada</string>
+    <string name="label_unit">Unidade</string>
+    <string name="main_instructions">Toque na tela para ligar o velocímetro</string>
+    <string name="button_close">Fechar</string>
+    <string name="settings_title">Configurações</string>
 </resources>

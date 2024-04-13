@@ -18,4 +18,8 @@
     <string name="notification_channel">Geschwindigkeits-Updates</string>
     <string name="quick_settings_tile_label">Tachometer</string>
     <string name="checkbox_label_keep_updating_when_screen_off">Updaten auch bei ausgeschaltetem Bildschirm</string>
+    <string name="label_unit">Einheit</string>
+    <string name="main_instructions">Bildschirm antippen um Tachometer zu starten</string>
+    <string name="button_close">Schließen</string>
+    <string name="settings_title">Einstellungen</string>
 </resources>
