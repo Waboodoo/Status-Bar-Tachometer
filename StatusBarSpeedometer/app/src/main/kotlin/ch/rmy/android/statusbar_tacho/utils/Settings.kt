@@ -5,11 +5,14 @@ import android.content.SharedPreferences
 import androidx.compose.ui.text.intl.Locale
 import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 object Settings {
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
+        _isRunningFlow.value = preferences.getBoolean(PREF_SERVICE, false)
     }
 
     private lateinit var preferences: SharedPreferences
@@ -21,10 +24,16 @@ object Settings {
     private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
 
     var isRunning: Boolean
-        get() = preferences.getBoolean(PREF_SERVICE, false)
-        set(running) = preferences.edit {
-            putBoolean(PREF_SERVICE, running)
+        get() = _isRunningFlow.value
+        set(running) {
+            _isRunningFlow.value = running
+            preferences.edit {
+                putBoolean(PREF_SERVICE, running)
+            }
         }
+
+    private val _isRunningFlow = MutableStateFlow(false)
+    val isRunningFlow = _isRunningFlow.asStateFlow()
 
     var unit: SpeedUnit
         get() = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, getDefaultUnit().name)!!)

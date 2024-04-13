@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
         get() = Settings
 
     private val _speedUnit = MutableStateFlow(settings.unit)
-    private val _isRunning = MutableStateFlow(settings.isRunning)
+    private val _isRunning = settings.isRunningFlow
     private val _runWhenScreenOff = MutableStateFlow(settings.shouldKeepUpdatingWhileScreenIsOff)
     private val _speedUpdate = MutableStateFlow<SpeedUpdate>(SpeedUpdate.Disabled)
 
@@ -67,7 +67,6 @@ class SettingsActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             _isRunning.collectLatest { isRunning ->
-                settings.isRunning = isRunning
                 keepScreenOn(isRunning)
                 speedWatcher.toggle(isRunning)
                 SpeedometerService.setRunningState(context, isRunning)
@@ -111,7 +110,7 @@ class SettingsActivity : AppCompatActivity() {
                         if (!isRunning && !permissionManager.hasPermission()) {
                             permissionManager.requestPermissions(this@SettingsActivity)
                         } else {
-                            _isRunning.value = !isRunning
+                            settings.isRunning = !isRunning
                         }
                         settingsVisible = false
                     },
@@ -177,7 +176,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        _isRunning.value = permissionManager.wasGranted(grantResults)
+        settings.isRunning = permissionManager.wasGranted(grantResults)
     }
 
     override fun onDestroy() {

@@ -6,12 +6,28 @@ import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.utils.Settings
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.N)
 class QuickSettingsTitleService : TileService() {
 
+    private var coroutineScope: CoroutineScope? = null
+
     override fun onStartListening() {
-        updateState(Settings.isRunning)
+        coroutineScope = CoroutineScope(Dispatchers.Main)
+        coroutineScope?.launch {
+            Settings.isRunningFlow.collect { isRunning ->
+                updateState(isRunning)
+            }
+        }
+    }
+
+    override fun onStopListening() {
+        coroutineScope?.cancel()
+        coroutineScope = null
     }
 
     private fun updateState(running: Boolean) {
@@ -26,8 +42,9 @@ class QuickSettingsTitleService : TileService() {
     }
 
     override fun onClick() {
-        updateState(!Settings.isRunning)
-        SpeedometerService.toggleRunningState(context)
+        val newState = !Settings.isRunning
+        Settings.isRunning = newState
+        SpeedometerService.setRunningState(context, newState)
     }
 
 }
