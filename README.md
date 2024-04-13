@@ -1,7 +1,8 @@
 # Status Bar Speedometer
 A simple Android app that displays your current speed as a notification in the status bar.
 
-![Version](https://img.shields.io/badge/version-3.5.1-green.svg)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Waboodoo/Status-Bar-Tachometer)](https://github.com/Waboodoo/Status-Bar-Tachometer/releases)
+[![F-Droid](https://img.shields.io/f-droid/v/ch.rmy.android.statusbar_tacho)](https://f-droid.org/en/packages/ch.rmy.android.statusbar_tacho/)
 
 Great for outdoor activities and playing AR games.
 
