@@ -51,14 +51,18 @@ class GaugeView @JvmOverloads constructor(
 
     var maxValue = maxValue
         set(maxValue) {
-            field = maxValue
-            reset()
+            if (field != maxValue) {
+                field = maxValue
+                reset()
+            }
         }
 
     var markCount = markCount
         set(markCount) {
-            field = markCount
-            reset()
+            if (field != markCount) {
+                field = markCount
+                reset()
+            }
         }
 
     private fun reset() {
@@ -205,7 +209,7 @@ class GaugeView @JvmOverloads constructor(
 
     companion object {
 
-        private const val ANIMATION_DURATION = 1000L
+        private const val ANIMATION_DURATION = 700L
 
         private const val ARC_ANGLE = 360 * 0.6f
         private const val START_ANGLE = 270 - ARC_ANGLE / 2
