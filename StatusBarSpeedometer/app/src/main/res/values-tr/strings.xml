@@ -14,10 +14,6 @@
     <string name="unit_ms">m/sn</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/sn</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
-    <string name="shortcut_on">Hız göstergesini etkinleştir</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
-    <string name="shortcut_off">Hız göstergesini devre dışı bırak</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Hız göstergesini aç/kapat</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->

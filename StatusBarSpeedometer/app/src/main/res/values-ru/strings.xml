@@ -14,10 +14,6 @@
     <string name="unit_ms">м/с</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">фут/с</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
-    <string name="shortcut_on">Включить спидометр</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
-    <string name="shortcut_off">Отключить спидометр</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Переключить спидометр</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->

@@ -1,0 +1,12 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="toggleSpeedometer"
+        android:shortcutShortLabel="@string/shortcut_toggle">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="ch.rmy.android.statusbar_tacho.activities.ToggleActivity"
+            android:targetPackage="ch.rmy.android.statusbar_tacho" />
+    </shortcut>
+</shortcuts>

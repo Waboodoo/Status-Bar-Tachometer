@@ -138,10 +138,6 @@ class SpeedometerService : Service() {
                 context.stopService(intent)
             }
         }
-
-        fun toggleRunningState(context: Context) {
-            setRunningState(context, !Settings.isRunning)
-        }
     }
 
 }

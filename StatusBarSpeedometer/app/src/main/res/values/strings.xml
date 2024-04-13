@@ -18,10 +18,6 @@
     <string name="label_unit">Unit</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Tap the screen to turn the speedometer on</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
-    <string name="shortcut_on">Enable speedometer</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
-    <string name="shortcut_off">Disable speedometer</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Toggle speedometer</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->

@@ -14,10 +14,6 @@
     <string name="unit_ms">m/s</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, enables the speedometer -->
-    <string name="shortcut_on">Włącz prędkościomierz</string>
-    <!-- Option for creating a shortcut: shown for option that, when clicked, disables the speedometer -->
-    <string name="shortcut_off">Wyłącz prędkościomierz</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
     <string name="shortcut_toggle">Przełącz prędkościomierz</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->

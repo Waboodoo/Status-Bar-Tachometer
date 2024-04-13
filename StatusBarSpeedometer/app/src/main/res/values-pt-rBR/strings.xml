@@ -7,8 +7,6 @@
     <string name="unit_mph">mi/h</string>
     <string name="unit_ms">m/s</string>
     <string name="unit_fts">pés/s</string>
-    <string name="shortcut_on">Habilitar speedometer</string>
-    <string name="shortcut_off">Desabilitar speedometer</string>
     <string name="shortcut_toggle">Alternar speedometer</string>
     <string name="gps_disabled">GPS desabilitado</string>
     <string name="speed_format_with_unit">%1$s %2$s</string>
