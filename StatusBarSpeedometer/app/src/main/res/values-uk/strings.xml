@@ -1,0 +1,42 @@
+<resources>
+    <!-- The name of the app itself -->
+    <string name="app_name">Спідометр</string>
+    <!-- Notification title, shown above current speed -->
+    <string name="current_speed">Поточна швидкість</string>
+    <!-- Shown in notification when current speed is unknown -->
+    <string name="unknown">невідомий</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh">км/год</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph">миль/год</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms">РС</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts">футів/с</string>
+    <!-- Label for unit dropdown -->
+    <string name="label_unit">одиниця</string>
+    <!-- Instructions shown below gauge on main screen -->
+    <string name="main_instructions">Торкніться екрана, щоб увімкнути спідометр</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
+    <string name="shortcut_toggle">Переключити спідометр</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
+    <string name="gps_disabled">GPS вимкнено</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
+    <string name="intro_title">Ласкаво просимо</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
+    <string name="intro_message">Будьте відповідальними та не використовуйте цю програму за кермом.\n\nДякуємо.</string>
+    <!-- Generic button text for dialog buttons -->
+    <string name="button_ok">в порядку</string>
+    <!-- Button label for closing a dialog -->
+    <string name="button_close">Закрити</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">Оновлення швидкості</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <string name="quick_settings_tile_label">Спідометр</string>
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">Продовжуйте оновлення, коли екран вимкнено</string>
+    <!-- Dialog title for settings -->
+    <string name="settings_title">Налаштування</string>
+</resources>
