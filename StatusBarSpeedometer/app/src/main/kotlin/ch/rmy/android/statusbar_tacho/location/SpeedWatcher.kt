@@ -24,11 +24,12 @@ class SpeedWatcher(context: Context) : Destroyable {
 
     private val permissionManager = PermissionManager(context)
 
-    private val provider: String? = locationManager.getBestProvider(
-        Criteria()
-            .apply { isSpeedRequired = true },
-        false,
-    )
+    private val provider: String?
+        get() = locationManager.getBestProvider(
+            Criteria()
+                .apply { isSpeedRequired = true },
+            false,
+        )
 
     private var currentSpeed: Float? = null
         private set(value) {
@@ -68,7 +69,7 @@ class SpeedWatcher(context: Context) : Destroyable {
     }
 
     private fun updateGPSState() {
-        isGPSEnabled = provider != null && locationManager.isProviderEnabled(provider)
+        isGPSEnabled = provider?.let(locationManager::isProviderEnabled) == true
     }
 
     fun toggle(state: Boolean) {
@@ -86,8 +87,10 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
         updateGPSState()
 
-        if (permissionManager.hasPermission() && provider != null) {
-            locationManager.requestLocationUpdates(provider, 800, 0f, locationListener)
+        if (permissionManager.hasPermission()) {
+            provider?.let {
+                locationManager.requestLocationUpdates(it, 800, 0f, locationListener)
+            }
         }
         enabled = true
     }
