@@ -65,8 +65,6 @@ class SpeedometerService : Service() {
     override fun onCreate() {
         super.onCreate()
 
-        notificationProvider.initializeNotification(this)
-
         scope.launch {
             updateNotification(SpeedUpdate.SpeedUnavailable)
             speedWatcher.speedUpdates.collect { speedUpdate ->

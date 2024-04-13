@@ -55,10 +55,6 @@ class NotificationProvider(context: Context) {
             }
     }
 
-    fun initializeNotification(service: Service) {
-        service.startForeground(NOTIFICATION_ID, builder.build())
-    }
-
     fun getInitialNotification(): Notification =
         builder.build()
 
