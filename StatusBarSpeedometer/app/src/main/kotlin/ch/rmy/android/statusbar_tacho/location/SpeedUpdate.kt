@@ -4,10 +4,10 @@ sealed interface SpeedUpdate { // TODO: Rename to SpeedState or something
 
     data class SpeedChanged(val speed: Float) : SpeedUpdate
 
-    object SpeedUnavailable : SpeedUpdate
+    data object SpeedUnavailable : SpeedUpdate
 
-    object GPSDisabled : SpeedUpdate
+    data object GPSDisabled : SpeedUpdate
 
-    object Disabled : SpeedUpdate
+    data object Disabled : SpeedUpdate
 
 }

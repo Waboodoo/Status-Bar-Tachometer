@@ -120,7 +120,7 @@ private fun SpeedUnitPicker(
                 expanded = false
             },
         ) {
-            SpeedUnit.values().forEach {
+            SpeedUnit.entries.forEach {
                 DropdownMenuItem(
                     text = {
                         Text(stringResource(id = it.nameRes))
