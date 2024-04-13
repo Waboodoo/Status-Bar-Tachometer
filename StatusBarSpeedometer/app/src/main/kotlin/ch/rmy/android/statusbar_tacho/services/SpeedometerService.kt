@@ -11,7 +11,7 @@ import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.extensions.ownedBy
 import ch.rmy.android.statusbar_tacho.icons.IconProvider
-import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
+import ch.rmy.android.statusbar_tacho.location.SpeedState
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.notifications.NotificationProvider
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
@@ -66,8 +66,8 @@ class SpeedometerService : Service() {
         super.onCreate()
 
         scope.launch {
-            updateNotification(SpeedUpdate.SpeedUnavailable)
-            speedWatcher.speedUpdates.collect { speedUpdate ->
+            updateNotification(SpeedState.SpeedUnavailable)
+            speedWatcher.speedState.collect { speedUpdate ->
                 updateNotification(speedUpdate)
             }
         }
@@ -98,18 +98,18 @@ class SpeedometerService : Service() {
             .ownedBy(destroyer)
     }
 
-    private fun updateNotification(speedUpdate: SpeedUpdate) {
-        val convertedSpeed = (speedUpdate as? SpeedUpdate.SpeedChanged)?.speed?.let(unit::convertSpeed) ?: 0.0f
+    private fun updateNotification(speedState: SpeedState) {
+        val convertedSpeed = (speedState as? SpeedState.SpeedChanged)?.speed?.let(unit::convertSpeed) ?: 0.0f
 
-        val message = when (speedUpdate) {
-            is SpeedUpdate.SpeedChanged -> SpeedFormatter.formatSpeed(context, convertedSpeed, unit)
-            is SpeedUpdate.GPSDisabled -> getString(R.string.gps_disabled)
-            is SpeedUpdate.SpeedUnavailable,
-            is SpeedUpdate.Disabled,
+        val message = when (speedState) {
+            is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, convertedSpeed, unit)
+            is SpeedState.GPSDisabled -> getString(R.string.gps_disabled)
+            is SpeedState.SpeedUnavailable,
+            is SpeedState.Disabled,
             -> getString(R.string.unknown)
         }
-        val iconRes = when (speedUpdate) {
-            is SpeedUpdate.SpeedChanged -> iconProvider.getIconForNumber(convertedSpeed.roundToInt())
+        val iconRes = when (speedState) {
+            is SpeedState.SpeedChanged -> iconProvider.getIconForNumber(convertedSpeed.roundToInt())
             else -> R.drawable.icon_unknown
         }
         notificationProvider.updateNotification(message, iconRes)

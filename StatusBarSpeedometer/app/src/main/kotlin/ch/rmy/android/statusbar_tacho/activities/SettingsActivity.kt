@@ -18,7 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
-import ch.rmy.android.statusbar_tacho.location.SpeedUpdate
+import ch.rmy.android.statusbar_tacho.location.SpeedState
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
 import ch.rmy.android.statusbar_tacho.utils.AppTheme
@@ -45,7 +45,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _speedUnit = MutableStateFlow(settings.unit)
     private val _isRunning = settings.isRunningFlow
     private val _runWhenScreenOff = MutableStateFlow(settings.shouldKeepUpdatingWhileScreenIsOff)
-    private val _speedUpdate = MutableStateFlow<SpeedUpdate>(SpeedUpdate.Disabled)
+    private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -53,8 +53,8 @@ class SettingsActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                speedWatcher.speedUpdates.collectLatest {
-                    _speedUpdate.value = it
+                speedWatcher.speedState.collectLatest {
+                    _speedState.value = it
                 }
             }
         }
@@ -76,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
         setContent {
             val isRunning by _isRunning.collectAsStateWithLifecycle()
             val speedUnit by _speedUnit.collectAsStateWithLifecycle()
-            val speedUpdate by _speedUpdate.collectAsStateWithLifecycle()
+            val speedUpdate by _speedState.collectAsStateWithLifecycle()
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
 
             var isFirstRun by remember {
@@ -89,7 +89,7 @@ class SettingsActivity : AppCompatActivity() {
 
             val speed by remember {
                 derivedStateOf {
-                    speedUnit.convertSpeed((speedUpdate as? SpeedUpdate.SpeedChanged)?.speed ?: 0.0f)
+                    speedUnit.convertSpeed((speedUpdate as? SpeedState.SpeedChanged)?.speed ?: 0.0f)
                 }
             }
 
@@ -99,10 +99,10 @@ class SettingsActivity : AppCompatActivity() {
                     gaugeMaxValue = speedUnit.maxValue.toFloat(),
                     gaugeMarkCount = speedUnit.steps + 1,
                     speedLabel = when (speedUpdate) {
-                        is SpeedUpdate.GPSDisabled -> stringResource(R.string.gps_disabled)
-                        is SpeedUpdate.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed)
-                        is SpeedUpdate.SpeedUnavailable,
-                        is SpeedUpdate.Disabled,
+                        is SpeedState.GPSDisabled -> stringResource(R.string.gps_disabled)
+                        is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed)
+                        is SpeedState.SpeedUnavailable,
+                        is SpeedState.Disabled,
                         -> IDLE_SPEED_PLACEHOLDER
                     },
                     isRunning = isRunning,

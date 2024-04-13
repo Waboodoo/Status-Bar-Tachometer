@@ -11,37 +11,35 @@ import androidx.core.location.LocationListenerCompat
 import ch.rmy.android.statusbar_tacho.utils.Destroyable
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class SpeedWatcher(context: Context) : Destroyable {
 
     private val locationManager: LocationManager =
         context.getSystemService()!!
 
-    val speedUpdates: StateFlow<SpeedUpdate>
-        get() = _speedUpdates
-
-    private val _speedUpdates = MutableStateFlow<SpeedUpdate>(SpeedUpdate.Disabled)
+    private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
+    val speedState = _speedState.asStateFlow()
 
     private val permissionManager = PermissionManager(context)
 
     private var currentSpeed: Float? = null
-        private set(value) {
+        set(value) {
             field = value
-            sendSpeedUpdate()
+            updateSpeedState()
         }
     private var lastGpsUpdate = 0L
 
-    var enabled: Boolean = false
-        private set(value) {
+    private var enabled: Boolean = false
+        set(value) {
             field = value
-            sendSpeedUpdate()
+            updateSpeedState()
         }
 
-    var isGPSEnabled = false
-        private set(value) {
+    private var isGPSEnabled = false
+        set(value) {
             field = value
-            sendSpeedUpdate()
+            updateSpeedState()
         }
 
     private val gpsLocationListener = object : LocationListenerCompat {
@@ -110,13 +108,13 @@ class SpeedWatcher(context: Context) : Destroyable {
         }
     }
 
-    private fun sendSpeedUpdate() {
+    private fun updateSpeedState() {
         val speed = currentSpeed
-        _speedUpdates.value = when {
-            !enabled -> SpeedUpdate.Disabled
-            speed != null -> SpeedUpdate.SpeedChanged(speed)
-            !isGPSEnabled -> SpeedUpdate.GPSDisabled
-            else -> SpeedUpdate.SpeedUnavailable
+        _speedState.value = when {
+            !enabled -> SpeedState.Disabled
+            speed != null -> SpeedState.SpeedChanged(speed)
+            !isGPSEnabled -> SpeedState.GPSDisabled
+            else -> SpeedState.SpeedUnavailable
         }
     }
 
