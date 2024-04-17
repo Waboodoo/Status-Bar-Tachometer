@@ -48,6 +48,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _runWhenScreenOff = MutableStateFlow(settings.shouldKeepUpdatingWhileScreenIsOff)
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
     private val _themeId = settings.themeIdFlow
+    private val _gaugeScale = settings.gaugeScaleFlow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -81,6 +82,7 @@ class SettingsActivity : AppCompatActivity() {
             val speedUpdate by _speedState.collectAsStateWithLifecycle()
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
             val themeId by _themeId.collectAsStateWithLifecycle()
+            val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
 
             var isFirstRun by remember {
                 mutableStateOf(settings.isFirstRun)
@@ -99,7 +101,7 @@ class SettingsActivity : AppCompatActivity() {
             AppTheme {
                 MainScreen(
                     gaugeValue = speed,
-                    gaugeMaxValue = speedUnit.maxValue.toFloat(),
+                    gaugeMaxValue = (speedUnit.maxValue / gaugeScale.factor).toFloat(),
                     gaugeMarkCount = speedUnit.steps + 1,
                     gaugeTheme = getGaugeTheme(themeId),
                     speedLabel = when (speedUpdate) {
@@ -134,6 +136,7 @@ class SettingsActivity : AppCompatActivity() {
                     SettingsDialog(
                         speedUnit = speedUnit,
                         themeId = themeId,
+                        gaugeScale = gaugeScale,
                         runWhenScreenOff = runWhenScreenOff,
                         onSpeedUnitChanged = {
                             _speedUnit.value = it
@@ -141,6 +144,9 @@ class SettingsActivity : AppCompatActivity() {
                         },
                         onThemeIdChanged = {
                             settings.themeId = it
+                        },
+                        onGaugeScaleChanged = {
+                            settings.gaugeScale = it
                         },
                         onRunWhenScreenOffChanged = {
                             _runWhenScreenOff.value = it

@@ -25,10 +25,10 @@ enum class SpeedUnit {
             get() = R.string.unit_ms
 
         override val maxValue: Int
-            get() = 50
+            get() = 60
 
         override val steps: Int
-            get() = 5
+            get() = 3
 
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond

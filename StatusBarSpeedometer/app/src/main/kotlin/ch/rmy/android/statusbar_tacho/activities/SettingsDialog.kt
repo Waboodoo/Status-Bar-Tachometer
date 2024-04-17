@@ -36,15 +36,18 @@ import androidx.compose.ui.unit.dp
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.clickOnlyInteractionSource
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
+import ch.rmy.android.statusbar_tacho.views.GaugeScale
 import ch.rmy.android.statusbar_tacho.views.ThemeId
 
 @Composable
 fun SettingsDialog(
     speedUnit: SpeedUnit,
     themeId: ThemeId,
+    gaugeScale: GaugeScale,
     runWhenScreenOff: Boolean,
     onSpeedUnitChanged: (SpeedUnit) -> Unit,
     onThemeIdChanged: (ThemeId) -> Unit,
+    onGaugeScaleChanged: (GaugeScale) -> Unit,
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
@@ -73,6 +76,11 @@ fun SettingsDialog(
                 ThemeIdPicker(
                     themeId = themeId,
                     onThemeIdChanged = onThemeIdChanged,
+                )
+
+                GaugeScalePicker(
+                    gaugeScale = gaugeScale,
+                    onGaugeScaleChanged = onGaugeScaleChanged,
                 )
 
                 ScreenBehaviorPicker(
@@ -130,6 +138,29 @@ private fun ThemeIdPicker(
     }
 }
 
+@Composable
+private fun GaugeScalePicker(
+    gaugeScale: GaugeScale,
+    onGaugeScaleChanged: (GaugeScale) -> Unit,
+) {
+    DropdownField(
+        label = stringResource(R.string.label_gauge_scale),
+        value = getGaugeScaleName(gaugeScale),
+    ) { collapse ->
+        GaugeScale.entries.forEach {
+            DropdownMenuItem(
+                text = {
+                    Text(getGaugeScaleName(it))
+                },
+                onClick = {
+                    onGaugeScaleChanged(it)
+                    collapse()
+                },
+            )
+        }
+    }
+}
+
 @Stable
 @Composable
 private fun getThemeName(themeId: ThemeId): String =
@@ -137,6 +168,15 @@ private fun getThemeName(themeId: ThemeId): String =
         ThemeId.DEFAULT -> stringResource(R.string.theme_name_default)
         ThemeId.BLUE -> stringResource(R.string.theme_name_blue)
         ThemeId.RED -> stringResource(R.string.theme_name_red)
+    }
+
+@Stable
+@Composable
+private fun getGaugeScaleName(gaugeScale: GaugeScale): String =
+    when (gaugeScale) {
+        GaugeScale.SLOW -> stringResource(R.string.gauge_scale_slow)
+        GaugeScale.MEDIUM -> stringResource(R.string.gauge_scale_medium)
+        GaugeScale.FAST -> stringResource(R.string.gauge_scale_fast)
     }
 
 @Composable
@@ -223,9 +263,11 @@ private fun SettingsDialog_Preview() {
     SettingsDialog(
         speedUnit = SpeedUnit.KILOMETERS_PER_HOUR,
         themeId = ThemeId.DEFAULT,
+        gaugeScale = GaugeScale.FAST,
         runWhenScreenOff = false,
         onSpeedUnitChanged = {},
         onThemeIdChanged = {},
+        onGaugeScaleChanged = {},
         onRunWhenScreenOffChanged = {},
         onDismissRequest = {},
     )
