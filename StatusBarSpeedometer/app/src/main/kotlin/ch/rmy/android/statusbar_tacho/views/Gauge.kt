@@ -11,16 +11,18 @@ fun Gauge(
     value: Float,
     maxValue: Float,
     markCount: Int,
+    theme: GaugeTheme,
 ) {
     AndroidView(
         modifier = modifier,
         factory = { context ->
-            GaugeView(context, value, maxValue, markCount)
+            GaugeView(context, value, maxValue, markCount, theme)
         },
         update = { gaugeView ->
             gaugeView.value = value
             gaugeView.maxValue = maxValue
             gaugeView.markCount = markCount
+            gaugeView.theme = theme
         },
         onReset = NoOpUpdate,
     )

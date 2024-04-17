@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.compose.ui.text.intl.Locale
 import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
+import ch.rmy.android.statusbar_tacho.views.ThemeId
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -13,6 +14,7 @@ object Settings {
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
         _isRunningFlow.value = preferences.getBoolean(PREF_SERVICE, false)
+        _themeIdFlow.value = ThemeId.entries.getOrElse(preferences.getInt(PREF_THEME, 0)) { ThemeId.DEFAULT }
     }
 
     private lateinit var preferences: SharedPreferences
@@ -22,6 +24,7 @@ object Settings {
     private const val PREF_SPEED_UNIT = "speed_unit"
     private const val PREF_FIRST_RUN = "first_run"
     private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
+    private const val PREF_THEME = "theme"
 
     var isRunning: Boolean
         get() = _isRunningFlow.value
@@ -58,6 +61,16 @@ object Settings {
         get() = preferences.getBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, false)
         set(value) = preferences.edit {
             putBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, value)
+        }
+
+    private val _themeIdFlow = MutableStateFlow(ThemeId.DEFAULT)
+    val themeIdFlow = _themeIdFlow.asStateFlow()
+
+    var themeId: ThemeId
+        get() = _themeIdFlow.value
+        set(value) = preferences.edit {
+            _themeIdFlow.value = value
+            putInt(PREF_THEME, value.ordinal)
         }
 
 }

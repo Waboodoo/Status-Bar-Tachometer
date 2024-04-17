@@ -16,6 +16,8 @@
     <string name="unit_fts">ft/s</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Unit</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Gauge Theme</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Tap the screen to turn the speedometer on</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -40,4 +42,7 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Keep updating while screen is off</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Settings</string>
+    <string name="theme_name_default">Default</string>
+    <string name="theme_name_blue">Blue</string>
+    <string name="theme_name_red">Red</string>
 </resources>

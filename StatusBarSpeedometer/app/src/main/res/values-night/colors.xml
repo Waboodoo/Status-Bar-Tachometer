@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- General Styling -->
     <item name="primary" type="color">#FFFFFF</item>
     <item name="primary_dark" type="color">#C0C0C0</item>
     <item name="main_background" type="color">#141B1E</item>
     <item name="main_foreground" type="color">#FFFFFF</item>
     <item name="main_foreground_secondary" type="color">#99FFFFFF</item>
-
-    <item name="gauge_numbers" type="color">#FFFFFF</item>
 </resources>

@@ -22,6 +22,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,12 +36,15 @@ import androidx.compose.ui.unit.dp
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.clickOnlyInteractionSource
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
+import ch.rmy.android.statusbar_tacho.views.ThemeId
 
 @Composable
 fun SettingsDialog(
     speedUnit: SpeedUnit,
+    themeId: ThemeId,
     runWhenScreenOff: Boolean,
     onSpeedUnitChanged: (SpeedUnit) -> Unit,
+    onThemeIdChanged: (ThemeId) -> Unit,
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
     onDismissRequest: () -> Unit,
 ) {
@@ -66,6 +70,11 @@ fun SettingsDialog(
                     onSpeedUnitChanged = onSpeedUnitChanged
                 )
 
+                ThemeIdPicker(
+                    themeId = themeId,
+                    onThemeIdChanged = onThemeIdChanged,
+                )
+
                 ScreenBehaviorPicker(
                     runWhenScreenOff = runWhenScreenOff,
                     onRunWhenScreenOffChanged = onRunWhenScreenOffChanged,
@@ -80,6 +89,62 @@ private fun SpeedUnitPicker(
     speedUnit: SpeedUnit,
     onSpeedUnitChanged: (SpeedUnit) -> Unit,
 ) {
+    DropdownField(
+        label = stringResource(R.string.label_unit),
+        value = stringResource(speedUnit.nameRes),
+    ) { collapse ->
+        SpeedUnit.entries.forEach {
+            DropdownMenuItem(
+                text = {
+                    Text(stringResource(id = it.nameRes))
+                },
+                onClick = {
+                    onSpeedUnitChanged(it)
+                    collapse()
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun ThemeIdPicker(
+    themeId: ThemeId,
+    onThemeIdChanged: (ThemeId) -> Unit,
+) {
+    DropdownField(
+        label = stringResource(R.string.label_gauge_theme),
+        value = getThemeName(themeId),
+    ) { collapse ->
+        ThemeId.entries.forEach {
+            DropdownMenuItem(
+                text = {
+                    Text(getThemeName(it))
+                },
+                onClick = {
+                    onThemeIdChanged(it)
+                    collapse()
+                },
+            )
+        }
+    }
+}
+
+@Stable
+@Composable
+private fun getThemeName(themeId: ThemeId): String =
+    when (themeId) {
+        ThemeId.DEFAULT -> stringResource(R.string.theme_name_default)
+        ThemeId.BLUE -> stringResource(R.string.theme_name_blue)
+        ThemeId.RED -> stringResource(R.string.theme_name_red)
+    }
+
+@Composable
+private fun DropdownField(
+    label: String,
+    value: String,
+    menuContent: @Composable (collapse: () -> Unit) -> Unit,
+) {
     var expanded by remember { mutableStateOf(false) }
 
     Box(
@@ -88,12 +153,12 @@ private fun SpeedUnitPicker(
             .wrapContentSize(Alignment.TopStart)
     ) {
         OutlinedTextField(
-            value = stringResource(speedUnit.nameRes),
+            value = value,
             onValueChange = {},
             readOnly = true,
             singleLine = true,
             label = {
-                Text(stringResource(R.string.label_unit))
+                Text(label)
             },
             trailingIcon = {
                 IconButton(
@@ -120,16 +185,8 @@ private fun SpeedUnitPicker(
                 expanded = false
             },
         ) {
-            SpeedUnit.entries.forEach {
-                DropdownMenuItem(
-                    text = {
-                        Text(stringResource(id = it.nameRes))
-                    },
-                    onClick = {
-                        onSpeedUnitChanged(it)
-                        expanded = false
-                    },
-                )
+            menuContent {
+                expanded = false
             }
         }
     }
@@ -165,8 +222,10 @@ private fun ScreenBehaviorPicker(
 private fun SettingsDialog_Preview() {
     SettingsDialog(
         speedUnit = SpeedUnit.KILOMETERS_PER_HOUR,
+        themeId = ThemeId.DEFAULT,
         runWhenScreenOff = false,
         onSpeedUnitChanged = {},
+        onThemeIdChanged = {},
         onRunWhenScreenOffChanged = {},
         onDismissRequest = {},
     )

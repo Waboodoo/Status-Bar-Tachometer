@@ -7,8 +7,8 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.content.ContextCompat
-import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.utils.Trigonometry
 import kotlin.math.max
 import kotlin.math.min
@@ -18,6 +18,7 @@ class GaugeView @JvmOverloads constructor(
     value: Float,
     maxValue: Float,
     markCount: Int,
+    theme: GaugeTheme,
 ) : View(context) {
 
     private val arcPaint = Paint()
@@ -65,33 +66,46 @@ class GaugeView @JvmOverloads constructor(
             }
         }
 
+    var theme: GaugeTheme = theme
+        set(value) {
+            if (field != value) {
+                field = value
+                applyThemeColors()
+                invalidate()
+            }
+        }
+
     private fun reset() {
         animation.cancel()
-        value = 0f
         invalidate()
     }
 
     init {
-        arcPaint.color = getColor(R.color.gauge_arc_stroke)
         arcPaint.isAntiAlias = true
         arcPaint.style = Paint.Style.STROKE
 
-        numberPaint.color = getColor(R.color.gauge_numbers)
         numberPaint.isAntiAlias = true
         numberPaint.textAlign = Paint.Align.CENTER
 
-        needlePaint.color = getColor(R.color.gauge_needle)
         needlePaint.isAntiAlias = true
         needlePaint.style = Paint.Style.STROKE
         needlePaint.strokeCap = Paint.Cap.ROUND
 
-        bigMarkPaint.color = getColor(R.color.gauge_big_mark)
         bigMarkPaint.isAntiAlias = true
         bigMarkPaint.style = Paint.Style.STROKE
 
-        smallMarkPaint.color = getColor(R.color.gauge_small_mark)
         smallMarkPaint.isAntiAlias = true
         smallMarkPaint.style = Paint.Style.STROKE
+
+        applyThemeColors()
+    }
+
+    private fun applyThemeColors() {
+        arcPaint.color = theme.arcColor.toArgb()
+        numberPaint.color = theme.numberColor.toArgb()
+        needlePaint.color = theme.needleColor.toArgb()
+        bigMarkPaint.color = theme.bigMarkColor.toArgb()
+        smallMarkPaint.color = theme.smallMarkColor.toArgb()
     }
 
     @ColorInt

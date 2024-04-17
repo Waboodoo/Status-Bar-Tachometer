@@ -39,6 +39,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.views.Gauge
+import ch.rmy.android.statusbar_tacho.views.GaugeTheme
+import ch.rmy.android.statusbar_tacho.views.getGaugeTheme
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
@@ -47,6 +49,7 @@ fun MainScreen(
     gaugeValue: Float,
     gaugeMaxValue: Float,
     gaugeMarkCount: Int,
+    gaugeTheme: GaugeTheme,
     speedLabel: String,
     isRunning: Boolean,
     onClicked: () -> Unit,
@@ -99,6 +102,7 @@ fun MainScreen(
                     value = gaugeValue,
                     maxValue = gaugeMaxValue,
                     markCount = gaugeMarkCount,
+                    theme = gaugeTheme,
                 )
 
                 Text(
@@ -146,6 +150,7 @@ private fun MainScreen_Running_Preview() {
         gaugeValue = 27f,
         gaugeMaxValue = 80f,
         gaugeMarkCount = 20,
+        gaugeTheme = getGaugeTheme(),
         speedLabel = "27.0",
         isRunning = true,
         onClicked = {},
@@ -160,6 +165,7 @@ private fun MainScreen_Tablet_Preview() {
         gaugeValue = 0f,
         gaugeMaxValue = 100f,
         gaugeMarkCount = 20,
+        gaugeTheme = getGaugeTheme(),
         speedLabel = "0.0",
         isRunning = false,
         onClicked = {},
@@ -174,6 +180,7 @@ private fun MainScreen_Dark_Preview() {
         gaugeValue = 0f,
         gaugeMaxValue = 100f,
         gaugeMarkCount = 20,
+        gaugeTheme = getGaugeTheme(),
         speedLabel = "---",
         isRunning = false,
         onClicked = {},

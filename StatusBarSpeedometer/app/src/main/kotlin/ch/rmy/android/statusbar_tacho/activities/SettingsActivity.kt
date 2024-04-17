@@ -25,6 +25,7 @@ import ch.rmy.android.statusbar_tacho.utils.AppTheme
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
+import ch.rmy.android.statusbar_tacho.views.getGaugeTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.drop
@@ -46,6 +47,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _isRunning = settings.isRunningFlow
     private val _runWhenScreenOff = MutableStateFlow(settings.shouldKeepUpdatingWhileScreenIsOff)
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
+    private val _themeId = settings.themeIdFlow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -78,6 +80,7 @@ class SettingsActivity : AppCompatActivity() {
             val speedUnit by _speedUnit.collectAsStateWithLifecycle()
             val speedUpdate by _speedState.collectAsStateWithLifecycle()
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
+            val themeId by _themeId.collectAsStateWithLifecycle()
 
             var isFirstRun by remember {
                 mutableStateOf(settings.isFirstRun)
@@ -98,6 +101,7 @@ class SettingsActivity : AppCompatActivity() {
                     gaugeValue = speed,
                     gaugeMaxValue = speedUnit.maxValue.toFloat(),
                     gaugeMarkCount = speedUnit.steps + 1,
+                    gaugeTheme = getGaugeTheme(themeId),
                     speedLabel = when (speedUpdate) {
                         is SpeedState.GPSDisabled -> stringResource(R.string.gps_disabled)
                         is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed)
@@ -129,10 +133,14 @@ class SettingsActivity : AppCompatActivity() {
                 } else if (settingsVisible) {
                     SettingsDialog(
                         speedUnit = speedUnit,
+                        themeId = themeId,
                         runWhenScreenOff = runWhenScreenOff,
                         onSpeedUnitChanged = {
                             _speedUnit.value = it
                             Settings.unit = it
+                        },
+                        onThemeIdChanged = {
+                            settings.themeId = it
                         },
                         onRunWhenScreenOffChanged = {
                             _runWhenScreenOff.value = it
