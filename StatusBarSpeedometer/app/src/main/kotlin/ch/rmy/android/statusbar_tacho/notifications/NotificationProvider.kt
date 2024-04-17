@@ -45,6 +45,8 @@ class NotificationProvider(context: Context) {
             .setContentTitle(context.getString(R.string.current_speed))
             .setContentText(context.getString(R.string.unknown))
             .setContentIntent(pendingIntent)
+            .setLocalOnly(true)
+            .setOngoing(true)
             .let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     it.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
