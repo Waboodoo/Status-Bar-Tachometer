@@ -1,0 +1,52 @@
+<resources>
+    <!-- The name of the app itself -->
+    <string name="app_name">スピードメーター</string>
+    <!-- Notification title, shown above current speed -->
+    <string name="current_speed">現在の速度</string>
+    <!-- Shown in notification when current speed is unknown -->
+    <string name="unknown">未知</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh">km/h</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph">マイル/時</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms">MS</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts">フィート/秒</string>
+    <!-- Label for unit dropdown -->
+    <string name="label_unit">ユニット</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">ゲージのテーマ</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">ゲージスケール</string>
+    <!-- Instructions shown below gauge on main screen -->
+    <string name="main_instructions">画面をタップしてスピードメーターをオンにします</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
+    <string name="shortcut_toggle">トグルスピードメーター</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
+    <string name="gps_disabled">GPSが無効になっています</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
+    <string name="intro_title">いらっしゃいませ</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
+    <string name="intro_message">運転中は責任を持ってこのアプリを使用しないでください。\n\nありがとうございます。</string>
+    <!-- Generic button text for dialog buttons -->
+    <string name="button_ok">わかりました</string>
+    <!-- Button label for closing a dialog -->
+    <string name="button_close">近い</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">スピードアップデート</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <string name="quick_settings_tile_label">スピードメーター</string>
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">画面がオフになっている間も更新を続ける</string>
+    <!-- Dialog title for settings -->
+    <string name="settings_title">設定</string>
+    <string name="theme_name_default">デフォルト</string>
+    <string name="theme_name_blue">青</string>
+    <string name="theme_name_red">赤</string>
+    <string name="gauge_scale_fast">早い🚗</string>
+    <string name="gauge_scale_medium">中 🚲</string>
+    <string name="gauge_scale_slow">ゆっくり🚶</string>
+</resources>

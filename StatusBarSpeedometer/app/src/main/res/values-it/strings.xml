@@ -1,52 +1,52 @@
 <resources>
     <!-- The name of the app itself -->
-    <string name="app_name">Prędkościomierz</string>
+    <string name="app_name">Tachimetro</string>
     <!-- Notification title, shown above current speed -->
-    <string name="current_speed">Aktualna prędkość</string>
+    <string name="current_speed">Velocità attuale</string>
     <!-- Shown in notification when current speed is unknown -->
-    <string name="unknown">nieznana</string>
+    <string name="unknown">sconosciuto</string>
     <!-- Speed unit: kilometers per hour -->
-    <string name="unit_kmh">km/h</string>
+    <string name="unit_kmh">km/ora</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
     <!-- Speed unit: meters per second -->
-    <string name="unit_ms">m/s</string>
+    <string name="unit_ms">SM</string>
     <!-- Speed unit: feet per second -->
-    <string name="unit_fts">ft/s</string>
+    <string name="unit_fts">piedi/s</string>
     <!-- Label for unit dropdown -->
-    <string name="label_unit">Jednostka</string>
+    <string name="label_unit">Unità</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
-    <string name="label_gauge_theme">Motyw miernika</string>
+    <string name="label_gauge_theme">Tema del calibro</string>
     <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
-    <string name="label_gauge_scale">Skala miernika</string>
+    <string name="label_gauge_scale">Scala del calibro</string>
     <!-- Instructions shown below gauge on main screen -->
-    <string name="main_instructions">Dotknij ekranu, aby włączyć prędkościomierz</string>
+    <string name="main_instructions">Tocca lo schermo per accendere il tachimetro</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
-    <string name="shortcut_toggle">Przełącz prędkościomierz</string>
+    <string name="shortcut_toggle">Attiva/disattiva il tachimetro</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
-    <string name="gps_disabled">GPS wyłączony</string>
+    <string name="gps_disabled">GPS disabilitato</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
-    <string name="intro_title">Witaj</string>
+    <string name="intro_title">Benvenuto</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
-    <string name="intro_message">Bądź odpowiedzialny/a i nie używaj tej aplikacji podczas prowadzenia samochodu.\n\nDziękuję.</string>
+    <string name="intro_message">Sii responsabile e non utilizzare questa app durante la guida.\n\nGrazie.</string>
     <!-- Generic button text for dialog buttons -->
     <string name="button_ok">OK</string>
     <!-- Button label for closing a dialog -->
-    <string name="button_close">Zamknąć</string>
+    <string name="button_close">Vicino</string>
     <!-- Name of notification channel for notification which shows the current speed -->
-    <string name="notification_channel">Aktualizacje prędkości</string>
+    <string name="notification_channel">Aggiornamenti di velocità</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
-    <string name="quick_settings_tile_label">Prędkościomierz</string>
+    <string name="quick_settings_tile_label">Tachimetro</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Aktualizuj nadal, gdy ekran jest wyłączony</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Continua ad aggiornare mentre lo schermo è spento</string>
     <!-- Dialog title for settings -->
-    <string name="settings_title">Ustawienia</string>
-    <string name="theme_name_default">Domyślny</string>
-    <string name="theme_name_blue">Niebieski</string>
-    <string name="theme_name_red">Czerwony</string>
-    <string name="gauge_scale_fast">Szybko 🚗</string>
-    <string name="gauge_scale_medium">Średni 🚲</string>
-    <string name="gauge_scale_slow">Powoli 🚶</string>
+    <string name="settings_title">Impostazioni</string>
+    <string name="theme_name_default">Predefinito</string>
+    <string name="theme_name_blue">Blu</string>
+    <string name="theme_name_red">Rosso</string>
+    <string name="gauge_scale_fast">Veloce 🚗</string>
+    <string name="gauge_scale_medium">Medio 🚲</string>
+    <string name="gauge_scale_slow">Lento 🚶</string>
 </resources>

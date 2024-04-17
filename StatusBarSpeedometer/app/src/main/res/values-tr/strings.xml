@@ -15,6 +15,10 @@
     <string name="unit_fts">ft/sn</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Birim</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Gösterge Teması</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">Gösterge Ölçeği</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Hız göstergesini açmak için ekrana dokunun</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Ekran kapalıyken güncellemeye devam et</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Ayarlar</string>
+    <string name="theme_name_default">Varsayılan</string>
+    <string name="theme_name_blue">Mavi</string>
+    <string name="theme_name_red">Kırmızı</string>
+    <string name="gauge_scale_fast">Hızlı 🚗</string>
+    <string name="gauge_scale_medium">Orta 🚲</string>
+    <string name="gauge_scale_slow">Yavaş 🚶</string>
 </resources>

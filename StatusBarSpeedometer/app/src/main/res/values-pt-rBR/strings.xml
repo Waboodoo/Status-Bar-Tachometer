@@ -17,7 +17,15 @@
     <string name="notification_channel">Atualizações de velocidade</string>
     <string name="checkbox_label_keep_updating_when_screen_off">Continue atualizando enquanto a tela estiver desligada</string>
     <string name="label_unit">Unidade</string>
+    <string name="label_gauge_theme">Tema do medidor</string>
+    <string name="label_gauge_scale">Escala do medidor</string>
     <string name="main_instructions">Toque na tela para ligar o velocímetro</string>
     <string name="button_close">Fechar</string>
     <string name="settings_title">Configurações</string>
+    <string name="theme_name_default">Padrão</string>
+    <string name="theme_name_blue">Azul</string>
+    <string name="theme_name_red">Vermelho</string>
+    <string name="gauge_scale_fast">Rápido 🚗</string>
+    <string name="gauge_scale_medium">Médio 🚲</string>
+    <string name="gauge_scale_slow">Lento 🚶</string>
 </resources>

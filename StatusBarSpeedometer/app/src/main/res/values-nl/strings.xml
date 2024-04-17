@@ -15,6 +15,10 @@
     <string name="unit_fts">ft/s</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Eenheid</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Gauge-thema</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">Maatschaal</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Tik op het scherm om de snelheidsmeter in te schakelen</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Blijf updaten terwijl het scherm is uitgeschakeld</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Instellingen</string>
+    <string name="theme_name_default">Standaard</string>
+    <string name="theme_name_blue">Blauw</string>
+    <string name="theme_name_red">Rood</string>
+    <string name="gauge_scale_fast">Snel 🚗</string>
+    <string name="gauge_scale_medium">Middelmatig 🚲</string>
+    <string name="gauge_scale_slow">Langzaam 🚶</string>
 </resources>

@@ -15,6 +15,10 @@
     <string name="unit_fts">피트/초</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">단위</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">게이지 테마</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">게이지 스케일</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">속도계를 켜려면 화면을 탭하세요.</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">화면이 꺼진 동안에도 계속 업데이트</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">설정</string>
+    <string name="theme_name_default">기본</string>
+    <string name="theme_name_blue">파란색</string>
+    <string name="theme_name_red">빨간색</string>
+    <string name="gauge_scale_fast">빨리 🚗</string>
+    <string name="gauge_scale_medium">중간 🚲</string>
+    <string name="gauge_scale_slow">천천히 🚶</string>
 </resources>

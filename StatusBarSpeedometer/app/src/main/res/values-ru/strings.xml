@@ -15,6 +15,10 @@
     <string name="unit_fts">фут/с</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Единица</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Тема датчика</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">Калибровочная шкала</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Коснитесь экрана, чтобы включить спидометр.</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Продолжать обновление при выключенном экране</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Настройки</string>
+    <string name="theme_name_default">По умолчанию</string>
+    <string name="theme_name_blue">Синий</string>
+    <string name="theme_name_red">Красный</string>
+    <string name="gauge_scale_fast">Быстро 🚗</string>
+    <string name="gauge_scale_medium">Средний 🚲</string>
+    <string name="gauge_scale_slow">Медленно 🚶</string>
 </resources>

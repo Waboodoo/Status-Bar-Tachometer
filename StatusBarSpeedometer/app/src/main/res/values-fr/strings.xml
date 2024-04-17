@@ -15,6 +15,10 @@
     <string name="unit_fts">ft/s</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Unité</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Thème de jauge</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">Échelle de jauge</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Appuyez sur l\'écran pour allumer le compteur de vitesse</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Continuez à mettre à jour lorsque l\'écran est éteint</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Paramètres</string>
+    <string name="theme_name_default">Défaut</string>
+    <string name="theme_name_blue">Bleu</string>
+    <string name="theme_name_red">Rouge</string>
+    <string name="gauge_scale_fast">Rapide 🚗</string>
+    <string name="gauge_scale_medium">Moyen 🚲</string>
+    <string name="gauge_scale_slow">Lent 🚶</string>
 </resources>
