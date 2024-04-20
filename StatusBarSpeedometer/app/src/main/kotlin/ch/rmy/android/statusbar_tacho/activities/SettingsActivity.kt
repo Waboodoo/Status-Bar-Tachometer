@@ -54,6 +54,11 @@ class SettingsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
+        if (intent.getBooleanExtra(EXTRA_ENABLE, false) && !permissionManager.hasPermission()) {
+            permissionManager.requestPermissions(this@SettingsActivity)
+            intent.removeExtra(EXTRA_ENABLE)
+        }
+
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 speedWatcher.speedState.collectLatest {
@@ -201,6 +206,7 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
 
         private const val IDLE_SPEED_PLACEHOLDER = "---"
+        const val EXTRA_ENABLE = "enable"
 
     }
 
