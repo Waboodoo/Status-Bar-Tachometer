@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.activities.SettingsActivity
+import ch.rmy.android.statusbar_tacho.receivers.DismissReceiver
 
 class NotificationProvider(context: Context) {
 
@@ -21,15 +22,15 @@ class NotificationProvider(context: Context) {
     private val builder: Notification.Builder
 
     init {
-        val intent = Intent(context, SettingsActivity::class.java)
-        val pendingIntent =
-            PendingIntent.getActivity(
-                context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    PendingIntent.FLAG_IMMUTABLE
-                } else {
-                    0
-                }
-            )
+        val pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_IMMUTABLE
+        } else {
+            0
+        }
+
+        val contentIntent = Intent(context, SettingsActivity::class.java)
+        val deleteIntent = Intent(context, DismissReceiver::class.java)
+            .setAction(DismissReceiver.DISMISS_ACTION)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createNotificationChannel(createChannel(context))
@@ -44,7 +45,8 @@ class NotificationProvider(context: Context) {
             .setSmallIcon(R.drawable.icon_unknown)
             .setContentTitle(context.getString(R.string.current_speed))
             .setContentText(context.getString(R.string.unknown))
-            .setContentIntent(pendingIntent)
+            .setContentIntent(PendingIntent.getActivity(context, 0, contentIntent, pendingIntentFlags))
+            .setDeleteIntent(PendingIntent.getBroadcast(context, 1, deleteIntent, pendingIntentFlags))
             .setLocalOnly(true)
             .setOngoing(true)
             .let {

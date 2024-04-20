@@ -60,6 +60,15 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".receivers.DismissReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="ch.rmy.android.statusbar_tacho.NOTIFICATION_DISMISSED" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".services.QuickSettingsTitleService"
             android:exported="true"
