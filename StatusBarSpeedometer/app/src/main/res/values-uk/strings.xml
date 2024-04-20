@@ -15,6 +15,10 @@
     <string name="unit_fts">футів/с</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">одиниця</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
+    <string name="label_gauge_theme">Тема вимірювання</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
+    <string name="label_gauge_scale">Калібрувальна шкала</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Торкніться екрана, щоб увімкнути спідометр</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
@@ -39,4 +43,10 @@
     <string name="checkbox_label_keep_updating_when_screen_off">Продовжуйте оновлення, коли екран вимкнено</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Налаштування</string>
+    <string name="theme_name_default">За замовчуванням</string>
+    <string name="theme_name_blue">Синій</string>
+    <string name="theme_name_red">Червоний</string>
+    <string name="gauge_scale_fast">Швидко 🚗</string>
+    <string name="gauge_scale_medium">Середній 🚲</string>
+    <string name="gauge_scale_slow">Повільно 🚶</string>
 </resources>
