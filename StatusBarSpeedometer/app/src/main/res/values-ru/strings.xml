@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The name of the app itself -->
-    <string name="app_name">Speedometer</string>
     <!-- Notification title, shown above current speed -->
     <string name="current_speed">Текущая скорость</string>
     <!-- Shown in notification when current speed is unknown -->
@@ -26,7 +26,6 @@
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS отключен</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
-    <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
     <string name="intro_title">Добро пожаловать</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->

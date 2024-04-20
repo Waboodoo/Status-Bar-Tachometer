@@ -1,28 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- The name of the app itself -->
     <string name="app_name">Tachometer</string>
+    <!-- Notification title, shown above current speed -->
     <string name="current_speed">Geschwindigkeit</string>
+    <!-- Shown in notification when current speed is unknown -->
     <string name="unknown">unbekannt</string>
+    <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
+    <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
+    <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/s</string>
+    <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
-    <string name="shortcut_toggle">Tachometer umschalten</string>
-    <string name="gps_disabled">GPS deaktiviert</string>
-    <string name="button_ok">OK</string>
-    <string name="intro_message">Bitte sei vernünftig und verwende diese App nicht während dem
-        Autofahren. Danke.
-    </string>
-    <string name="intro_title">Willkommen</string>
-    <string name="speed_format_with_unit">%1$s %2$s</string>
-    <string name="notification_channel">Geschwindigkeits-Updates</string>
-    <string name="quick_settings_tile_label">Tachometer</string>
-    <string name="checkbox_label_keep_updating_when_screen_off">Updaten auch bei ausgeschaltetem Bildschirm</string>
+    <!-- Label for unit dropdown -->
     <string name="label_unit">Einheit</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">Farbschema</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
     <string name="label_gauge_scale">Skalierung</string>
+    <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Bildschirm antippen um Tachometer zu starten</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
+    <string name="shortcut_toggle">Tachometer ein-/ausschalten</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
+    <string name="gps_disabled">GPS deaktiviert</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
+    <string name="intro_title">Willkommen</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
+    <string name="intro_message">Bitte sei vernünftig und verwende diese App nicht während dem Autofahren.\n\nDanke.</string>
+    <!-- Generic button text for dialog buttons -->
+    <string name="button_ok">OK</string>
+    <!-- Button label for closing a dialog -->
     <string name="button_close">Schließen</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">Geschwindigkeits-Updates</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <string name="quick_settings_tile_label">Tachometer</string>
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">Updaten auch bei ausgeschaltetem Bildschirm</string>
+    <!-- Dialog title for settings -->
     <string name="settings_title">Einstellungen</string>
     <string name="theme_name_default">Standard</string>
     <string name="theme_name_blue">Blau</string>

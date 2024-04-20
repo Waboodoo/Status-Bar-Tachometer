@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The name of the app itself -->
     <string name="app_name">속도계</string>
@@ -6,9 +7,7 @@
     <!-- Shown in notification when current speed is unknown -->
     <string name="unknown">알려지지 않은</string>
     <!-- Speed unit: kilometers per hour -->
-    <string name="unit_kmh">km/h</string>
     <!-- Speed unit: miles per hour -->
-    <string name="unit_mph">mi/h</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">밀리미터/초</string>
     <!-- Speed unit: feet per second -->
@@ -26,7 +25,6 @@
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS가 비활성화되었습니다.</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
-    <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
     <string name="intro_title">환영</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->

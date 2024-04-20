@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The name of the app itself -->
     <string name="app_name">Tachimetro</string>
@@ -8,7 +9,7 @@
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/ora</string>
     <!-- Speed unit: miles per hour -->
-    <string name="unit_mph">mi/h</string>
+    <string name="unit_mph">mi/ora</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">SM</string>
     <!-- Speed unit: feet per second -->

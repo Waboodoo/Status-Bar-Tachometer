@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Speedometer</string>
+    <!-- The name of the app itself -->
+    <!-- Notification title, shown above current speed -->
     <string name="current_speed">Velocidade atual</string>
+    <!-- Shown in notification when current speed is unknown -->
     <string name="unknown">desconhecida</string>
-    <string name="unit_kmh">km/h</string>
-    <string name="unit_mph">mi/h</string>
-    <string name="unit_ms">m/s</string>
+    <!-- Speed unit: kilometers per hour -->
+    <!-- Speed unit: miles per hour -->
+    <!-- Speed unit: meters per second -->
+    <!-- Speed unit: feet per second -->
     <string name="unit_fts">pés/s</string>
-    <string name="shortcut_toggle">Alternar speedometer</string>
-    <string name="gps_disabled">GPS desabilitado</string>
-    <string name="speed_format_with_unit">%1$s %2$s</string>
-    <string name="intro_title">Bem-vindo</string>
-    <string name="intro_message">Por favor seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
-    <string name="button_ok">OK</string>
-    <string name="quick_settings_tile_label">Speedometer</string>
-    <string name="notification_channel">Atualizações de velocidade</string>
-    <string name="checkbox_label_keep_updating_when_screen_off">Continue atualizando enquanto a tela estiver desligada</string>
+    <!-- Label for unit dropdown -->
     <string name="label_unit">Unidade</string>
+    <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">Tema do medidor</string>
+    <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
     <string name="label_gauge_scale">Escala do medidor</string>
+    <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">Toque na tela para ligar o velocímetro</string>
+    <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
+    <string name="shortcut_toggle">Alternar speedometer</string>
+    <!-- Status message, shown instead of speed when GPS is not enabled -->
+    <string name="gps_disabled">GPS desabilitado</string>
+    <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
+    <string name="intro_title">Bem-vindo</string>
+    <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
+    <string name="intro_message">Por favor seja responsável e não use este app enquanto dirige.\n\nObrigado.</string>
+    <!-- Generic button text for dialog buttons -->
+    <!-- Button label for closing a dialog -->
     <string name="button_close">Fechar</string>
+    <!-- Name of notification channel for notification which shows the current speed -->
+    <string name="notification_channel">Atualizações de velocidade</string>
+    <!-- Label for quick settings tile, which allows toggling the speedometer -->
+    <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
+    <string name="checkbox_label_keep_updating_when_screen_off">Continue atualizando enquanto a tela estiver desligada</string>
+    <!-- Dialog title for settings -->
     <string name="settings_title">Configurações</string>
     <string name="theme_name_default">Padrão</string>
     <string name="theme_name_blue">Azul</string>
