@@ -169,6 +169,7 @@ private fun getThemeName(themeId: ThemeId): String =
         ThemeId.DEFAULT -> stringResource(R.string.theme_name_default)
         ThemeId.BLUE -> stringResource(R.string.theme_name_blue)
         ThemeId.RED -> stringResource(R.string.theme_name_red)
+        ThemeId.BLACK_AND_WHITE -> stringResource(R.string.theme_name_black_and_white)
     }
 
 @Stable

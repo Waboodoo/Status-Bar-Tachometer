@@ -12,6 +12,7 @@ data class GaugeTheme(
     val bigMarkColor: Color,
     val smallMarkColor: Color,
     val numberColor: Color,
+    val backgroundColor: Color,
 )
 
 @Stable
@@ -26,6 +27,7 @@ fun getGaugeTheme(themeId: ThemeId = ThemeId.DEFAULT): GaugeTheme =
         ThemeId.DEFAULT -> defaultTheme
         ThemeId.BLUE -> blueTheme
         ThemeId.RED -> redTheme
+        ThemeId.BLACK_AND_WHITE -> blackAndWhiteTheme
     }
         .run {
             if (isSystemInDarkTheme()) dark else light
@@ -39,6 +41,7 @@ private val defaultTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xCCFFFFFF),
         smallMarkColor = Color(0xFF607D8B),
         numberColor = Color(0xFFFFFFFF),
+        backgroundColor = Color(0xFF141B1E),
     ),
     light = GaugeTheme(
         arcColor = Color(0xFF607D8B),
@@ -46,6 +49,7 @@ private val defaultTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xFF607D8B),
         smallMarkColor = Color(0xFF607D8B),
         numberColor = Color(0xFF141B1E),
+        backgroundColor = Color(0xFFFAFAFA),
     )
 )
 
@@ -57,6 +61,7 @@ private val blueTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xFF12A7EE),
         smallMarkColor = Color(0xFF48B0E2),
         numberColor = Color(0xFFBAE0F0),
+        backgroundColor = Color(0xFF141B1E),
     ),
     light = GaugeTheme(
         arcColor = Color(0xFF1A237E),
@@ -64,6 +69,7 @@ private val blueTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xFF12A7EE),
         smallMarkColor = Color(0xFF48B0E2),
         numberColor = Color(0xFF13242B),
+        backgroundColor = Color(0xFFFAFAFA),
     )
 )
 
@@ -75,6 +81,7 @@ private val redTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xFFEE1212),
         smallMarkColor = Color(0xFFE24848),
         numberColor = Color(0xFFF5F5F5),
+        backgroundColor = Color(0xFF141B1E),
     ),
     light = GaugeTheme(
         arcColor = Color(0xFF7E1A1A),
@@ -82,5 +89,26 @@ private val redTheme = GaugeThemeWrapper(
         bigMarkColor = Color(0xFFEE1212),
         smallMarkColor = Color(0xFFE24848),
         numberColor = Color(0xFF2B1313),
+        backgroundColor = Color(0xFFFAFAFA),
+    )
+)
+
+@Stable
+private val blackAndWhiteTheme = GaugeThemeWrapper(
+    dark = GaugeTheme(
+        arcColor = Color.White,
+        needleColor = Color.White,
+        bigMarkColor = Color.White,
+        smallMarkColor = Color.White,
+        numberColor = Color.White,
+        backgroundColor = Color.Black,
+    ),
+    light = GaugeTheme(
+        arcColor = Color.Black,
+        needleColor = Color.Black,
+        bigMarkColor = Color.Black,
+        smallMarkColor = Color.Black,
+        numberColor = Color.Black,
+        backgroundColor = Color.White,
     )
 )

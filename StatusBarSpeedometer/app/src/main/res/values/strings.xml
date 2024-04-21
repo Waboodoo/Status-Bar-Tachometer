@@ -55,6 +55,7 @@
     <string name="theme_name_default">Default</string>
     <string name="theme_name_blue">Blue</string>
     <string name="theme_name_red">Red</string>
+    <string name="theme_name_black_and_white">Black and white</string>
     <string name="gauge_scale_fast">Fast 🚗</string>
     <string name="gauge_scale_medium">Medium 🚲</string>
     <string name="gauge_scale_slow">Slow 🚶</string>

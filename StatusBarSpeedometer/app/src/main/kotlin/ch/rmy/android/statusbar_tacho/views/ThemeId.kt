@@ -4,4 +4,5 @@ enum class ThemeId {
     DEFAULT,
     BLUE,
     RED,
+    BLACK_AND_WHITE,
 }

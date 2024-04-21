@@ -4,4 +4,5 @@
     <string name="button_close" tools:ignore="Typos">Schliessen</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts_long" tools:ignore="Typos">Fuss pro Sekunde</string>
+    <string name="theme_name_black_and_white" tools:ignore="Typos">Schwarz und Weiss</string>
 </resources>

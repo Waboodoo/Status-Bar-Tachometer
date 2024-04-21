@@ -55,6 +55,7 @@
     <string name="theme_name_default">デフォルト</string>
     <string name="theme_name_blue">青</string>
     <string name="theme_name_red">赤</string>
+    <string name="theme_name_black_and_white">黒と白</string>
     <string name="gauge_scale_fast">早い🚗</string>
     <string name="gauge_scale_medium">中 🚲</string>
     <string name="gauge_scale_slow">ゆっくり🚶</string>

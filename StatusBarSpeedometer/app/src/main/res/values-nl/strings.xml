@@ -55,6 +55,7 @@
     <string name="theme_name_default">Standaard</string>
     <string name="theme_name_blue">Blauw</string>
     <string name="theme_name_red">Rood</string>
+    <string name="theme_name_black_and_white">Zwart en wit</string>
     <string name="gauge_scale_fast">Snel 🚗</string>
     <string name="gauge_scale_medium">Middelmatig 🚲</string>
     <string name="gauge_scale_slow">Langzaam 🚶</string>

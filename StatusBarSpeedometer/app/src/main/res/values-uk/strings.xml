@@ -55,6 +55,7 @@
     <string name="theme_name_default">За замовчуванням</string>
     <string name="theme_name_blue">Синій</string>
     <string name="theme_name_red">Червоний</string>
+    <string name="theme_name_black_and_white">Чорно-біла</string>
     <string name="gauge_scale_fast">Швидко 🚗</string>
     <string name="gauge_scale_medium">Середній 🚲</string>
     <string name="gauge_scale_slow">Повільно 🚶</string>

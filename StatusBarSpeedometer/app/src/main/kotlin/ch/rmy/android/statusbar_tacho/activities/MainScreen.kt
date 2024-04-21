@@ -83,7 +83,7 @@ fun MainScreen(
     ) { paddingValues ->
         Box(
             modifier = Modifier
-                .background(colorResource(R.color.main_background))
+                .background(gaugeTheme.backgroundColor)
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {

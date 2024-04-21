@@ -55,6 +55,7 @@
     <string name="theme_name_default">Domyślny</string>
     <string name="theme_name_blue">Niebieski</string>
     <string name="theme_name_red">Czerwony</string>
+    <string name="theme_name_black_and_white">Czarno-biały</string>
     <string name="gauge_scale_fast">Szybko 🚗</string>
     <string name="gauge_scale_medium">Średni 🚲</string>
     <string name="gauge_scale_slow">Powoli 🚶</string>
