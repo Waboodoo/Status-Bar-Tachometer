@@ -8,12 +8,20 @@
     <string name="unknown">desconocida</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">kilómetros por hora</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">millas por hora</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/s</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">metros por segundo</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">pies/s</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long">pies por segundo</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Unidad</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
@@ -41,7 +49,7 @@
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Velocímetro</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Sigue actualizando mientras la pantalla está apagada</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Sigue funcionando incluso cuando la pantalla está apagada</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Ajustes</string>
     <string name="theme_name_default">Por defecto</string>

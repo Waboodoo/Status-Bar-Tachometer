@@ -8,12 +8,20 @@
     <string name="unknown">未知</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">公里/小时</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">千米/小时</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">英里/小时</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">英里/小时</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">多发性硬化症</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">米/秒</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">英尺/秒</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long">英尺/秒</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">单元</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
@@ -41,7 +49,7 @@
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">车速表</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">屏幕关闭时继续更新</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">即使屏幕关闭也继续运行</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">设置</string>
     <string name="theme_name_default">默认</string>

@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- The name of the app itself -->
+    <string name="app_name">Спидометр</string>
     <!-- Notification title, shown above current speed -->
     <string name="current_speed">Текущая скорость</string>
     <!-- Shown in notification when current speed is unknown -->
     <string name="unknown">неизвестно</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">км/ч</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">километров в час</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">миль/ч</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">миль в час</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">м/с</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">метров в секунду</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">фут/с</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long">футов в секунду</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Единица</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
@@ -26,6 +35,7 @@
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS отключен</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
+    <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
     <string name="intro_title">Добро пожаловать</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
@@ -39,7 +49,7 @@
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Спидометр</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Продолжать обновление при выключенном экране</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Продолжать работать, даже когда экран выключен</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Настройки</string>
     <string name="theme_name_default">По умолчанию</string>

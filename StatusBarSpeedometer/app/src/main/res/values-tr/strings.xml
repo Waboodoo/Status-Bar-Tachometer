@@ -8,12 +8,16 @@
     <string name="unknown">bilinmiyor</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/sa</string>
+    <!-- Speed unit: kilometers per hour -->
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/sa</string>
+    <!-- Speed unit: miles per hour -->
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/sn</string>
+    <!-- Speed unit: meters per second -->
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/sn</string>
+    <!-- Speed unit: feet per second -->
     <!-- Label for unit dropdown -->
     <string name="label_unit">Birim</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
@@ -41,7 +45,6 @@
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Hız göstergesi</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Ekran kapalıyken güncellemeye devam et</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Ayarlar</string>
     <string name="theme_name_default">Varsayılan</string>

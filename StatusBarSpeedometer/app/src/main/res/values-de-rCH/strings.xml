@@ -2,4 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Button label for closing a dialog -->
     <string name="button_close" tools:ignore="Typos">Schliessen</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long" tools:ignore="Typos">Fuss pro Sekunde</string>
 </resources>

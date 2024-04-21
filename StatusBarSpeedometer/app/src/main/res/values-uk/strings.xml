@@ -8,12 +8,20 @@
     <string name="unknown">невідомий</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">км/год</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">кілометри на годину</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">миль/год</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">милі на годину</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">РС</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">метри на секунду</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">футів/с</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long">футів за секунду</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">одиниця</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
@@ -41,7 +49,7 @@
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
     <string name="quick_settings_tile_label">Спідометр</string>
     <!-- Label for checkbox that allows to set whether the speedometer should keep updating when the screen is turned off -->
-    <string name="checkbox_label_keep_updating_when_screen_off">Продовжуйте оновлення, коли екран вимкнено</string>
+    <string name="checkbox_label_keep_updating_when_screen_off">Активний режим навіть при вимкненому екрані</string>
     <!-- Dialog title for settings -->
     <string name="settings_title">Налаштування</string>
     <string name="theme_name_default">За замовчуванням</string>
