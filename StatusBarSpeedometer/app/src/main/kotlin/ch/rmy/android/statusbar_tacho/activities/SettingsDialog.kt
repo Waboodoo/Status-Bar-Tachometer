@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
@@ -238,21 +239,24 @@ private fun ScreenBehaviorPicker(
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
 ) {
     Row(
-        modifier = Modifier.toggleable(
-            value = runWhenScreenOff,
-            onValueChange = onRunWhenScreenOffChanged,
-            role = Role.Switch,
-        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .toggleable(
+                value = runWhenScreenOff,
+                onValueChange = onRunWhenScreenOffChanged,
+                role = Role.Switch,
+            ),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = stringResource(R.string.checkbox_label_keep_updating_when_screen_off),
+        )
         Switch(
             modifier = Modifier,
             checked = runWhenScreenOff,
             onCheckedChange = null,
-        )
-        Text(
-            text = stringResource(R.string.checkbox_label_keep_updating_when_screen_off),
         )
     }
 }
