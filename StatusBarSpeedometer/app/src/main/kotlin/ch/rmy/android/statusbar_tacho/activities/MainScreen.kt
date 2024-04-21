@@ -69,6 +69,9 @@ fun MainScreen(
     val instructionsAlpha by animateFloatAsState(
         targetValue = instructionsTargetAlpha,
     )
+    val speedLabelAlpha by animateFloatAsState(
+        targetValue = if (isRunning) 1f else 0.5f,
+    )
     val settingsAlpha by animateFloatAsState(
         targetValue = if (isRunning) 0f else 1f,
     )
@@ -106,6 +109,7 @@ fun MainScreen(
                 )
 
                 Text(
+                    modifier = Modifier.alpha(speedLabelAlpha),
                     text = speedLabel,
                     textAlign = TextAlign.Center,
                     fontSize = 48.sp,
