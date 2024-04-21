@@ -63,6 +63,10 @@ android {
     sourceSets.getByName("main") {
         java.setSrcDirs(listOf("src/main/kotlin"))
     }
+
+    lint {
+        disable.add("MissingTranslation")
+    }
 }
 
 dependencies {

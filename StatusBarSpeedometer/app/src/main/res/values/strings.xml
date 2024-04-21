@@ -8,12 +8,20 @@
     <string name="unknown">unknown</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">kilometers per hour</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/h</string>
+    <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">miles per hour</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/s</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">meters per second</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/s</string>
+    <!-- Speed unit: feet per second -->
+    <string name="unit_fts_long">feet per second</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Unit</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->

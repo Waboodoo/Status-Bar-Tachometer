@@ -99,12 +99,12 @@ private fun SpeedUnitPicker(
 ) {
     DropdownField(
         label = stringResource(R.string.label_unit),
-        value = stringResource(speedUnit.nameRes),
+        value = stringResource(speedUnit.longNameRes),
     ) { collapse ->
         SpeedUnit.entries.forEach {
             DropdownMenuItem(
                 text = {
-                    Text(stringResource(id = it.nameRes))
+                    Text(stringResource(id = it.longNameRes))
                 },
                 onClick = {
                     onSpeedUnitChanged(it)

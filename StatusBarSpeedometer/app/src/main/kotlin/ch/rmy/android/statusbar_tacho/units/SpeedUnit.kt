@@ -10,6 +10,9 @@ enum class SpeedUnit {
         override val nameRes: Int
             get() = R.string.unit_kmh
 
+        override val longNameRes: Int
+            get() = R.string.unit_kmh_long
+
         override val maxValue: Int
             get() = 180
 
@@ -23,6 +26,9 @@ enum class SpeedUnit {
     METERS_PER_SECOND {
         override val nameRes: Int
             get() = R.string.unit_ms
+
+        override val longNameRes: Int
+            get() = R.string.unit_ms_long
 
         override val maxValue: Int
             get() = 60
@@ -38,6 +44,9 @@ enum class SpeedUnit {
         override val nameRes: Int
             get() = R.string.unit_mph
 
+        override val longNameRes: Int
+            get() = R.string.unit_mph_long
+
         override val maxValue: Int
             get() = 120
 
@@ -52,6 +61,9 @@ enum class SpeedUnit {
         override val nameRes: Int
             get() = R.string.unit_fts
 
+        override val longNameRes: Int
+            get() = R.string.unit_fts_long
+
         override val maxValue: Int
             get() = 160
 
@@ -64,6 +76,9 @@ enum class SpeedUnit {
 
     @get:StringRes
     abstract val nameRes: Int
+
+    @get:StringRes
+    abstract val longNameRes: Int
 
     abstract val maxValue: Int
 

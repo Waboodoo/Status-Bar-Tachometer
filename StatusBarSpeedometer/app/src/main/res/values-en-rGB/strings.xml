@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">kilometres per hour</string>
+    <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">metres per second</string>
+</resources>
