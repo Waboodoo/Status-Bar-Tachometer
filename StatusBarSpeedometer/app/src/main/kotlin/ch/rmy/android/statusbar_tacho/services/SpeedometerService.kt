@@ -48,16 +48,21 @@ class SpeedometerService : Service() {
     private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        ServiceCompat.startForeground(
-            this,
-            NotificationProvider.NOTIFICATION_ID,
-            notificationProvider.getInitialNotification(),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
-            } else {
-                0
-            },
-        )
+        try {
+            ServiceCompat.startForeground(
+                this,
+                NotificationProvider.NOTIFICATION_ID,
+                notificationProvider.getInitialNotification(),
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+                } else {
+                    0
+                },
+            )
+        } catch (e: Exception) {
+            settings.isRunning = false
+            throw e
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
