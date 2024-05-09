@@ -6,9 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.view.View
-import androidx.annotation.ColorInt
 import androidx.compose.ui.graphics.toArgb
-import androidx.core.content.ContextCompat
 import ch.rmy.android.statusbar_tacho.utils.Trigonometry
 import kotlin.math.max
 import kotlin.math.min
@@ -107,10 +105,6 @@ class GaugeView @JvmOverloads constructor(
         bigMarkPaint.color = theme.bigMarkColor.toArgb()
         smallMarkPaint.color = theme.smallMarkColor.toArgb()
     }
-
-    @ColorInt
-    private fun getColor(colorRes: Int): Int =
-        ContextCompat.getColor(context, colorRes)
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val totalWidth = MeasureSpec.getSize(widthMeasureSpec)
