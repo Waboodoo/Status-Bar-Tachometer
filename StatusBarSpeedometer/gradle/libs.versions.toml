@@ -6,7 +6,6 @@ annotation = "1.7.1"
 appcompat = "1.6.1"
 composeBom = "2024.05.00"
 kotlin = "1.9.23"
-kotlinStdlib = "1.9.23"
 kotlinxCoroutines = "1.8.0"
 lifecycle = "2.7.0"
 material3 = "1.2.1"
@@ -24,5 +23,4 @@ androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinStdlib" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
