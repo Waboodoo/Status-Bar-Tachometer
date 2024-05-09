@@ -70,23 +70,23 @@ class NotificationProvider(context: Context) {
         notificationManager.notify(NOTIFICATION_ID, notification)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createChannel(context: Context): NotificationChannel =
+        NotificationChannel(
+            CHANNEL_ID,
+            context.getString(R.string.notification_channel),
+            NotificationManager.IMPORTANCE_LOW
+        )
+            .apply {
+                enableLights(false)
+                enableVibration(false)
+                setShowBadge(false)
+            }
+
     companion object {
 
         const val NOTIFICATION_ID = 1
         private const val CHANNEL_ID = "notification"
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        private fun createChannel(context: Context): NotificationChannel =
-            NotificationChannel(
-                CHANNEL_ID,
-                context.getString(R.string.notification_channel),
-                NotificationManager.IMPORTANCE_LOW
-            )
-                .apply {
-                    enableLights(false)
-                    enableVibration(false)
-                    setShowBadge(false)
-                }
 
     }
 
