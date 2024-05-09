@@ -32,6 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ch.rmy.android.statusbar_tacho.R
@@ -146,12 +152,19 @@ private fun GaugeScalePicker(
 ) {
     DropdownField(
         label = stringResource(R.string.label_gauge_scale),
-        value = getGaugeScaleName(gaugeScale),
+        value = getGaugeScaleName(gaugeScale, withEmoji = true),
+        semanticValue = getGaugeScaleName(gaugeScale, withEmoji = false),
     ) { collapse ->
         GaugeScale.entries.forEach {
+            val semanticText = getGaugeScaleName(it, withEmoji = false)
             DropdownMenuItem(
                 text = {
-                    Text(getGaugeScaleName(it))
+                    Text(
+                        modifier = Modifier.semantics {
+                            contentDescription = semanticText
+                        },
+                        text = getGaugeScaleName(it, withEmoji = true),
+                    )
                 },
                 onClick = {
                     onGaugeScaleChanged(it)
@@ -174,17 +187,18 @@ private fun getThemeName(themeId: ThemeId): String =
 
 @Stable
 @Composable
-private fun getGaugeScaleName(gaugeScale: GaugeScale): String =
+private fun getGaugeScaleName(gaugeScale: GaugeScale, withEmoji: Boolean): String =
     when (gaugeScale) {
-        GaugeScale.SLOW -> stringResource(R.string.gauge_scale_slow)
-        GaugeScale.MEDIUM -> stringResource(R.string.gauge_scale_medium)
-        GaugeScale.FAST -> stringResource(R.string.gauge_scale_fast)
+        GaugeScale.SLOW -> stringResource(R.string.gauge_scale_slow) + if (withEmoji) " \uD83D\uDEB6" else ""
+        GaugeScale.MEDIUM -> stringResource(R.string.gauge_scale_medium) + if (withEmoji) " \uD83D\uDEB2" else ""
+        GaugeScale.FAST -> stringResource(R.string.gauge_scale_fast) + if (withEmoji) " \uD83D\uDE97" else ""
     }
 
 @Composable
 private fun DropdownField(
     label: String,
     value: String,
+    semanticValue: String = value,
     menuContent: @Composable (collapse: () -> Unit) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -195,6 +209,10 @@ private fun DropdownField(
             .wrapContentSize(Alignment.TopStart)
     ) {
         OutlinedTextField(
+            modifier = Modifier.clearAndSetSemantics {
+                text = AnnotatedString("$label: $semanticValue")
+                role = Role.DropdownList
+            },
             value = value,
             onValueChange = {},
             readOnly = true,
@@ -203,16 +221,10 @@ private fun DropdownField(
                 Text(label)
             },
             trailingIcon = {
-                IconButton(
-                    onClick = {
-                        expanded = true
-                    },
-                ) {
-                    Icon(
-                        Icons.Default.ArrowDropDown,
-                        contentDescription = null,
-                    )
-                }
+                Icon(
+                    Icons.Default.ArrowDropDown,
+                    contentDescription = null,
+                )
             },
             interactionSource = clickOnlyInteractionSource(
                 onClick = {

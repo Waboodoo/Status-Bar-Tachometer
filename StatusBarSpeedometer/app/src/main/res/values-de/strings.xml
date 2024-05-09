@@ -56,7 +56,7 @@
     <string name="theme_name_blue">Blau</string>
     <string name="theme_name_red">Rot</string>
     <string name="theme_name_black_and_white">Schwarz und Weiß</string>
-    <string name="gauge_scale_fast">Schnell 🚗</string>
-    <string name="gauge_scale_medium">Mittel 🚲</string>
-    <string name="gauge_scale_slow">Langsam 🚶</string>
+    <string name="gauge_scale_fast">Schnell</string>
+    <string name="gauge_scale_medium">Mittel</string>
+    <string name="gauge_scale_slow">Langsam</string>
 </resources>

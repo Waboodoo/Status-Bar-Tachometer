@@ -56,7 +56,7 @@
     <string name="theme_name_blue">Синий</string>
     <string name="theme_name_red">Красный</string>
     <string name="theme_name_black_and_white">Черно-белый</string>
-    <string name="gauge_scale_fast">Быстро 🚗</string>
-    <string name="gauge_scale_medium">Средний 🚲</string>
-    <string name="gauge_scale_slow">Медленно 🚶</string>
+    <string name="gauge_scale_fast">Быстро</string>
+    <string name="gauge_scale_medium">Средний</string>
+    <string name="gauge_scale_slow">Медленно</string>
 </resources>

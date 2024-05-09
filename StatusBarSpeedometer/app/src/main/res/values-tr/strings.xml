@@ -50,7 +50,7 @@
     <string name="theme_name_default">Varsayılan</string>
     <string name="theme_name_blue">Mavi</string>
     <string name="theme_name_red">Kırmızı</string>
-    <string name="gauge_scale_fast">Hızlı 🚗</string>
-    <string name="gauge_scale_medium">Orta 🚲</string>
-    <string name="gauge_scale_slow">Yavaş 🚶</string>
+    <string name="gauge_scale_fast">Hızlı</string>
+    <string name="gauge_scale_medium">Orta</string>
+    <string name="gauge_scale_slow">Yavaş</string>
 </resources>
