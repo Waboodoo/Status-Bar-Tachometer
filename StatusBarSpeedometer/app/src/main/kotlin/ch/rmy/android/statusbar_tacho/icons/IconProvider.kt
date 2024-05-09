@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.DrawableRes
+import java.util.Locale
 
 class IconProvider(context: Context) {
 
@@ -13,7 +14,7 @@ class IconProvider(context: Context) {
     @SuppressLint("DiscouragedApi")
     @DrawableRes
     fun getIconForNumber(number: Int): Int =
-        String.format(RES_FORMAT, number.coerceIn(0, MAX_VALUE))
+        String.format(Locale.US, RES_FORMAT, number.coerceIn(0, MAX_VALUE))
             .let { iconName ->
                 resources.getIdentifier(iconName, RES_TYPE, packageName)
             }
