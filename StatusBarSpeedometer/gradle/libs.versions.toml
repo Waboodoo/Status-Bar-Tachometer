@@ -1,12 +1,12 @@
 [versions]
 activity = "1.9.0"
-androidGradle = "8.4.0"
+androidGradle = "8.4.1"
 androidXCore = "1.13.1"
-annotation = "1.7.1"
-appcompat = "1.6.1"
+annotation = "1.8.0"
+appcompat = "1.7.0"
 composeBom = "2024.05.00"
 kotlin = "1.9.23"
-kotlinxCoroutines = "1.8.0"
+kotlinxCoroutines = "1.8.1"
 lifecycle = "2.7.0"
 material3 = "1.2.1"
 
