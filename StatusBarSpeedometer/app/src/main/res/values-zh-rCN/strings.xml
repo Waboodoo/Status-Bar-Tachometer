@@ -56,6 +56,7 @@
     <string name="theme_name_blue">蓝色的</string>
     <string name="theme_name_red">红色的</string>
     <string name="theme_name_black_and_white">黑色和白色</string>
+    <string name="gauge_scale_very_fast">极快</string>
     <string name="gauge_scale_fast">快速地</string>
     <string name="gauge_scale_medium">中等的</string>
     <string name="gauge_scale_slow">慢的</string>

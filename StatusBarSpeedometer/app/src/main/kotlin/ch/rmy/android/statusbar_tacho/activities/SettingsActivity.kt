@@ -106,7 +106,7 @@ class SettingsActivity : AppCompatActivity() {
             AppTheme {
                 MainScreen(
                     gaugeValue = speed,
-                    gaugeMaxValue = (speedUnit.maxValue / gaugeScale.factor).toFloat(),
+                    gaugeMaxValue = (speedUnit.maxValue / gaugeScale.factor),
                     gaugeMarkCount = speedUnit.steps + 1,
                     gaugeTheme = getGaugeTheme(themeId),
                     speedLabel = when (speedUpdate) {

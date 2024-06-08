@@ -154,23 +154,25 @@ private fun GaugeScalePicker(
         value = getGaugeScaleName(gaugeScale, withEmoji = true),
         semanticValue = getGaugeScaleName(gaugeScale, withEmoji = false),
     ) { collapse ->
-        GaugeScale.entries.forEach {
-            val semanticText = getGaugeScaleName(it, withEmoji = false)
-            DropdownMenuItem(
-                text = {
-                    Text(
-                        modifier = Modifier.semantics {
-                            contentDescription = semanticText
-                        },
-                        text = getGaugeScaleName(it, withEmoji = true),
-                    )
-                },
-                onClick = {
-                    onGaugeScaleChanged(it)
-                    collapse()
-                },
-            )
-        }
+        GaugeScale.entries
+            .sortedByDescending { it.factor }
+            .forEach {
+                val semanticText = getGaugeScaleName(it, withEmoji = false)
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            modifier = Modifier.semantics {
+                                contentDescription = semanticText
+                            },
+                            text = getGaugeScaleName(it, withEmoji = true),
+                        )
+                    },
+                    onClick = {
+                        onGaugeScaleChanged(it)
+                        collapse()
+                    },
+                )
+            }
     }
 }
 
@@ -191,6 +193,7 @@ private fun getGaugeScaleName(gaugeScale: GaugeScale, withEmoji: Boolean): Strin
         GaugeScale.SLOW -> stringResource(R.string.gauge_scale_slow) + if (withEmoji) " \uD83D\uDEB6" else ""
         GaugeScale.MEDIUM -> stringResource(R.string.gauge_scale_medium) + if (withEmoji) " \uD83D\uDEB2" else ""
         GaugeScale.FAST -> stringResource(R.string.gauge_scale_fast) + if (withEmoji) " \uD83D\uDE97" else ""
+        GaugeScale.VERY_FAST -> stringResource(R.string.gauge_scale_very_fast) + if (withEmoji) " \u2708\uFE0F" else ""
     }
 
 @Composable

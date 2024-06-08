@@ -47,6 +47,7 @@
     <string name="theme_name_default">기본</string>
     <string name="theme_name_blue">파란색</string>
     <string name="theme_name_red">빨간색</string>
+    <string name="gauge_scale_very_fast">매우 빠르게</string>
     <string name="gauge_scale_fast">빨리</string>
     <string name="gauge_scale_medium">중간</string>
     <string name="gauge_scale_slow">천천히</string>

@@ -5,7 +5,7 @@
     <!-- Notification title, shown above current speed -->
     <string name="current_speed">Vitesse actuelle</string>
     <!-- Shown in notification when current speed is unknown -->
-    <string name="unknown">inconnu</string>
+    <string name="unknown">inconnue</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/h</string>
     <!-- Speed unit: kilometers per hour -->
@@ -56,6 +56,7 @@
     <string name="theme_name_blue">Bleu</string>
     <string name="theme_name_red">Rouge</string>
     <string name="theme_name_black_and_white">Noir et blanc</string>
+    <string name="gauge_scale_very_fast">Très rapide</string>
     <string name="gauge_scale_fast">Rapide</string>
     <string name="gauge_scale_medium">Moyen</string>
     <string name="gauge_scale_slow">Lent</string>

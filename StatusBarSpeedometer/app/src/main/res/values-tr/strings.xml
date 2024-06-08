@@ -9,12 +9,15 @@
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/sa</string>
     <!-- Speed unit: kilometers per hour -->
+    <string name="unit_kmh_long">kilometre / saat</string>
     <!-- Speed unit: miles per hour -->
     <string name="unit_mph">mi/sa</string>
     <!-- Speed unit: miles per hour -->
+    <string name="unit_mph_long">mil / saat</string>
     <!-- Speed unit: meters per second -->
     <string name="unit_ms">m/sn</string>
     <!-- Speed unit: meters per second -->
+    <string name="unit_ms_long">metre / saniye</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/sn</string>
     <!-- Speed unit: feet per second -->
@@ -50,6 +53,8 @@
     <string name="theme_name_default">Varsayılan</string>
     <string name="theme_name_blue">Mavi</string>
     <string name="theme_name_red">Kırmızı</string>
+    <string name="theme_name_black_and_white">Siyah ve beyaz</string>
+    <string name="gauge_scale_very_fast">Çok hızlı</string>
     <string name="gauge_scale_fast">Hızlı</string>
     <string name="gauge_scale_medium">Orta</string>
     <string name="gauge_scale_slow">Yavaş</string>

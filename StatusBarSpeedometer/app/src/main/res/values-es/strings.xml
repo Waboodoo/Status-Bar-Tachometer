@@ -56,6 +56,7 @@
     <string name="theme_name_blue">Azul</string>
     <string name="theme_name_red">Rojo</string>
     <string name="theme_name_black_and_white">Blanco y negro</string>
+    <string name="gauge_scale_very_fast">Muy rápido</string>
     <string name="gauge_scale_fast">Rápido</string>
     <string name="gauge_scale_medium">Medio</string>
     <string name="gauge_scale_slow">Lento</string>
