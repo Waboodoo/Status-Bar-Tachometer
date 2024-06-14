@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
     private val settings: Settings
         get() = Settings
 
-    private val _speedUnit = MutableStateFlow(settings.unit)
+    private val _speedUnit = settings.unitFlow
     private val _isRunning = settings.isRunningFlow
     private val _runWhenScreenOff = MutableStateFlow(settings.shouldKeepUpdatingWhileScreenIsOff)
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
@@ -89,12 +89,8 @@ class SettingsActivity : AppCompatActivity() {
             val themeId by _themeId.collectAsStateWithLifecycle()
             val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
 
-            var isFirstRun by remember {
-                mutableStateOf(settings.isFirstRun)
-            }
-
-            var settingsVisible by rememberSaveable {
-                mutableStateOf(false)
+            var modal by remember {
+                mutableStateOf(if (settings.isFirstRun) Modal.WELCOME else null)
             }
 
             val speed by remember {
@@ -123,45 +119,60 @@ class SettingsActivity : AppCompatActivity() {
                         } else {
                             settings.isRunning = !isRunning
                         }
-                        settingsVisible = false
+                        modal = null
                     },
                     onSettingsClicked = {
-                        settingsVisible = true
+                        modal = Modal.SETTINGS
+                    },
+                    onTopSpeedClicked = {
+                        modal = Modal.TOP_SPEED
                     },
                 )
 
-                if (isFirstRun) {
-                    WelcomeDialog(
-                        onDismissRequest = {
-                            isFirstRun = false
-                            settings.isFirstRun = false
-                        }
-                    )
-                } else if (settingsVisible) {
-                    SettingsDialog(
-                        speedUnit = speedUnit,
-                        themeId = themeId,
-                        gaugeScale = gaugeScale,
-                        runWhenScreenOff = runWhenScreenOff,
-                        onSpeedUnitChanged = {
-                            _speedUnit.value = it
-                            Settings.unit = it
-                        },
-                        onThemeIdChanged = {
-                            settings.themeId = it
-                        },
-                        onGaugeScaleChanged = {
-                            settings.gaugeScale = it
-                        },
-                        onRunWhenScreenOffChanged = {
-                            _runWhenScreenOff.value = it
-                            Settings.shouldKeepUpdatingWhileScreenIsOff = it
-                        },
-                        onDismissRequest = {
-                            settingsVisible = false
-                            _speedUnit.value = settings.unit
-                        }
-                    )
+                when (modal) {
+                    Modal.WELCOME -> {
+                        WelcomeDialog(
+                            onDismissRequest = {
+                                modal = null
+                                settings.isFirstRun = false
+                            }
+                        )
+                    }
+
+                    Modal.SETTINGS -> {
+                        SettingsDialog(
+                            speedUnit = speedUnit,
+                            themeId = themeId,
+                            gaugeScale = gaugeScale,
+                            runWhenScreenOff = runWhenScreenOff,
+                            onSpeedUnitChanged = {
+                                settings.unit = it
+                            },
+                            onThemeIdChanged = {
+                                settings.themeId = it
+                            },
+                            onGaugeScaleChanged = {
+                                settings.gaugeScale = it
+                            },
+                            onRunWhenScreenOffChanged = {
+                                _runWhenScreenOff.value = it
+                                Settings.shouldKeepUpdatingWhileScreenIsOff = it
+                            },
+                            onDismissRequest = {
+                                modal = null
+                            }
+                        )
+                    }
+
+                    Modal.TOP_SPEED -> {
+                        TopSpeedDialog(
+                            onDismissRequest = {
+                                modal = null
+                            }
+                        )
+                    }
+
+                    null -> Unit
                 }
             }
         }

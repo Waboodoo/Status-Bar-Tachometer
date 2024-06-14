@@ -4,11 +4,10 @@ androidGradle = "8.4.1"
 androidXCore = "1.13.1"
 annotation = "1.8.0"
 appcompat = "1.7.0"
-composeBom = "2024.05.00"
+composeBom = "2024.06.00"
 kotlin = "1.9.23"
 kotlinxCoroutines = "1.8.1"
 lifecycle = "2.7.0"
-material3 = "1.2.1"
 
 [libraries]
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradle" }
@@ -16,7 +15,8 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-materialIconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-compose-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidXCore" }

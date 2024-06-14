@@ -11,12 +11,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.Icon
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,13 +29,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ch.rmy.android.statusbar_tacho.R
+import ch.rmy.android.statusbar_tacho.components.Menu
+import ch.rmy.android.statusbar_tacho.components.MenuItem
 import ch.rmy.android.statusbar_tacho.views.Gauge
 import ch.rmy.android.statusbar_tacho.views.GaugeTheme
 import ch.rmy.android.statusbar_tacho.views.getGaugeTheme
@@ -54,6 +53,7 @@ fun MainScreen(
     isRunning: Boolean,
     onClicked: () -> Unit,
     onSettingsClicked: () -> Unit,
+    onTopSpeedClicked: () -> Unit,
 ) {
     var instructionsTargetAlpha by rememberSaveable {
         mutableFloatStateOf(0f)
@@ -127,23 +127,36 @@ fun MainScreen(
                 )
             }
 
-            Icon(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .alpha(settingsAlpha)
-                    .clickable(
-                        role = Role.Button,
-                        onClick = onSettingsClicked,
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(bounded = false),
-                    )
-                    .padding(20.dp)
-                    .size(30.dp),
-                imageVector = Icons.Default.Settings,
-                contentDescription = stringResource(R.string.settings_title),
-                tint = colorResource(R.color.main_foreground_secondary),
-            )
+            if (settingsAlpha > 0f) {
+                MainMenu(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+                        .alpha(settingsAlpha),
+                    onSettingsClicked = onSettingsClicked,
+                    onTopSpeedClicked = onTopSpeedClicked,
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun MainMenu(
+    modifier: Modifier,
+    onSettingsClicked: () -> Unit,
+    onTopSpeedClicked: () -> Unit,
+) {
+    Menu(modifier) {
+        MenuItem(
+            title = stringResource(R.string.top_speed_title),
+            icon = Icons.Default.Speed,
+            onClick = onTopSpeedClicked,
+        )
+        MenuItem(
+            title = stringResource(R.string.settings_title),
+            icon = Icons.Default.Settings,
+            onClick = onSettingsClicked,
+        )
     }
 }
 
@@ -159,6 +172,7 @@ private fun MainScreen_Running_Preview() {
         isRunning = true,
         onClicked = {},
         onSettingsClicked = {},
+        onTopSpeedClicked = {},
     )
 }
 
@@ -174,6 +188,7 @@ private fun MainScreen_Tablet_Preview() {
         isRunning = false,
         onClicked = {},
         onSettingsClicked = {},
+        onTopSpeedClicked = {},
     )
 }
 
@@ -189,5 +204,6 @@ private fun MainScreen_Dark_Preview() {
         isRunning = false,
         onClicked = {},
         onSettingsClicked = {},
+        onTopSpeedClicked = {},
     )
 }

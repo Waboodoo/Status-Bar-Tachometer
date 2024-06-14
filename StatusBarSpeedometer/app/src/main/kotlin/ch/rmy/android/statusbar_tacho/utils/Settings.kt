@@ -2,6 +2,7 @@ package ch.rmy.android.statusbar_tacho.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.text.intl.Locale
 import androidx.core.content.edit
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
@@ -15,8 +16,10 @@ object Settings {
     fun init(context: Context) {
         preferences = context.getSharedPreferences(PREF, Context.MODE_PRIVATE)
         _isRunningFlow.value = preferences.getBoolean(PREF_SERVICE, false)
+        _unitFlow.value = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, getDefaultUnit().name)!!)
         _themeIdFlow.value = ThemeId.entries.getOrElse(preferences.getInt(PREF_THEME, 0)) { ThemeId.DEFAULT }
         _gaugeScaleFlow.value = GaugeScale.entries.getOrElse(preferences.getInt(PREF_GAUGE_SCALE, 0)) { GaugeScale.FAST }
+        _topSpeedFlow.value = preferences.getFloat(PREF_TOP_SPEED, -1f).takeUnless { it == -1f }
     }
 
     private lateinit var preferences: SharedPreferences
@@ -28,6 +31,7 @@ object Settings {
     private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
     private const val PREF_THEME = "theme"
     private const val PREF_GAUGE_SCALE = "gauge_scale"
+    private const val PREF_TOP_SPEED = "top_speed"
 
     var isRunning: Boolean
         get() = _isRunningFlow.value
@@ -39,12 +43,20 @@ object Settings {
         }
 
     private val _isRunningFlow = MutableStateFlow(false)
+
+    @Stable
     val isRunningFlow = _isRunningFlow.asStateFlow()
 
+    private val _unitFlow = MutableStateFlow(SpeedUnit.METERS_PER_SECOND)
+
+    @Stable
+    val unitFlow = _unitFlow.asStateFlow()
+
     var unit: SpeedUnit
-        get() = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, getDefaultUnit().name)!!)
-        set(unit) = preferences.edit {
-            putString(PREF_SPEED_UNIT, unit.name)
+        get() = _unitFlow.value
+        set(value) = preferences.edit {
+            _unitFlow.value = value
+            putString(PREF_SPEED_UNIT, value.name)
         }
 
     private fun getDefaultUnit() =
@@ -67,6 +79,8 @@ object Settings {
         }
 
     private val _themeIdFlow = MutableStateFlow(ThemeId.DEFAULT)
+
+    @Stable
     val themeIdFlow = _themeIdFlow.asStateFlow()
 
     var themeId: ThemeId
@@ -77,6 +91,8 @@ object Settings {
         }
 
     private val _gaugeScaleFlow = MutableStateFlow(GaugeScale.FAST)
+
+    @Stable
     val gaugeScaleFlow = _gaugeScaleFlow.asStateFlow()
 
     var gaugeScale: GaugeScale
@@ -84,6 +100,22 @@ object Settings {
         set(value) = preferences.edit {
             _gaugeScaleFlow.value = value
             putInt(PREF_GAUGE_SCALE, value.ordinal)
+        }
+
+    private val _topSpeedFlow = MutableStateFlow<Float?>(null)
+
+    @Stable
+    val topSpeedFlow = _topSpeedFlow.asStateFlow()
+
+    var topSpeed: Float?
+        get() = _topSpeedFlow.value
+        set(value) = preferences.edit {
+            _topSpeedFlow.value = value
+            if (value != null) {
+                putFloat(PREF_TOP_SPEED, value)
+            } else {
+                remove(PREF_TOP_SPEED)
+            }
         }
 
 }

@@ -74,6 +74,7 @@ class SpeedometerService : Service() {
             updateNotification(SpeedState.SpeedUnavailable)
             speedWatcher.speedState.collect { speedUpdate ->
                 updateNotification(speedUpdate)
+                updateTopSpeed(speedUpdate)
             }
         }
             .ownedBy(destroyer)
@@ -118,6 +119,14 @@ class SpeedometerService : Service() {
             else -> R.drawable.icon_unknown
         }
         notificationProvider.updateNotification(message, iconRes)
+    }
+
+    private fun updateTopSpeed(speedState: SpeedState) {
+        if (speedState !is SpeedState.SpeedChanged) return
+        val previousTopSpeed = settings.topSpeed
+        if (previousTopSpeed == null || speedState.speed > previousTopSpeed) {
+            settings.topSpeed = speedState.speed
+        }
     }
 
     override fun onBind(intent: Intent): IBinder? = null
