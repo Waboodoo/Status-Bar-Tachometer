@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.components.Menu
 import ch.rmy.android.statusbar_tacho.components.MenuItem
+import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.views.Gauge
 import ch.rmy.android.statusbar_tacho.views.GaugeTheme
 import ch.rmy.android.statusbar_tacho.views.getGaugeTheme
@@ -62,7 +63,7 @@ fun MainScreen(
         if (isRunning) {
             instructionsTargetAlpha = 0f
         } else {
-            delay(3.seconds)
+            delay(if (Settings.topSpeed != null) 10.seconds else 3.seconds)
             instructionsTargetAlpha = 1f
         }
     }
