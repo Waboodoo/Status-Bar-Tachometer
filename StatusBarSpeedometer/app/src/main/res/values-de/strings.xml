@@ -44,6 +44,8 @@
     <string name="button_ok">OK</string>
     <!-- Button label for closing a dialog -->
     <string name="button_close">Schließen</string>
+    <!-- Button label for resetting a value (e.g. the "Top Speed") -->
+    <string name="button_reset">Zurücksetzen</string>
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">Geschwindigkeits-Updates</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
@@ -60,4 +62,8 @@
     <string name="gauge_scale_fast">Schnell</string>
     <string name="gauge_scale_medium">Mittel</string>
     <string name="gauge_scale_slow">Langsam</string>
+    <!-- Accessibility title for main menu ellipsis button -->
+    <string name="main_menu">Menü</string>
+    <!-- Title for menu item and dialog that shows the highest speed that was measured -->
+    <string name="top_speed_title">Höchstgeschwindigkeit</string>
 </resources>

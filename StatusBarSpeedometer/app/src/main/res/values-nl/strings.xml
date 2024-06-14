@@ -44,6 +44,8 @@
     <string name="button_ok">OK</string>
     <!-- Button label for closing a dialog -->
     <string name="button_close">Dichtbij</string>
+    <!-- Button label for resetting a value (e.g. the "Top Speed") -->
+    <string name="button_reset">Reset</string>
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">Snelheidsupdates</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
@@ -60,4 +62,8 @@
     <string name="gauge_scale_fast">Snel</string>
     <string name="gauge_scale_medium">Middelmatig</string>
     <string name="gauge_scale_slow">Langzaam</string>
+    <!-- Accessibility title for main menu ellipsis button -->
+    <string name="main_menu">Hoofd menu</string>
+    <!-- Title for menu item and dialog that shows the highest speed that was measured -->
+    <string name="top_speed_title">Bovenste snelheid</string>
 </resources>

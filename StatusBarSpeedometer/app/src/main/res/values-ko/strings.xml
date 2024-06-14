@@ -37,6 +37,7 @@
     <string name="button_ok">좋아요</string>
     <!-- Button label for closing a dialog -->
     <string name="button_close">닫다</string>
+    <!-- Button label for resetting a value (e.g. the "Top Speed") -->
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">속도 업데이트</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
@@ -51,4 +52,6 @@
     <string name="gauge_scale_fast">빨리</string>
     <string name="gauge_scale_medium">중간</string>
     <string name="gauge_scale_slow">천천히</string>
+    <!-- Accessibility title for main menu ellipsis button -->
+    <!-- Title for menu item and dialog that shows the highest speed that was measured -->
 </resources>
