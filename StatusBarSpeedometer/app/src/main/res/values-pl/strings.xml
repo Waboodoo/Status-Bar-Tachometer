@@ -62,6 +62,7 @@
     <string name="gauge_scale_fast">Szybko</string>
     <string name="gauge_scale_medium">Średni</string>
     <string name="gauge_scale_slow">Powoli</string>
+    <string name="gauge_scale_dynamic">Dynamiczny</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Menu główne</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->

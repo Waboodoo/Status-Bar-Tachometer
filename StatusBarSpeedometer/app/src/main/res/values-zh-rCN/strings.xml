@@ -62,6 +62,7 @@
     <string name="gauge_scale_fast">快速地</string>
     <string name="gauge_scale_medium">中等的</string>
     <string name="gauge_scale_slow">慢的</string>
+    <string name="gauge_scale_dynamic">动态</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">主菜单</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->

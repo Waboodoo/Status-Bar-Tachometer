@@ -60,6 +60,7 @@
     <string name="gauge_scale_fast">Hızlı</string>
     <string name="gauge_scale_medium">Orta</string>
     <string name="gauge_scale_slow">Yavaş</string>
+    <string name="gauge_scale_dynamic">Dinamik</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Ana menü</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->

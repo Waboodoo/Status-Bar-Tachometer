@@ -62,6 +62,7 @@
     <string name="gauge_scale_fast">早い</string>
     <string name="gauge_scale_medium">中</string>
     <string name="gauge_scale_slow">ゆっくり</string>
+    <string name="gauge_scale_dynamic">ダイナミック</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">メインメニュー</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->

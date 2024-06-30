@@ -62,6 +62,7 @@
     <string name="gauge_scale_fast">Snel</string>
     <string name="gauge_scale_medium">Middelmatig</string>
     <string name="gauge_scale_slow">Langzaam</string>
+    <string name="gauge_scale_dynamic">Dynamisch</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Hoofd menu</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->
