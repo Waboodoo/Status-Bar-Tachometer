@@ -11,7 +11,7 @@ import ch.rmy.android.statusbar_tacho.utils.Trigonometry
 import kotlin.math.max
 import kotlin.math.min
 
-class GaugeView @JvmOverloads constructor(
+class GaugeView(
     context: Context,
     value: Float,
     maxValue: Float,

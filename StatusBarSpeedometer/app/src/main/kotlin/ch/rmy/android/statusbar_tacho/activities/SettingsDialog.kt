@@ -194,6 +194,7 @@ private fun getGaugeScaleName(gaugeScale: GaugeScale, withEmoji: Boolean): Strin
         GaugeScale.MEDIUM -> stringResource(R.string.gauge_scale_medium) + if (withEmoji) " \uD83D\uDEB2" else ""
         GaugeScale.FAST -> stringResource(R.string.gauge_scale_fast) + if (withEmoji) " \uD83D\uDE97" else ""
         GaugeScale.VERY_FAST -> stringResource(R.string.gauge_scale_very_fast) + if (withEmoji) " \u2708\uFE0F" else ""
+        GaugeScale.DYNAMIC -> stringResource(R.string.gauge_scale_dynamic)
     }
 
 @Composable

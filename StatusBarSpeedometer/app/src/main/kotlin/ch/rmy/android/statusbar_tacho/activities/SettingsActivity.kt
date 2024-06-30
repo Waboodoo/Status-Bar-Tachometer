@@ -5,11 +5,11 @@ import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
@@ -21,10 +21,12 @@ import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.location.SpeedState
 import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
+import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 import ch.rmy.android.statusbar_tacho.utils.AppTheme
 import ch.rmy.android.statusbar_tacho.utils.PermissionManager
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
+import ch.rmy.android.statusbar_tacho.views.GaugeScale
 import ch.rmy.android.statusbar_tacho.views.getGaugeTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -102,7 +104,7 @@ class SettingsActivity : AppCompatActivity() {
             AppTheme {
                 MainScreen(
                     gaugeValue = speed,
-                    gaugeMaxValue = (speedUnit.maxValue / gaugeScale.factor),
+                    gaugeMaxValue = getGaugeMaxValue(speed, speedUnit, gaugeScale),
                     gaugeMarkCount = speedUnit.steps + 1,
                     gaugeTheme = getGaugeTheme(themeId),
                     speedLabel = when (speedUpdate) {
@@ -176,6 +178,20 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    @Stable
+    private fun getGaugeMaxValue(speed: Float, speedUnit: SpeedUnit, gaugeScale: GaugeScale): Float {
+        gaugeScale.factor?.let { factor ->
+            return speedUnit.maxValue / factor
+        }
+        GaugeScale.FACTORS.forEach { factor ->
+            val maxValue = speedUnit.maxValue / factor
+            if (speed < maxValue * 0.95f) {
+                return maxValue
+            }
+        }
+        return speedUnit.maxValue / GaugeScale.FACTORS.last()
     }
 
     private fun keepScreenOn(enabled: Boolean) {
