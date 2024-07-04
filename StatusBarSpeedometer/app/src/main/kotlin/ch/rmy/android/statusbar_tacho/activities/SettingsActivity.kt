@@ -5,9 +5,10 @@ import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -101,10 +102,30 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
+            var gaugeScaleFactorIndex by remember {
+                mutableIntStateOf(0)
+            }
+            val gaugeMaxValue by remember(gaugeScale, speedUnit, gaugeScaleFactorIndex) {
+                derivedStateOf {
+                    speedUnit.maxValue / (gaugeScale.factor ?: GaugeScale.FACTORS[gaugeScaleFactorIndex])
+                }
+            }
+
+
+            if (gaugeScale == GaugeScale.DYNAMIC) {
+                LaunchedEffect(speed) {
+                    if (speed > gaugeMaxValue * 0.9f) {
+                        gaugeScaleFactorIndex = (gaugeScaleFactorIndex + 1).coerceAtMost(GaugeScale.FACTORS.size - 1)
+                    } else if (speed < gaugeMaxValue * 0.05f) {
+                        gaugeScaleFactorIndex = (gaugeScaleFactorIndex - 1).coerceAtLeast(0)
+                    }
+                }
+            }
+
             AppTheme {
                 MainScreen(
                     gaugeValue = speed,
-                    gaugeMaxValue = getGaugeMaxValue(speed, speedUnit, gaugeScale),
+                    gaugeMaxValue = gaugeMaxValue,
                     gaugeMarkCount = speedUnit.steps + 1,
                     gaugeTheme = getGaugeTheme(themeId),
                     speedLabel = when (speedUpdate) {
@@ -178,20 +199,6 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    @Stable
-    private fun getGaugeMaxValue(speed: Float, speedUnit: SpeedUnit, gaugeScale: GaugeScale): Float {
-        gaugeScale.factor?.let { factor ->
-            return speedUnit.maxValue / factor
-        }
-        GaugeScale.FACTORS.forEach { factor ->
-            val maxValue = speedUnit.maxValue / factor
-            if (speed < maxValue * 0.95f) {
-                return maxValue
-            }
-        }
-        return speedUnit.maxValue / GaugeScale.FACTORS.last()
     }
 
     private fun keepScreenOn(enabled: Boolean) {
