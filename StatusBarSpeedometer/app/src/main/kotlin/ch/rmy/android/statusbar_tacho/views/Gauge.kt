@@ -12,6 +12,7 @@ fun Gauge(
     maxValue: Float,
     markCount: Int,
     theme: GaugeTheme,
+    showNumbers: Boolean,
 ) {
     AndroidView(
         modifier = modifier,
@@ -23,6 +24,7 @@ fun Gauge(
             gaugeView.maxValue = maxValue
             gaugeView.markCount = markCount
             gaugeView.theme = theme
+            gaugeView.showNumbers = showNumbers
         },
         onReset = NoOpUpdate,
     )

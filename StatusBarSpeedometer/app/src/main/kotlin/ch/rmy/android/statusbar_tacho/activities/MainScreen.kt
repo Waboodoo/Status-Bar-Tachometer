@@ -2,6 +2,7 @@ package ch.rmy.android.statusbar_tacho.activities
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -77,6 +78,11 @@ fun MainScreen(
         targetValue = if (isRunning) 0f else 1f,
     )
 
+    val animatedGaugeMaxValue by animateFloatAsState(
+        targetValue = gaugeMaxValue,
+        animationSpec = tween(400),
+    )
+
     Scaffold(
         modifier = Modifier
             .imePadding()
@@ -104,9 +110,10 @@ fun MainScreen(
                         .padding(20.dp)
                         .weight(1f, fill = false),
                     value = gaugeValue,
-                    maxValue = gaugeMaxValue,
+                    maxValue = animatedGaugeMaxValue,
                     markCount = gaugeMarkCount,
                     theme = gaugeTheme,
+                    showNumbers = gaugeMaxValue == animatedGaugeMaxValue,
                 )
 
                 Text(

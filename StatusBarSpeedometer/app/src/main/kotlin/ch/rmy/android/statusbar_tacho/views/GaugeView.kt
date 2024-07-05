@@ -73,6 +73,14 @@ class GaugeView(
             }
         }
 
+    var showNumbers: Boolean = true
+        set(value) {
+            if (field != value) {
+                field = value
+                invalidate()
+            }
+        }
+
     private fun reset() {
         animation.cancel()
         invalidate()
@@ -174,19 +182,21 @@ class GaugeView(
         }
 
         // Draw numbers
-        for (i in 0 until markCount) {
-            val progress = i.toFloat() / (markCount - 1)
-            val value = (progress * maxValue).toInt()
-            val angle = getAngle(progress)
-            val factorX = Trigonometry.cos(angle)
-            val factorY = Trigonometry.sin(angle)
+        if (showNumbers) {
+            for (i in 0 until markCount) {
+                val progress = i.toFloat() / (markCount - 1)
+                val value = (progress * maxValue).toInt()
+                val angle = getAngle(progress)
+                val factorX = Trigonometry.cos(angle)
+                val factorY = Trigonometry.sin(angle)
 
-            canvas.drawText(
-                value.toString(),
-                centerX + factorX * radius * NUMBER_START,
-                centerY + factorY * radius * NUMBER_START,
-                numberPaint
-            )
+                canvas.drawText(
+                    value.toString(),
+                    centerX + factorX * radius * NUMBER_START,
+                    centerY + factorY * radius * NUMBER_START,
+                    numberPaint
+                )
+            }
         }
 
         // Draw needle
