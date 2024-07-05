@@ -114,9 +114,11 @@ class SettingsActivity : AppCompatActivity() {
 
             if (gaugeScale == GaugeScale.DYNAMIC) {
                 LaunchedEffect(speed) {
-                    if (speed > gaugeMaxValue * 0.9f) {
+                    if (speed == 0f) {
+                        gaugeScaleFactorIndex = 0
+                    } else if (speed > gaugeMaxValue * 0.9f) {
                         gaugeScaleFactorIndex = (gaugeScaleFactorIndex + 1).coerceAtMost(GaugeScale.FACTORS.size - 1)
-                    } else if (speed < gaugeMaxValue * 0.05f) {
+                    } else if (speed < gaugeMaxValue * 0.2f) {
                         gaugeScaleFactorIndex = (gaugeScaleFactorIndex - 1).coerceAtLeast(0)
                     }
                 }

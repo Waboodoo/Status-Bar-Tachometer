@@ -78,9 +78,13 @@ fun MainScreen(
         targetValue = if (isRunning) 0f else 1f,
     )
 
+    val animatedGaugeValue by animateFloatAsState(
+        targetValue = gaugeValue,
+        animationSpec = tween(700),
+    )
     val animatedGaugeMaxValue by animateFloatAsState(
         targetValue = gaugeMaxValue,
-        animationSpec = tween(400),
+        animationSpec = tween(700),
     )
 
     Scaffold(
@@ -109,7 +113,7 @@ fun MainScreen(
                     modifier = Modifier
                         .padding(20.dp)
                         .weight(1f, fill = false),
-                    value = gaugeValue,
+                    value = animatedGaugeValue,
                     maxValue = animatedGaugeMaxValue,
                     markCount = gaugeMarkCount,
                     theme = gaugeTheme,

@@ -30,29 +30,19 @@ class GaugeView(
     private var centerX = 0f
     private var centerY = 0f
 
-    private var animation: ValueAnimator = ValueAnimator.ofFloat(0F, 0F)
-
     var value = value
         set(value) {
-            val previousValue = field
-            val newValue = max(0f, min(maxValue, value))
-
-            animation.cancel()
-            animation = ValueAnimator.ofFloat(previousValue, newValue)
-            animation.duration = ANIMATION_DURATION
-            animation.addUpdateListener { valueAnimator ->
-                field = valueAnimator.animatedValue as Float
+            if (field != value) {
+                field = value
                 invalidate()
             }
-            animation.start()
-            invalidate()
         }
 
     var maxValue = maxValue
         set(maxValue) {
             if (field != maxValue) {
                 field = maxValue
-                reset()
+                invalidate()
             }
         }
 
@@ -60,7 +50,7 @@ class GaugeView(
         set(markCount) {
             if (field != markCount) {
                 field = markCount
-                reset()
+                invalidate()
             }
         }
 
@@ -80,11 +70,6 @@ class GaugeView(
                 invalidate()
             }
         }
-
-    private fun reset() {
-        animation.cancel()
-        invalidate()
-    }
 
     init {
         arcPaint.isAntiAlias = true
@@ -200,7 +185,7 @@ class GaugeView(
         }
 
         // Draw needle
-        val progress = value / maxValue
+        val progress = (value / maxValue).coerceIn(0f, 1f)
         needlePaint.style = Paint.Style.STROKE
         drawLine(canvas, needlePaint, progress, 0f, NEEDLE_LENGTH)
         needlePaint.style = Paint.Style.FILL
@@ -226,8 +211,6 @@ class GaugeView(
         ARC_ANGLE * progress + START_ANGLE
 
     companion object {
-
-        private const val ANIMATION_DURATION = 700L
 
         private const val ARC_ANGLE = 360 * 0.6f
         private const val START_ANGLE = 270 - ARC_ANGLE / 2
