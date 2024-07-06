@@ -61,7 +61,7 @@ class SpeedometerService : Service() {
             )
         } catch (e: Exception) {
             settings.isRunning = false
-            throw e
+            stopSelf()
         }
 
         return super.onStartCommand(intent, flags, startId)
