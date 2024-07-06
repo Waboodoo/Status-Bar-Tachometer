@@ -14,7 +14,7 @@ android {
         targetSdk = 34
         versionName = "3.12.0"
         //noinspection HighAppVersionCode
-        versionCode = 2003120000
+        versionCode = 2003120001
         // 20,(2 digits major),(2 digits minor),(2 digits patch),(2 digits build)
 
         vectorDrawables.useSupportLibrary = true
