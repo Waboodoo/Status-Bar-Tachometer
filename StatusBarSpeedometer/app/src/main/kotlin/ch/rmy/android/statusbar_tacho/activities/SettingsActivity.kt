@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -109,19 +110,36 @@ class SettingsActivity : AppCompatActivity() {
             }
             val gaugeMaxValue by remember(gaugeScale, speedUnit, gaugeScaleFactorIndex) {
                 derivedStateOf {
-                    speedUnit.maxValue / (gaugeScale.factor ?: GaugeScale.FACTORS[gaugeScaleFactorIndex])
+                    getGaugeMaxValue(gaugeScale, speedUnit, gaugeScaleFactorIndex)
                 }
             }
 
-
             if (gaugeScale == GaugeScale.DYNAMIC) {
                 LaunchedEffect(speed) {
+                    var gaugeMaxValue = gaugeMaxValue
                     if (speed == 0f) {
                         gaugeScaleFactorIndex = 0
-                    } else if (speed > gaugeMaxValue * 0.9f) {
-                        gaugeScaleFactorIndex = (gaugeScaleFactorIndex + 1).coerceAtMost(GaugeScale.FACTORS.size - 1)
-                    } else if (speed < gaugeMaxValue * 0.2f) {
-                        gaugeScaleFactorIndex = (gaugeScaleFactorIndex - 1).coerceAtLeast(0)
+                    } else {
+                        var newGaugeScaleFactorIndex = gaugeScaleFactorIndex
+                        while (speed > gaugeMaxValue * 0.9f) {
+                            newGaugeScaleFactorIndex = (newGaugeScaleFactorIndex + 1)
+                            if (newGaugeScaleFactorIndex >= GaugeScale.FACTORS.lastIndex) {
+                                newGaugeScaleFactorIndex = GaugeScale.FACTORS.lastIndex
+                                break
+                            }
+                            gaugeMaxValue = getGaugeMaxValue(gaugeScale, speedUnit, newGaugeScaleFactorIndex)
+                        }
+                        while (speed < gaugeMaxValue * 0.2f) {
+                            newGaugeScaleFactorIndex = newGaugeScaleFactorIndex - 1
+                            if (newGaugeScaleFactorIndex <= 0) {
+                                newGaugeScaleFactorIndex = 0
+                                break
+                            }
+                            gaugeMaxValue = getGaugeMaxValue(gaugeScale, speedUnit, newGaugeScaleFactorIndex)
+                        }
+                        if (newGaugeScaleFactorIndex != gaugeScaleFactorIndex) {
+                            gaugeScaleFactorIndex = newGaugeScaleFactorIndex
+                        }
                     }
                 }
             }
@@ -208,6 +226,10 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
     }
+
+    @Stable
+    private fun getGaugeMaxValue(gaugeScale: GaugeScale, speedUnit: SpeedUnit, gaugeScaleFactorIndex: Int): Float =
+        speedUnit.maxValue / (gaugeScale.factor ?: GaugeScale.FACTORS[gaugeScaleFactorIndex])
 
     private fun keepScreenOn(enabled: Boolean) {
         with(window) {
