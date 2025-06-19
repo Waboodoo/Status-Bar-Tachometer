@@ -52,10 +52,8 @@ fun Menu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
         ) {
-            with(object : MenuScope {
-                override fun onItemSelected() {
-                    expanded = false
-                }
+            with(MenuScope {
+                expanded = false
             }) {
                 content()
             }
@@ -63,7 +61,7 @@ fun Menu(
     }
 }
 
-interface MenuScope {
+fun interface MenuScope {
     fun onItemSelected()
 }
 
