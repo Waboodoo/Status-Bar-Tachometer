@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "ch.rmy.android.statusbar_tacho"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ch.rmy.android.statusbar_tacho"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionName = "3.12.0"
         //noinspection HighAppVersionCode
         versionCode = 2003120001
