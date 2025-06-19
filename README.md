@@ -21,7 +21,9 @@ Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.
 - Can be toggled through a quick settings tile
 
 ## Contribute
-If you find bugs or have ideas for new features, feel free to [create an issue](https://github.com/Waboodoo/Status-Bar-Tachometer/issues/new).
+For the most part, this app is in *maintenance mode*, meaning that I'm not actively developing new features. I will occasionally release new versions to fix bugs and to make sure the app keeps working, but likely won't be making big changes.
+
+If you find bugs, feel free to [create an issue](https://github.com/Waboodoo/Status-Bar-Tachometer/issues/new).
 
 If you would like to help with the translations, you can [become a translator](https://crowdin.com/project/status-bar-speedometer/invite?h=c0820dd3b50d1c68648493f5bb6250fe2067070).
 
