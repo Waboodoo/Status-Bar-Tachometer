@@ -52,6 +52,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
     private val _themeId = settings.themeIdFlow
     private val _gaugeScale = settings.gaugeScaleFlow
+    private val _permissionGranted = settings.permissionGrantedFlow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -91,6 +92,7 @@ class SettingsActivity : AppCompatActivity() {
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
             val themeId by _themeId.collectAsStateWithLifecycle()
             val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
+            val permissionGranted by _permissionGranted.collectAsStateWithLifecycle()
 
             var modal by remember {
                 mutableStateOf(if (settings.isFirstRun) Modal.WELCOME else null)
@@ -135,7 +137,11 @@ class SettingsActivity : AppCompatActivity() {
                         is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed)
                         is SpeedState.SpeedUnavailable,
                         is SpeedState.Disabled,
-                        -> IDLE_SPEED_PLACEHOLDER
+                            -> if (permissionGranted == false) {
+                            stringResource(R.string.permission_not_granted)
+                        } else {
+                            IDLE_SPEED_PLACEHOLDER
+                        }
                     },
                     isRunning = isRunning,
                     onClicked = {
@@ -232,6 +238,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         settings.isRunning = permissionManager.wasGranted(grantResults)
+        settings.hasPermission = permissionManager.hasPermission()
     }
 
     override fun onDestroy() {

@@ -118,4 +118,15 @@ object Settings {
             }
         }
 
+    private val _permissionGrantedFlow = MutableStateFlow<Boolean?>(null)
+
+    @Stable
+    val permissionGrantedFlow  = _permissionGrantedFlow.asStateFlow()
+
+    var hasPermission: Boolean?
+        get() = _permissionGrantedFlow.value
+        set(value) {
+            _permissionGrantedFlow.value = value
+        }
+
 }
