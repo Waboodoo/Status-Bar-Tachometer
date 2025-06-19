@@ -124,7 +124,11 @@ fun MainScreen(
                     modifier = Modifier.alpha(speedLabelAlpha),
                     text = speedLabel,
                     textAlign = TextAlign.Center,
-                    fontSize = 48.sp,
+                    fontSize = if (speedLabel.length > 12) {
+                        20.sp
+                    } else {
+                        48.sp
+                    },
                     color = colorResource(R.color.main_foreground),
                 )
 
