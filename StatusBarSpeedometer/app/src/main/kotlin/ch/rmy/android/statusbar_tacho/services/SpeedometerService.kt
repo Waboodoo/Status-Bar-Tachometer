@@ -47,7 +47,7 @@ class SpeedometerService : Service() {
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         try {
             ServiceCompat.startForeground(
                 this,
@@ -59,7 +59,7 @@ class SpeedometerService : Service() {
                     0
                 },
             )
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             settings.isRunning = false
             stopSelf()
         }
