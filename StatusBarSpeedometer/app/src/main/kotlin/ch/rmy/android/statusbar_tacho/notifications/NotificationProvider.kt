@@ -29,6 +29,7 @@ class NotificationProvider(context: Context) {
         }
 
         val contentIntent = Intent(context, SettingsActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         val deleteIntent = Intent(context, DismissReceiver::class.java)
             .setAction(DismissReceiver.DISMISS_ACTION)
 
