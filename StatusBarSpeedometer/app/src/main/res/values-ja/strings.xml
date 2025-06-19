@@ -5,47 +5,48 @@
     <!-- Notification title, shown above current speed -->
     <string name="current_speed">現在の速度</string>
     <!-- Shown in notification when current speed is unknown -->
-    <string name="unknown">未知</string>
+    <string name="unknown">不明</string>
     <!-- Speed unit: kilometers per hour -->
     <string name="unit_kmh">km/時</string>
     <!-- Speed unit: kilometers per hour -->
-    <string name="unit_kmh_long">km/時</string>
+    <string name="unit_kmh_long">キロメートル毎時</string>
     <!-- Speed unit: miles per hour -->
-    <string name="unit_mph">マイル/時</string>
+    <string name="unit_mph">mi/時</string>
     <!-- Speed unit: miles per hour -->
-    <string name="unit_mph_long">マイル/時</string>
+    <string name="unit_mph_long">マイル毎時</string>
     <!-- Speed unit: meters per second -->
-    <string name="unit_ms">MS</string>
+    <string name="unit_ms">m/秒</string>
     <!-- Speed unit: meters per second -->
-    <string name="unit_ms_long">メートル/秒</string>
+    <string name="unit_ms_long">メートル毎秒</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">フィート/秒</string>
     <!-- Speed unit: feet per second -->
-    <string name="unit_fts_long">フィート/秒</string>
+    <string name="unit_fts_long">フィート毎秒</string>
     <!-- Label for unit dropdown -->
-    <string name="label_unit">ユニット</string>
+    <string name="label_unit">単位</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">ゲージのテーマ</string>
     <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
-    <string name="label_gauge_scale">ゲージスケール</string>
+    <string name="label_gauge_scale">ゲージの目盛り</string>
     <!-- Instructions shown below gauge on main screen -->
     <string name="main_instructions">画面をタップしてスピードメーターをオンにします</string>
     <!-- Option for creating a shortcut: shown for option that, when clicked, toggles the speedometer -->
-    <string name="shortcut_toggle">トグルスピードメーター</string>
+    <string name="shortcut_toggle">スピードメーターを切り替える</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPSが無効になっています</string>
+    <!-- Status message, shown instead of speed when the permission to access the device location was not granted by the user -->
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
-    <string name="intro_title">いらっしゃいませ</string>
+    <string name="intro_title">ようこそ</string>
     <!-- Dialog message shown when the user opens the app for the first time. Includes a reminder to not use the app while driving -->
     <string name="intro_message">運転中は責任を持ってこのアプリを使用しないでください。\n\nありがとうございます。</string>
     <!-- Generic button text for dialog buttons -->
     <string name="button_ok">わかりました</string>
     <!-- Button label for closing a dialog -->
-    <string name="button_close">近い</string>
+    <string name="button_close">閉じる</string>
     <!-- Button label for resetting a value (e.g. the "Top Speed") -->
-    <string name="button_reset">Reset</string>
+    <string name="button_reset">リセット</string>
     <!-- Name of notification channel for notification which shows the current speed -->
     <string name="notification_channel">スピードアップデート</string>
     <!-- Label for quick settings tile, which allows toggling the speedometer -->
@@ -59,7 +60,7 @@
     <string name="theme_name_red">赤</string>
     <string name="theme_name_black_and_white">黒と白</string>
     <string name="gauge_scale_very_fast">とても速い</string>
-    <string name="gauge_scale_fast">早い</string>
+    <string name="gauge_scale_fast">速い</string>
     <string name="gauge_scale_medium">中</string>
     <string name="gauge_scale_slow">ゆっくり</string>
     <string name="gauge_scale_dynamic">ダイナミック</string>

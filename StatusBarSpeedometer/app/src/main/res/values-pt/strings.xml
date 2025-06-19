@@ -34,6 +34,8 @@
     <string name="shortcut_toggle">Alternar velocímetro</string>
     <!-- Status message, shown instead of speed when GPS is not enabled -->
     <string name="gps_disabled">GPS desativado</string>
+    <!-- Status message, shown instead of speed when the permission to access the device location was not granted by the user -->
+    <string name="permission_not_granted">Permissão não concedida</string>
     <!-- Format string for displaying the current speed. %1$s is the placeholder for the speed, %2$s is the placeholder for the unit -->
     <string name="speed_format_with_unit">%1$s %2$s</string>
     <!-- Dialog title of welcome message, which is shown the first time the user opens the app -->
