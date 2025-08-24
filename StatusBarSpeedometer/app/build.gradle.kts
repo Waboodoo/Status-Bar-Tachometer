@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "ch.rmy.android.statusbar_tacho"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ch.rmy.android.statusbar_tacho"
