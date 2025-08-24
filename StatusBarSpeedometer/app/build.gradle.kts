@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "ch.rmy.android.statusbar_tacho"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionName = "3.14.0"
         //noinspection HighAppVersionCode
         versionCode = 2003140000
