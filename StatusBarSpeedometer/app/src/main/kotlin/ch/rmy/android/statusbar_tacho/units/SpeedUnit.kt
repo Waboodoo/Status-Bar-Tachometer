@@ -72,7 +72,25 @@ enum class SpeedUnit {
 
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 3.28084f
-    };
+    },
+
+    KNOTS {
+        override val nameRes: Int
+            get() = R.string.unit_knots
+
+        override val longNameRes: Int
+            get() = R.string.unit_knots
+
+        override val maxValue: Int
+            get() = 120
+
+        override val steps: Int
+            get() = 6
+
+        override fun convertSpeed(metersPerSecond: Float): Float =
+            metersPerSecond * 1.94384f
+    },
+    ;
 
     @get:StringRes
     abstract val nameRes: Int
