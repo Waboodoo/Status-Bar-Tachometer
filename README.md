@@ -16,12 +16,12 @@ Get it on the [Play Store](https://play.google.com/store/apps/details?id=ch.rmy.
 <img src="StatusBarSpeedometer/app/src/main/play/listings/en-US/graphics/phone-screenshots/02.png" width="480" />
 
 ## Features
-- Uses GPS to determine your current speed and displays it as a notification in the unit of your choice: **m/s**, **km/h**, **mi/h**, **ft/s**
-- Dark Mode support
+- Uses GPS to determine your current speed and displays it as a notification and as a full screen speed gauge, in the unit of your choice: **m/s**, **km/h**, **mi/h**, **ft/s**, or **knots**
+- Different color themes and dark mode support
 - Can be toggled through a quick settings tile
 
 ## Contribute
-For the most part, this app is in *maintenance mode*, meaning that I'm not actively developing new features. I will occasionally release new versions to fix bugs and to make sure the app keeps working, but likely won't be making big changes.
+For the most part, this app is in *maintenance mode*, meaning that I'm not actively developing new features. I will occasionally release new versions to fix bugs and to make sure the app keeps working, or maybe add a feature if I'm feeling really inspired, but most likely I won't be making big changes.
 
 If you find bugs, feel free to [create an issue](https://github.com/Waboodoo/Status-Bar-Tachometer/issues/new).
 
