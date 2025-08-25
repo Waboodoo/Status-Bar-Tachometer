@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -53,16 +55,18 @@ android {
         }
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
     sourceSets.getByName("main") {
         java.setSrcDirs(listOf("src/main/kotlin"))
     }
 
     lint {
         disable.add("MissingTranslation")
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget("1.8")
     }
 }
 
