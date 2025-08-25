@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
@@ -21,7 +22,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import ch.rmy.android.statusbar_tacho.R
 import ch.rmy.android.statusbar_tacho.extensions.context
 import ch.rmy.android.statusbar_tacho.location.SpeedState
-import ch.rmy.android.statusbar_tacho.location.SpeedWatcher
 import ch.rmy.android.statusbar_tacho.services.SpeedometerService
 import ch.rmy.android.statusbar_tacho.units.SpeedUnit
 import ch.rmy.android.statusbar_tacho.utils.AppTheme
@@ -40,9 +40,10 @@ class SettingsActivity : AppCompatActivity() {
     private val permissionManager: PermissionManager by lazy {
         PermissionManager(context)
     }
-    private val speedWatcher: SpeedWatcher by lazy {
-        SpeedWatcher(context)
-    }
+
+    private val viewModel by viewModels<SettingsViewModel>()
+    val speedWatcher
+        get() = viewModel.speedWatcher
 
     private val settings: Settings
         get() = Settings
@@ -252,20 +253,10 @@ class SettingsActivity : AppCompatActivity() {
         speedWatcher.toggle(state)
     }
 
-    override fun onStop() {
-        super.onStop()
-        speedWatcher.disable()
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         settings.isRunning = permissionManager.wasGranted(grantResults)
         settings.hasPermission = permissionManager.hasPermission()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        speedWatcher.destroy()
     }
 
     companion object {
