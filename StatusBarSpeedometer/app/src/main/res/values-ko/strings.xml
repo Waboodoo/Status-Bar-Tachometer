@@ -15,6 +15,7 @@
     <!-- Speed unit: meters per second -->
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">피트/초</string>
+    <!-- Speed unit: knots -->
     <!-- Speed unit: feet per second -->
     <!-- Label for unit dropdown -->
     <string name="label_unit">단위</string>

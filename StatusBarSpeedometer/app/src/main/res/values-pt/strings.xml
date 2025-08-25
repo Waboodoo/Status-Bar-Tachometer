@@ -20,6 +20,7 @@
     <string name="unit_ms_long">metros por segundo</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">pés/s</string>
+    <!-- Speed unit: knots -->
     <!-- Speed unit: feet per second -->
     <string name="unit_fts_long">pés por segundo</string>
     <!-- Label for unit dropdown -->

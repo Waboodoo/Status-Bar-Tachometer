@@ -20,6 +20,8 @@
     <string name="unit_ms_long">метров в секунду</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">фут/с</string>
+    <!-- Speed unit: knots -->
+    <string name="unit_knots">узлах</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts_long">футов в секунду</string>
     <!-- Label for unit dropdown -->

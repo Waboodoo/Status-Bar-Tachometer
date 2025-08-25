@@ -20,6 +20,8 @@
     <string name="unit_ms_long">metri al secondo</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">piedi/s</string>
+    <!-- Speed unit: knots -->
+    <string name="unit_knots">nodi</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts_long">piedi al secondo</string>
     <!-- Label for unit dropdown -->

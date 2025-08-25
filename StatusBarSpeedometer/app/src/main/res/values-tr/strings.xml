@@ -20,6 +20,7 @@
     <string name="unit_ms_long">metre / saniye</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">ft/sn</string>
+    <!-- Speed unit: knots -->
     <!-- Speed unit: feet per second -->
     <!-- Label for unit dropdown -->
     <string name="label_unit">Birim</string>

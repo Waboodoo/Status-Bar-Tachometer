@@ -20,6 +20,8 @@
     <string name="unit_ms_long">メートル毎秒</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts">フィート/秒</string>
+    <!-- Speed unit: knots -->
+    <string name="unit_knots">ノット</string>
     <!-- Speed unit: feet per second -->
     <string name="unit_fts_long">フィート毎秒</string>
     <!-- Label for unit dropdown -->
