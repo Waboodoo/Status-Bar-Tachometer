@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
@@ -106,7 +107,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
-            var gaugeScaleFactorIndex by remember {
+            var gaugeScaleFactorIndex by rememberSaveable {
                 mutableIntStateOf(0)
             }
             val gaugeMaxValue by remember(gaugeScale, speedUnit, gaugeScaleFactorIndex) {

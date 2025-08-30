@@ -71,4 +71,6 @@
     <string name="main_menu">Main menu</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->
     <string name="top_speed_title">Top Speed</string>
+    <!-- Label of button on notification, to turn the speedometer off -->
+    <string name="notification_action_turn_off">Turn off</string>
 </resources>

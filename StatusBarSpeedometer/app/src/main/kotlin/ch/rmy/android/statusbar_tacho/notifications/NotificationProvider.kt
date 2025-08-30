@@ -36,6 +36,7 @@ class NotificationProvider(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationManager.createNotificationChannel(createChannel(context))
         }
+        val turnOffPendingIntent = PendingIntent.getBroadcast(context, 1, deleteIntent, pendingIntentFlags)
 
         builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Notification.Builder(context, CHANNEL_ID)
@@ -47,9 +48,23 @@ class NotificationProvider(context: Context) {
             .setContentTitle(context.getString(R.string.current_speed))
             .setContentText(context.getString(R.string.unknown))
             .setContentIntent(PendingIntent.getActivity(context, 0, contentIntent, pendingIntentFlags))
-            .setDeleteIntent(PendingIntent.getBroadcast(context, 1, deleteIntent, pendingIntentFlags))
+            .setDeleteIntent(turnOffPendingIntent)
             .setLocalOnly(true)
             .setOngoing(true)
+            .let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    it.addAction(
+                        Notification.Action.Builder(
+                            null,
+                            context.getString(R.string.notification_action_turn_off),
+                            turnOffPendingIntent,
+                        )
+                            .build()
+                    )
+                } else {
+                    it
+                }
+            }
             .let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     it.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
