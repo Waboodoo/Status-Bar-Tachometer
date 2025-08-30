@@ -56,4 +56,5 @@
     <string name="gauge_scale_slow">천천히</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->
+    <!-- Label of button on notification, to turn the speedometer off -->
 </resources>

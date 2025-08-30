@@ -67,4 +67,5 @@
     <string name="main_menu">Ana menü</string>
     <!-- Title for menu item and dialog that shows the highest speed that was measured -->
     <string name="top_speed_title">Azami Hız</string>
+    <!-- Label of button on notification, to turn the speedometer off -->
 </resources>
