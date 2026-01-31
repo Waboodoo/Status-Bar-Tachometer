@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -165,12 +163,12 @@ private fun MainMenu(
     Menu(modifier) {
         MenuItem(
             title = stringResource(R.string.top_speed_title),
-            icon = Icons.Default.Speed,
+            icon = painterResource(R.drawable.outline_speed_24),
             onClick = onTopSpeedClicked,
         )
         MenuItem(
             title = stringResource(R.string.settings_title),
-            icon = Icons.Default.Settings,
+            icon = painterResource(R.drawable.outline_settings_24),
             onClick = onSettingsClicked,
         )
     }

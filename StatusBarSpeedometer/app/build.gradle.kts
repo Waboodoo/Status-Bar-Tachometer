@@ -80,7 +80,6 @@ dependencies {
     /* Compose */
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.materialIconsExtended)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.compose.uiToolingPreview)

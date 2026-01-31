@@ -6,8 +6,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -19,8 +17,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -44,7 +43,7 @@ fun Menu(
                 )
                 .padding(20.dp)
                 .size(30.dp),
-            imageVector = Icons.Default.MoreVert,
+            painter = painterResource(R.drawable.outline_more_vert_24),
             contentDescription = stringResource(R.string.main_menu),
             tint = colorResource(R.color.main_foreground_secondary),
         )
@@ -68,7 +67,7 @@ fun interface MenuScope {
 @Composable
 fun MenuScope.MenuItem(
     title: String,
-    icon: ImageVector,
+    icon: Painter,
     onClick: () -> Unit,
 ) {
     DropdownMenuItem(
@@ -81,7 +80,7 @@ fun MenuScope.MenuItem(
         leadingIcon = {
             Icon(
                 modifier = Modifier.padding(start = 8.dp),
-                imageVector = icon,
+                painter = icon,
                 contentDescription = null,
             )
         },
