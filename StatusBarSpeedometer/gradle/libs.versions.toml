@@ -1,13 +1,13 @@
 [versions]
-activity = "1.11.0"
-androidGradle = "8.13.0"
+activity = "1.12.3"
+androidGradle = "8.13.2"
 androidXCore = "1.17.0"
 annotation = "1.9.1"
 appcompat = "1.7.1"
-composeBom = "2025.09.00"
-kotlin = "2.2.20"
+composeBom = "2026.01.01"
+kotlin = "2.3.0"
 kotlinxCoroutines = "1.10.2"
-lifecycle = "2.9.4"
+lifecycle = "2.10.0"
 
 [libraries]
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "androidGradle" }
