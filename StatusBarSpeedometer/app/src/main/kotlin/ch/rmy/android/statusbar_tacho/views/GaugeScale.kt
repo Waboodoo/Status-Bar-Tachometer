@@ -2,14 +2,16 @@ package ch.rmy.android.statusbar_tacho.views
 
 import androidx.compose.runtime.Stable
 
+// New values must be appended at the end, as the setting is stored by ordinal
 enum class GaugeScale(
     @Stable
     val factor: Float?,
 ) {
     FAST(1f),
-    MEDIUM(4f),
-    SLOW(10f),
+    SLOW(4f),
+    VERY_SLOW(10f),
     VERY_FAST(0.25f),
+    MEDIUM(1.5f),
     DYNAMIC(null),
     ;
 

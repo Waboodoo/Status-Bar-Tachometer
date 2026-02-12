@@ -68,6 +68,7 @@
     <string name="gauge_scale_fast">Fast</string>
     <string name="gauge_scale_medium">Medium</string>
     <string name="gauge_scale_slow">Slow</string>
+    <string name="gauge_scale_very_slow">Very slow</string>
     <string name="gauge_scale_dynamic">Dynamic</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Main menu</string>

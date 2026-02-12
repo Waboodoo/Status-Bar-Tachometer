@@ -205,7 +205,7 @@ class SettingsActivity : AppCompatActivity() {
                             MainScreen(
                                 gaugeValue = speed,
                                 gaugeMaxValue = gaugeMaxValue,
-                                gaugeMarkCount = speedUnit.steps + 1,
+                                gaugeMarkCount = speedUnit.steps(gaugeScale) + 1,
                                 gaugeTheme = gaugeTheme,
                                 speedLabel = when (speedUpdate) {
                                     is SpeedState.GPSDisabled -> stringResource(R.string.gps_disabled)
