@@ -27,7 +27,7 @@
     <!-- Label for unit dropdown -->
     <string name="label_unit">Unit</string>
     <!-- Label for toggle switch to set whether the speed displayed under the gauge should include the unit -->
-    <string name="checkbox_label_show_unit">Show the unit under the speed gauge</string>
+    <string name="checkbox_label_show_unit">Show the speed unit on the main screen</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">Gauge Theme</string>
     <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
@@ -64,6 +64,7 @@
     <string name="theme_name_blue">Blue</string>
     <string name="theme_name_red">Red</string>
     <string name="theme_name_black_and_white">Black and white</string>
+    <string name="theme_name_no_gauge">No gauge</string>
     <string name="gauge_scale_very_fast">Very fast</string>
     <string name="gauge_scale_fast">Fast</string>
     <string name="gauge_scale_medium">Medium</string>

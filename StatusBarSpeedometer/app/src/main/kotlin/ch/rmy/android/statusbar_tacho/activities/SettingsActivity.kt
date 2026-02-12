@@ -199,7 +199,13 @@ class SettingsActivity : AppCompatActivity() {
                         Box(
                             modifier = Modifier
                                 .weight(1f)
-                                .background(gaugeTheme.backgroundColor),
+                                .run {
+                                    if (gaugeTheme != null) {
+                                        background(gaugeTheme.backgroundColor)
+                                    } else {
+                                        this
+                                    }
+                                },
                             contentAlignment = Alignment.Center,
                         ) {
                             MainScreen(

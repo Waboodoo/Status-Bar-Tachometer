@@ -22,14 +22,15 @@ data class GaugeThemeWrapper(
 )
 
 @Composable
-fun getGaugeTheme(themeId: ThemeId = ThemeId.DEFAULT): GaugeTheme =
+fun getGaugeTheme(themeId: ThemeId = ThemeId.DEFAULT): GaugeTheme? =
     when (themeId) {
+        ThemeId.NONE -> null
         ThemeId.DEFAULT -> defaultTheme
         ThemeId.BLUE -> blueTheme
         ThemeId.RED -> redTheme
         ThemeId.BLACK_AND_WHITE -> blackAndWhiteTheme
     }
-        .run {
+        ?.run {
             if (isSystemInDarkTheme()) dark else light
         }
 

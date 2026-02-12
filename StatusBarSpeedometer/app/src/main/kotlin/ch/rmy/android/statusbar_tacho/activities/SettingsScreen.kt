@@ -57,6 +57,7 @@ fun SettingsScreen(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        val usesGauge = themeId != ThemeId.NONE
         SpeedUnitPicker(
             speedUnit = speedUnit,
             onSpeedUnitChanged = onSpeedUnitChanged
@@ -69,6 +70,7 @@ fun SettingsScreen(
 
         GaugeScalePicker(
             gaugeScale = gaugeScale,
+            enabled = usesGauge,
             onGaugeScaleChanged = onGaugeScaleChanged,
         )
 
@@ -116,28 +118,37 @@ private fun ThemeIdPicker(
         label = stringResource(R.string.label_gauge_theme),
         value = getThemeName(themeId),
     ) { collapse ->
-        ThemeId.entries.forEach {
-            DropdownMenuItem(
-                text = {
-                    Text(getThemeName(it))
-                },
-                onClick = {
-                    onThemeIdChanged(it)
-                    collapse()
-                },
-            )
-        }
+        arrayOf(
+            ThemeId.NONE,
+            ThemeId.DEFAULT,
+            ThemeId.BLUE,
+            ThemeId.RED,
+            ThemeId.BLACK_AND_WHITE,
+        )
+            .forEach {
+                DropdownMenuItem(
+                    text = {
+                        Text(getThemeName(it))
+                    },
+                    onClick = {
+                        onThemeIdChanged(it)
+                        collapse()
+                    },
+                )
+            }
     }
 }
 
 @Composable
 private fun GaugeScalePicker(
     gaugeScale: GaugeScale,
+    enabled: Boolean,
     onGaugeScaleChanged: (GaugeScale) -> Unit,
 ) {
     DropdownField(
         label = stringResource(R.string.label_gauge_scale),
         value = getGaugeScaleName(gaugeScale, withEmoji = true),
+        enabled = enabled,
         semanticValue = getGaugeScaleName(gaugeScale, withEmoji = false),
     ) { collapse ->
         GaugeScale.entries
@@ -170,6 +181,7 @@ private fun getThemeName(themeId: ThemeId): String =
         ThemeId.BLUE -> stringResource(R.string.theme_name_blue)
         ThemeId.RED -> stringResource(R.string.theme_name_red)
         ThemeId.BLACK_AND_WHITE -> stringResource(R.string.theme_name_black_and_white)
+        ThemeId.NONE -> stringResource(R.string.theme_name_no_gauge)
     }
 
 @Stable
@@ -189,6 +201,7 @@ private fun DropdownField(
     label: String,
     value: String,
     semanticValue: String = value,
+    enabled: Boolean = true,
     menuContent: @Composable (collapse: () -> Unit) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -207,6 +220,7 @@ private fun DropdownField(
                 },
             value = value,
             onValueChange = {},
+            enabled = enabled,
             readOnly = true,
             singleLine = true,
             label = {
@@ -218,15 +232,17 @@ private fun DropdownField(
                     contentDescription = null,
                 )
             },
-            interactionSource = clickOnlyInteractionSource(
-                onClick = {
-                    expanded = true
-                },
-            ),
+            interactionSource = if (enabled) {
+                clickOnlyInteractionSource(
+                    onClick = {
+                        expanded = true
+                    },
+                )
+            } else null,
         )
 
         DropdownMenu(
-            expanded = expanded,
+            expanded = expanded && enabled,
             onDismissRequest = {
                 expanded = false
             },
@@ -293,6 +309,7 @@ private fun ShowUnitPicker(
         )
     }
 }
+
 @Preview
 @Composable
 private fun SettingsScreen_Preview() {

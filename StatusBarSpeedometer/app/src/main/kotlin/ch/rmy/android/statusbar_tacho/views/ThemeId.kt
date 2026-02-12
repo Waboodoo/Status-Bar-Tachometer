@@ -5,4 +5,5 @@ enum class ThemeId {
     BLUE,
     RED,
     BLACK_AND_WHITE,
+    NONE,
 }

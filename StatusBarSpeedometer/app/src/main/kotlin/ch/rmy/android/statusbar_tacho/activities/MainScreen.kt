@@ -40,7 +40,7 @@ fun MainScreen(
     gaugeValue: Float,
     gaugeMaxValue: Float,
     gaugeMarkCount: Int,
-    gaugeTheme: GaugeTheme,
+    gaugeTheme: GaugeTheme?,
     speedLabel: String,
     isRunning: Boolean,
     isInSettings: Boolean,
@@ -90,16 +90,18 @@ fun MainScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        Gauge(
-            modifier = Modifier
-                .padding(24.dp)
-                .weight(1f, fill = false),
-            value = animatedGaugeValue,
-            maxValue = animatedGaugeMaxValue,
-            markCount = gaugeMarkCount,
-            theme = gaugeTheme,
-            showNumbers = gaugeMaxValue == animatedGaugeMaxValue,
-        )
+        if (gaugeTheme != null) {
+            Gauge(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .weight(1f, fill = false),
+                value = animatedGaugeValue,
+                maxValue = animatedGaugeMaxValue,
+                markCount = gaugeMarkCount,
+                theme = gaugeTheme,
+                showNumbers = gaugeMaxValue == animatedGaugeMaxValue,
+            )
+        }
 
         if (!isInSettings) {
             Text(
