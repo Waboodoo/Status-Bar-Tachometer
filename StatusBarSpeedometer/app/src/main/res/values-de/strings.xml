@@ -26,6 +26,8 @@
     <string name="unit_fts_long">Fuß pro Sekunde</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Einheit</string>
+    <!-- Label for font size slider (for the speed display on the main screen) -->
+    <string name="label_font_size">Schriftgröße</string>
     <!-- Label for toggle switch to set whether the speed displayed under the gauge should include the unit -->
     <string name="checkbox_label_show_unit">Geschwindigkeitseinheit auf dem Hauptbildschirm anzeigen</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->

@@ -25,6 +25,7 @@
     <string name="unit_fts_long">英尺/秒</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">单元</string>
+    <!-- Label for font size slider (for the speed display on the main screen) -->
     <!-- Label for toggle switch to set whether the speed displayed under the gauge should include the unit -->
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">仪表主题</string>
