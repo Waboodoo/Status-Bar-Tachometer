@@ -47,6 +47,7 @@ fun MainScreen(
     gaugeMarkCount: Int,
     gaugeTheme: GaugeTheme?,
     speedLabel: String,
+    fontScale: Float,
     isRunning: Boolean,
     isInSettings: Boolean,
     onClicked: () -> Unit,
@@ -106,10 +107,12 @@ fun MainScreen(
                 theme = gaugeTheme,
                 showNumbers = gaugeMaxValue == animatedGaugeMaxValue,
             )
+        } else {
+            Spacer(modifier = Modifier.height(16.dp))
         }
 
         val style = TextStyle(
-            fontSize = 56.sp,
+            fontSize = 56.sp * fontScale,
             color = colorResource(R.color.main_foreground),
             textAlign = TextAlign.Center,
         )
@@ -118,8 +121,8 @@ fun MainScreen(
                 .alpha(speedLabelAlpha),
             text = speedLabel,
             autoSize = TextAutoSize.StepBased(
-                minFontSize = 16.sp,
-                maxFontSize = if (isInSettings) 30.sp else 56.sp,
+                minFontSize = 16.sp * fontScale,
+                maxFontSize = (if (isInSettings) 30.sp else 56.sp) * fontScale,
             ),
             style = style,
         )
@@ -150,6 +153,7 @@ private fun MainScreen_Running_Preview() {
         gaugeMarkCount = 20,
         gaugeTheme = getGaugeTheme(),
         speedLabel = "27.0",
+        fontScale = 3f,
         isRunning = true,
         isInSettings = false,
         onClicked = {},
@@ -165,6 +169,7 @@ private fun MainScreen_Tablet_Preview() {
         gaugeMarkCount = 20,
         gaugeTheme = getGaugeTheme(),
         speedLabel = "0.0",
+        fontScale = 1f,
         isRunning = false,
         isInSettings = false,
         onClicked = {},
@@ -180,6 +185,7 @@ private fun MainScreen_Dark_Preview() {
         gaugeMarkCount = 20,
         gaugeTheme = getGaugeTheme(),
         speedLabel = "---",
+        fontScale = 1f,
         isRunning = false,
         isInSettings = false,
         onClicked = {},

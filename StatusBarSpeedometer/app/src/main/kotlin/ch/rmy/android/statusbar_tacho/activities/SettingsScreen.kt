@@ -12,6 +12,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,11 +46,13 @@ fun SettingsScreen(
     speedUnit: SpeedUnit,
     themeId: ThemeId,
     gaugeScale: GaugeScale,
+    fontScale: Float,
     showUnit: Boolean,
     runWhenScreenOff: Boolean,
     onSpeedUnitChanged: (SpeedUnit) -> Unit,
     onThemeIdChanged: (ThemeId) -> Unit,
     onGaugeScaleChanged: (GaugeScale) -> Unit,
+    onFontScaleChanged: (Float) -> Unit,
     onShowUnitChanged: (Boolean) -> Unit,
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
 ) {
@@ -72,6 +75,11 @@ fun SettingsScreen(
             gaugeScale = gaugeScale,
             enabled = usesGauge,
             onGaugeScaleChanged = onGaugeScaleChanged,
+        )
+
+        FontScalePicker(
+            fontScale = fontScale,
+            onFontScaleChanged = onFontScaleChanged,
         )
 
         ShowUnitPicker(
@@ -283,6 +291,23 @@ private fun ScreenBehaviorPicker(
 }
 
 @Composable
+private fun FontScalePicker(
+    fontScale: Float,
+    onFontScaleChanged: (Float) -> Unit,
+) {
+    Column {
+        Text(
+            text = stringResource(R.string.label_font_size)
+        )
+        Slider(
+            value = fontScale,
+            valueRange = 0.5f..2f,
+            onValueChange = onFontScaleChanged,
+        )
+    }
+}
+
+@Composable
 private fun ShowUnitPicker(
     showUnit: Boolean,
     onShowUnitChanged: (Boolean) -> Unit,
@@ -317,11 +342,13 @@ private fun SettingsScreen_Preview() {
         speedUnit = SpeedUnit.KILOMETERS_PER_HOUR,
         themeId = ThemeId.DEFAULT,
         gaugeScale = GaugeScale.FAST,
+        fontScale = 1f,
         showUnit = true,
         runWhenScreenOff = false,
         onSpeedUnitChanged = {},
         onThemeIdChanged = {},
         onGaugeScaleChanged = {},
+        onFontScaleChanged = {},
         onShowUnitChanged = {},
         onRunWhenScreenOffChanged = {},
     )

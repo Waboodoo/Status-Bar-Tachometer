@@ -21,6 +21,7 @@ object Settings {
         _gaugeScaleFlow.value = GaugeScale.entries.getOrElse(preferences.getInt(PREF_GAUGE_SCALE, 0)) { GaugeScale.FAST }
         _showUnitFlow.value = preferences.getBoolean(PREF_SHOW_UNIT, false)
         _topSpeedFlow.value = preferences.getFloat(PREF_TOP_SPEED, -1f).takeUnless { it == -1f }
+        _fontScaleFlow.value = preferences.getFloat(PREF_FONT_SCALE, 1f)
     }
 
     private lateinit var preferences: SharedPreferences
@@ -34,6 +35,7 @@ object Settings {
     private const val PREF_GAUGE_SCALE = "gauge_scale"
     private const val PREF_SHOW_UNIT = "show_unit"
     private const val PREF_TOP_SPEED = "top_speed"
+    private const val PREF_FONT_SCALE = "font_scale"
 
     var isRunning: Boolean
         get() = _isRunningFlow.value
@@ -114,6 +116,18 @@ object Settings {
         set(value) = preferences.edit {
             _showUnitFlow.value = value
             putBoolean(PREF_SHOW_UNIT, value)
+        }
+
+    private val _fontScaleFlow = MutableStateFlow(1f)
+
+    @Stable
+    val fontScaleFlow = _fontScaleFlow.asStateFlow()
+
+    var fontScale: Float
+        get() = _fontScaleFlow.value
+        set(value) = preferences.edit {
+            _fontScaleFlow.value = value
+            putFloat(PREF_FONT_SCALE, value)
         }
 
     private val _topSpeedFlow = MutableStateFlow<Float?>(null)

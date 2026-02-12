@@ -76,6 +76,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
     private val _themeId = settings.themeIdFlow
     private val _gaugeScale = settings.gaugeScaleFlow
+    private val _fontScale = settings.fontScaleFlow
     private val _showUnit = settings.showUnitFlow
     private val _permissionGranted = settings.permissionGrantedFlow
 
@@ -118,6 +119,7 @@ class SettingsActivity : AppCompatActivity() {
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
             val themeId by _themeId.collectAsStateWithLifecycle()
             val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
+            val fontScale by _fontScale.collectAsStateWithLifecycle()
             val showUnit by _showUnit.collectAsStateWithLifecycle()
             val permissionGranted by _permissionGranted.collectAsStateWithLifecycle()
 
@@ -225,6 +227,7 @@ class SettingsActivity : AppCompatActivity() {
                                         IDLE_SPEED_PLACEHOLDER
                                     }
                                 },
+                                fontScale = fontScale,
                                 isRunning = isRunning,
                                 isInSettings = showSettings,
                                 onClicked = {
@@ -279,6 +282,7 @@ class SettingsActivity : AppCompatActivity() {
                                 speedUnit = speedUnit,
                                 themeId = themeId,
                                 gaugeScale = gaugeScale,
+                                fontScale = fontScale,
                                 showUnit = showUnit,
                                 runWhenScreenOff = runWhenScreenOff,
                                 onSpeedUnitChanged = {
@@ -289,6 +293,9 @@ class SettingsActivity : AppCompatActivity() {
                                 },
                                 onGaugeScaleChanged = {
                                     settings.gaugeScale = it
+                                },
+                                onFontScaleChanged = {
+                                    settings.fontScale = it
                                 },
                                 onShowUnitChanged = {
                                     settings.showUnit = it
