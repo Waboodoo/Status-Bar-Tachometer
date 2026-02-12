@@ -191,6 +191,7 @@ class SettingsActivity : AppCompatActivity() {
             AppTheme {
                 Scaffold(
                     modifier = Modifier
+                        .background(gaugeTheme?.backgroundColor ?: MaterialTheme.colorScheme.background)
                         .imePadding()
                         .statusBarsPadding(),
                 ) { paddingValues ->
