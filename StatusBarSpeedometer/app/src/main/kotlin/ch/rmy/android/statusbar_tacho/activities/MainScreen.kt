@@ -8,7 +8,10 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -104,16 +108,20 @@ fun MainScreen(
         }
 
         if (!isInSettings) {
-            Text(
-                modifier = Modifier.alpha(speedLabelAlpha),
-                text = speedLabel,
-                textAlign = TextAlign.Center,
-                fontSize = if (speedLabel.length > 12) {
-                    20.sp
-                } else {
-                    48.sp
-                },
+            val style = TextStyle(
+                fontSize = 56.sp,
                 color = colorResource(R.color.main_foreground),
+                textAlign = TextAlign.Center,
+            )
+            BasicText(
+                modifier = Modifier
+                    .alpha(speedLabelAlpha),
+                text = speedLabel,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 16.sp,
+                    maxFontSize = 56.sp,
+                ),
+                style = style,
             )
 
             Text(
