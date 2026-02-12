@@ -7,10 +7,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
@@ -187,6 +191,9 @@ class SettingsActivity : AppCompatActivity() {
             val closeSettingsAlpha by animateFloatAsState(
                 targetValue = if (showSettings) 1f else 0f,
             )
+            val gaugeHeightFraction by animateFloatAsState(
+                targetValue = if (showSettings) 0.35f else 1f
+            )
 
             AppTheme {
                 Scaffold(
@@ -202,7 +209,7 @@ class SettingsActivity : AppCompatActivity() {
                     ) {
                         Box(
                             modifier = Modifier
-                                .weight(1f)
+                                .fillMaxHeight(gaugeHeightFraction)
                                 .run {
                                     if (gaugeTheme != null) {
                                         background(gaugeTheme.backgroundColor)
@@ -274,12 +281,15 @@ class SettingsActivity : AppCompatActivity() {
                             }
                         }
 
-                        if (showSettings) {
+                        AnimatedVisibility(
+                            showSettings,
+                            enter = fadeIn(),
+                            exit = fadeOut(),
+                        ) {
                             SettingsScreen(
                                 modifier = Modifier
-                                    .padding(horizontal = 32.dp, vertical = 16.dp)
-                                    .weight(2f)
-                                    .verticalScroll(rememberScrollState()),
+                                    .verticalScroll(rememberScrollState())
+                                    .padding(horizontal = 32.dp, vertical = 16.dp),
                                 speedUnit = speedUnit,
                                 themeId = themeId,
                                 gaugeScale = gaugeScale,
