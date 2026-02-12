@@ -1,11 +1,11 @@
 [versions]
-activity = "1.12.3"
+activity = "1.12.4"
 androidGradle = "8.13.2"
 androidXCore = "1.17.0"
 annotation = "1.9.1"
 appcompat = "1.7.1"
-composeBom = "2026.01.01"
-kotlin = "2.3.0"
+composeBom = "2026.02.00"
+kotlin = "2.3.10"
 kotlinxCoroutines = "1.10.2"
 lifecycle = "2.10.0"
 
