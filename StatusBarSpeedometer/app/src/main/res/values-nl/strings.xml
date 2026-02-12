@@ -26,6 +26,8 @@
     <string name="unit_fts_long">voet per seconde</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Eenheid</string>
+    <!-- Label for toggle switch to set whether the speed displayed under the gauge should include the unit -->
+    <string name="checkbox_label_show_unit">Toon de snelheidseenheid op het hoofdscherm</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">Gauge-thema</string>
     <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
@@ -62,10 +64,12 @@
     <string name="theme_name_blue">Blauw</string>
     <string name="theme_name_red">Rood</string>
     <string name="theme_name_black_and_white">Zwart en wit</string>
+    <string name="theme_name_no_gauge">Geen</string>
     <string name="gauge_scale_very_fast">Zeer snel</string>
     <string name="gauge_scale_fast">Snel</string>
     <string name="gauge_scale_medium">Middelmatig</string>
     <string name="gauge_scale_slow">Langzaam</string>
+    <string name="gauge_scale_very_slow">Zeer langzaam</string>
     <string name="gauge_scale_dynamic">Dynamisch</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Hoofd menu</string>

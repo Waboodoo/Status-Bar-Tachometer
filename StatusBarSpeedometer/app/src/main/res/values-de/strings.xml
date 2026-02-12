@@ -26,6 +26,8 @@
     <string name="unit_fts_long">Fuß pro Sekunde</string>
     <!-- Label for unit dropdown -->
     <string name="label_unit">Einheit</string>
+    <!-- Label for toggle switch to set whether the speed displayed under the gauge should include the unit -->
+    <string name="checkbox_label_show_unit">Geschwindigkeitseinheit auf dem Hauptbildschirm anzeigen</string>
     <!-- Label for the theme selector, to choose how the gauge should be colored -->
     <string name="label_gauge_theme">Farbschema</string>
     <!-- Label for the gauge scale selector, to choose the maximum value of the speed gauge -->
@@ -62,10 +64,12 @@
     <string name="theme_name_blue">Blau</string>
     <string name="theme_name_red">Rot</string>
     <string name="theme_name_black_and_white">Schwarz und Weiß</string>
+    <string name="theme_name_no_gauge">Keines</string>
     <string name="gauge_scale_very_fast">Sehr schnell</string>
     <string name="gauge_scale_fast">Schnell</string>
     <string name="gauge_scale_medium">Mittel</string>
     <string name="gauge_scale_slow">Langsam</string>
+    <string name="gauge_scale_very_slow">Sehr langsam</string>
     <string name="gauge_scale_dynamic">Dynamisch</string>
     <!-- Accessibility title for main menu ellipsis button -->
     <string name="main_menu">Menü</string>
