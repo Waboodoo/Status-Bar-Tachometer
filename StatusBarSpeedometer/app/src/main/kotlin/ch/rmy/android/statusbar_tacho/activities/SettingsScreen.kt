@@ -1,24 +1,20 @@
 package ch.rmy.android.statusbar_tacho.activities
 
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
@@ -45,7 +41,8 @@ import ch.rmy.android.statusbar_tacho.views.GaugeScale
 import ch.rmy.android.statusbar_tacho.views.ThemeId
 
 @Composable
-fun SettingsDialog(
+fun SettingsScreen(
+    modifier: Modifier = Modifier,
     speedUnit: SpeedUnit,
     themeId: ThemeId,
     gaugeScale: GaugeScale,
@@ -54,47 +51,31 @@ fun SettingsDialog(
     onThemeIdChanged: (ThemeId) -> Unit,
     onGaugeScaleChanged: (GaugeScale) -> Unit,
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
-    onDismissRequest: () -> Unit,
 ) {
-    AlertDialog(
-        onDismissRequest = onDismissRequest,
-        confirmButton = {
-            TextButton(
-                onClick = onDismissRequest,
-            ) {
-                Text(stringResource(R.string.button_close))
-            }
-        },
-        title = {
-            Text(stringResource(R.string.settings_title))
-        },
-        text = {
-            Column(
-                modifier = Modifier.verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-            ) {
-                SpeedUnitPicker(
-                    speedUnit = speedUnit,
-                    onSpeedUnitChanged = onSpeedUnitChanged
-                )
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        SpeedUnitPicker(
+            speedUnit = speedUnit,
+            onSpeedUnitChanged = onSpeedUnitChanged
+        )
 
-                ThemeIdPicker(
-                    themeId = themeId,
-                    onThemeIdChanged = onThemeIdChanged,
-                )
+        ThemeIdPicker(
+            themeId = themeId,
+            onThemeIdChanged = onThemeIdChanged,
+        )
 
-                GaugeScalePicker(
-                    gaugeScale = gaugeScale,
-                    onGaugeScaleChanged = onGaugeScaleChanged,
-                )
+        GaugeScalePicker(
+            gaugeScale = gaugeScale,
+            onGaugeScaleChanged = onGaugeScaleChanged,
+        )
 
-                ScreenBehaviorPicker(
-                    runWhenScreenOff = runWhenScreenOff,
-                    onRunWhenScreenOffChanged = onRunWhenScreenOffChanged,
-                )
-            }
-        }
-    )
+        ScreenBehaviorPicker(
+            runWhenScreenOff = runWhenScreenOff,
+            onRunWhenScreenOffChanged = onRunWhenScreenOffChanged,
+        )
+    }
 }
 
 @Composable
@@ -207,14 +188,16 @@ private fun DropdownField(
 
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .wrapContentSize(Alignment.TopStart)
     ) {
         OutlinedTextField(
-            modifier = Modifier.clearAndSetSemantics {
-                text = AnnotatedString("$label: $semanticValue")
-                role = Role.DropdownList
-            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clearAndSetSemantics {
+                    text = AnnotatedString("$label: $semanticValue")
+                    role = Role.DropdownList
+                },
             value = value,
             onValueChange = {},
             readOnly = true,
@@ -278,8 +261,8 @@ private fun ScreenBehaviorPicker(
 
 @Preview
 @Composable
-private fun SettingsDialog_Preview() {
-    SettingsDialog(
+private fun SettingsScreen_Preview() {
+    SettingsScreen(
         speedUnit = SpeedUnit.KILOMETERS_PER_HOUR,
         themeId = ThemeId.DEFAULT,
         gaugeScale = GaugeScale.FAST,
@@ -288,6 +271,5 @@ private fun SettingsDialog_Preview() {
         onThemeIdChanged = {},
         onGaugeScaleChanged = {},
         onRunWhenScreenOffChanged = {},
-        onDismissRequest = {},
     )
 }

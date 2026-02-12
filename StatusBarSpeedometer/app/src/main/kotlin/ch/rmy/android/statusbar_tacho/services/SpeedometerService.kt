@@ -19,7 +19,9 @@ import ch.rmy.android.statusbar_tacho.utils.Destroyer
 import ch.rmy.android.statusbar_tacho.utils.ScreenStateWatcher
 import ch.rmy.android.statusbar_tacho.utils.Settings
 import ch.rmy.android.statusbar_tacho.utils.SpeedFormatter
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
 class SpeedometerService : Service() {

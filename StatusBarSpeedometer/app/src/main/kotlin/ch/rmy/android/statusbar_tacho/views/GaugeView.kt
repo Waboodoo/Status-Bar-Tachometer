@@ -1,6 +1,5 @@
 package ch.rmy.android.statusbar_tacho.views
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -8,8 +7,6 @@ import android.graphics.RectF
 import android.view.View
 import androidx.compose.ui.graphics.toArgb
 import ch.rmy.android.statusbar_tacho.utils.Trigonometry
-import kotlin.math.max
-import kotlin.math.min
 
 class GaugeView(
     context: Context,
