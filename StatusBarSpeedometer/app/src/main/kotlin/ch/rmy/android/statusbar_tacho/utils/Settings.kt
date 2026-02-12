@@ -19,6 +19,7 @@ object Settings {
         _unitFlow.value = SpeedUnit.valueOf(preferences.getString(PREF_SPEED_UNIT, getDefaultUnit().name)!!)
         _themeIdFlow.value = ThemeId.entries.getOrElse(preferences.getInt(PREF_THEME, 0)) { ThemeId.DEFAULT }
         _gaugeScaleFlow.value = GaugeScale.entries.getOrElse(preferences.getInt(PREF_GAUGE_SCALE, 0)) { GaugeScale.FAST }
+        _showUnitFlow.value = preferences.getBoolean(PREF_SHOW_UNIT, false)
         _topSpeedFlow.value = preferences.getFloat(PREF_TOP_SPEED, -1f).takeUnless { it == -1f }
     }
 
@@ -31,6 +32,7 @@ object Settings {
     private const val PREF_KEEP_UPDATING_WHILE_SCREEN_OFF = "keep_updating_while_screen_off"
     private const val PREF_THEME = "theme"
     private const val PREF_GAUGE_SCALE = "gauge_scale"
+    private const val PREF_SHOW_UNIT = "show_unit"
     private const val PREF_TOP_SPEED = "top_speed"
 
     var isRunning: Boolean
@@ -102,6 +104,18 @@ object Settings {
             putInt(PREF_GAUGE_SCALE, value.ordinal)
         }
 
+    private val _showUnitFlow = MutableStateFlow(false)
+
+    @Stable
+    val showUnitFlow = _showUnitFlow.asStateFlow()
+
+    var showUnit: Boolean
+        get() = _showUnitFlow.value
+        set(value) = preferences.edit {
+            _showUnitFlow.value = value
+            putBoolean(PREF_SHOW_UNIT, value)
+        }
+
     private val _topSpeedFlow = MutableStateFlow<Float?>(null)
 
     @Stable
@@ -121,7 +135,7 @@ object Settings {
     private val _permissionGrantedFlow = MutableStateFlow<Boolean?>(null)
 
     @Stable
-    val permissionGrantedFlow  = _permissionGrantedFlow.asStateFlow()
+    val permissionGrantedFlow = _permissionGrantedFlow.asStateFlow()
 
     var hasPermission: Boolean?
         get() = _permissionGrantedFlow.value

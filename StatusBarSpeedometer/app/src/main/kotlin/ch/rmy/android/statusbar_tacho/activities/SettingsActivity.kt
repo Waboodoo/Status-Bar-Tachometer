@@ -76,6 +76,7 @@ class SettingsActivity : AppCompatActivity() {
     private val _speedState = MutableStateFlow<SpeedState>(SpeedState.Disabled)
     private val _themeId = settings.themeIdFlow
     private val _gaugeScale = settings.gaugeScaleFlow
+    private val _showUnit = settings.showUnitFlow
     private val _permissionGranted = settings.permissionGrantedFlow
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -117,6 +118,7 @@ class SettingsActivity : AppCompatActivity() {
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
             val themeId by _themeId.collectAsStateWithLifecycle()
             val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
+            val showUnit by _showUnit.collectAsStateWithLifecycle()
             val permissionGranted by _permissionGranted.collectAsStateWithLifecycle()
 
             var modal by remember {
@@ -207,7 +209,7 @@ class SettingsActivity : AppCompatActivity() {
                                 gaugeTheme = gaugeTheme,
                                 speedLabel = when (speedUpdate) {
                                     is SpeedState.GPSDisabled -> stringResource(R.string.gps_disabled)
-                                    is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed)
+                                    is SpeedState.SpeedChanged -> SpeedFormatter.formatSpeed(context, speed, if (showUnit) speedUnit else null)
                                     is SpeedState.SpeedUnavailable,
                                     is SpeedState.Disabled,
                                         -> if (permissionGranted == false) {
@@ -270,6 +272,7 @@ class SettingsActivity : AppCompatActivity() {
                                 speedUnit = speedUnit,
                                 themeId = themeId,
                                 gaugeScale = gaugeScale,
+                                showUnit = showUnit,
                                 runWhenScreenOff = runWhenScreenOff,
                                 onSpeedUnitChanged = {
                                     settings.unit = it
@@ -279,6 +282,9 @@ class SettingsActivity : AppCompatActivity() {
                                 },
                                 onGaugeScaleChanged = {
                                     settings.gaugeScale = it
+                                },
+                                onShowUnitChanged = {
+                                    settings.showUnit = it
                                 },
                                 onRunWhenScreenOffChanged = {
                                     _runWhenScreenOff.value = it
@@ -298,6 +304,7 @@ class SettingsActivity : AppCompatActivity() {
                             }
                         )
                     }
+
                     Modal.TOP_SPEED -> {
                         TopSpeedDialog(
                             onDismissRequest = {
@@ -305,6 +312,7 @@ class SettingsActivity : AppCompatActivity() {
                             }
                         )
                     }
+
                     null -> Unit
                 }
             }

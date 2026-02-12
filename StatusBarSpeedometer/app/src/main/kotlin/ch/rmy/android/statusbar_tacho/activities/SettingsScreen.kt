@@ -1,7 +1,6 @@
 package ch.rmy.android.statusbar_tacho.activities
 
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,10 +45,12 @@ fun SettingsScreen(
     speedUnit: SpeedUnit,
     themeId: ThemeId,
     gaugeScale: GaugeScale,
+    showUnit: Boolean,
     runWhenScreenOff: Boolean,
     onSpeedUnitChanged: (SpeedUnit) -> Unit,
     onThemeIdChanged: (ThemeId) -> Unit,
     onGaugeScaleChanged: (GaugeScale) -> Unit,
+    onShowUnitChanged: (Boolean) -> Unit,
     onRunWhenScreenOffChanged: (Boolean) -> Unit,
 ) {
     Column(
@@ -69,6 +70,11 @@ fun SettingsScreen(
         GaugeScalePicker(
             gaugeScale = gaugeScale,
             onGaugeScaleChanged = onGaugeScaleChanged,
+        )
+
+        ShowUnitPicker(
+            showUnit = showUnit,
+            onShowUnitChanged = onShowUnitChanged,
         )
 
         ScreenBehaviorPicker(
@@ -259,6 +265,33 @@ private fun ScreenBehaviorPicker(
     }
 }
 
+@Composable
+private fun ShowUnitPicker(
+    showUnit: Boolean,
+    onShowUnitChanged: (Boolean) -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .toggleable(
+                value = showUnit,
+                onValueChange = onShowUnitChanged,
+                role = Role.Switch,
+            ),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            modifier = Modifier.weight(1f),
+            text = stringResource(R.string.checkbox_label_show_unit),
+        )
+        Switch(
+            modifier = Modifier,
+            checked = showUnit,
+            onCheckedChange = null,
+        )
+    }
+}
 @Preview
 @Composable
 private fun SettingsScreen_Preview() {
@@ -266,10 +299,12 @@ private fun SettingsScreen_Preview() {
         speedUnit = SpeedUnit.KILOMETERS_PER_HOUR,
         themeId = ThemeId.DEFAULT,
         gaugeScale = GaugeScale.FAST,
+        showUnit = true,
         runWhenScreenOff = false,
         onSpeedUnitChanged = {},
         onThemeIdChanged = {},
         onGaugeScaleChanged = {},
+        onShowUnitChanged = {},
         onRunWhenScreenOffChanged = {},
     )
 }
