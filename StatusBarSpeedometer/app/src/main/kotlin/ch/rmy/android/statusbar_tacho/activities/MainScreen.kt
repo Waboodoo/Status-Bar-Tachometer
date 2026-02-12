@@ -7,8 +7,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
@@ -65,7 +66,7 @@ fun MainScreen(
         targetValue = instructionsTargetAlpha,
     )
     val speedLabelAlpha by animateFloatAsState(
-        targetValue = if (isRunning) 1f else 0.5f,
+        targetValue = if (isRunning || isInSettings) 1f else 0.5f,
     )
 
     val animatedGaugeValue by animateFloatAsState(
@@ -107,26 +108,29 @@ fun MainScreen(
             )
         }
 
-        if (!isInSettings) {
-            val style = TextStyle(
-                fontSize = 56.sp,
-                color = colorResource(R.color.main_foreground),
-                textAlign = TextAlign.Center,
-            )
-            BasicText(
-                modifier = Modifier
-                    .alpha(speedLabelAlpha),
-                text = speedLabel,
-                autoSize = TextAutoSize.StepBased(
-                    minFontSize = 16.sp,
-                    maxFontSize = 56.sp,
-                ),
-                style = style,
-            )
+        val style = TextStyle(
+            fontSize = 56.sp,
+            color = colorResource(R.color.main_foreground),
+            textAlign = TextAlign.Center,
+        )
+        BasicText(
+            modifier = Modifier
+                .alpha(speedLabelAlpha),
+            text = speedLabel,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 16.sp,
+                maxFontSize = if (isInSettings) 30.sp else 56.sp,
+            ),
+            style = style,
+        )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        if (!isInSettings) {
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 10.dp, vertical = 16.dp)
+                    .padding(horizontal = 10.dp)
+                    .padding(bottom = 16.dp)
                     .alpha(instructionsAlpha),
                 text = stringResource(R.string.main_instructions),
                 textAlign = TextAlign.Center,

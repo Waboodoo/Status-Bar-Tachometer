@@ -114,7 +114,7 @@ class SettingsActivity : AppCompatActivity() {
         setContent {
             val isRunning by _isRunning.collectAsStateWithLifecycle()
             val speedUnit by _speedUnit.collectAsStateWithLifecycle()
-            val speedUpdate by _speedState.collectAsStateWithLifecycle()
+            val rawSpeedUpdate by _speedState.collectAsStateWithLifecycle()
             val runWhenScreenOff by _runWhenScreenOff.collectAsStateWithLifecycle()
             val themeId by _themeId.collectAsStateWithLifecycle()
             val gaugeScale by _gaugeScale.collectAsStateWithLifecycle()
@@ -127,6 +127,7 @@ class SettingsActivity : AppCompatActivity() {
             var showSettings by rememberSaveable {
                 mutableStateOf(false)
             }
+            val speedUpdate: SpeedState = if (showSettings) SpeedState.SpeedChanged(0f) else rawSpeedUpdate
 
             val speed by remember {
                 derivedStateOf {
@@ -147,7 +148,7 @@ class SettingsActivity : AppCompatActivity() {
                 showSettings = false
             }
 
-            if (gaugeScale == GaugeScale.DYNAMIC) {
+            if (!showSettings && gaugeScale == GaugeScale.DYNAMIC) {
                 LaunchedEffect(speed) {
                     var gaugeMaxValue = gaugeMaxValue
                     if (speed == 0f) {
