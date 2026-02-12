@@ -69,7 +69,11 @@ class SpeedWatcher(context: Context) : Destroyable {
     }
 
     private fun updateGPSState() {
-        isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        isGPSEnabled = try {
+            locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        } catch (_: IllegalArgumentException) {
+            false
+        }
     }
 
     fun toggle(state: Boolean) {
@@ -88,7 +92,9 @@ class SpeedWatcher(context: Context) : Destroyable {
         updateGPSState()
 
         if (permissionManager.hasPermission()) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 800, 0f, gpsLocationListener)
+            if (isGPSEnabled) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 800, 0f, gpsLocationListener)
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 locationManager.requestLocationUpdates(LocationManager.FUSED_PROVIDER, 800, 0f, fusedLocationListener)
             }
