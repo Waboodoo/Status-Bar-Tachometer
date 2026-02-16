@@ -135,11 +135,7 @@ class SettingsActivity : AppCompatActivity() {
             }
             val speedUpdate: SpeedState = if (showSettings) SpeedState.SpeedChanged(0f) else rawSpeedUpdate
 
-            val speed by remember {
-                derivedStateOf {
-                    speedUnit.convertSpeed((speedUpdate as? SpeedState.SpeedChanged)?.speed ?: 0.0f)
-                }
-            }
+            val speed = speedUnit.convertSpeed((speedUpdate as? SpeedState.SpeedChanged)?.speed ?: 0.0f)
 
             var gaugeScaleFactorIndex by rememberSaveable {
                 mutableIntStateOf(0)

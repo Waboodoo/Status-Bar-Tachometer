@@ -24,6 +24,7 @@ enum class SpeedUnit {
             else -> 9
         }
 
+        @Stable
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 3.6f
     },
@@ -44,6 +45,7 @@ enum class SpeedUnit {
             else -> 3
         }
 
+        @Stable
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond
     },
@@ -64,6 +66,7 @@ enum class SpeedUnit {
             else -> 6
         }
 
+        @Stable
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 2.23694f
     },
@@ -84,6 +87,7 @@ enum class SpeedUnit {
             else -> 8
         }
 
+        @Stable
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 3.28084f
     },
@@ -104,6 +108,7 @@ enum class SpeedUnit {
             else -> 6
         }
 
+        @Stable
         override fun convertSpeed(metersPerSecond: Float): Float =
             metersPerSecond * 1.94384f
     },
@@ -120,6 +125,7 @@ enum class SpeedUnit {
     @Stable
     abstract fun steps(gaugeScale: GaugeScale): Int
 
+    @Stable
     abstract fun convertSpeed(metersPerSecond: Float): Float
 
 }
