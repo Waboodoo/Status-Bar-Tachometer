@@ -1,6 +1,6 @@
 [versions]
 activity = "1.12.4"
-androidGradle = "8.13.2"
+androidGradle = "9.0.1"
 androidXCore = "1.17.0"
 annotation = "1.9.1"
 appcompat = "1.7.1"

@@ -40,13 +40,12 @@ android {
 
     buildFeatures {
         compose = true
-        buildConfig = false
-        viewBinding = false
-        dataBinding = false
-        aidl = false
-        renderScript = false
         resValues = false
         shaders = false
+    }
+
+    kotlin {
+        jvmToolchain(17)
     }
 
     packaging {
@@ -55,18 +54,8 @@ android {
         }
     }
 
-    sourceSets.getByName("main") {
-        java.setSrcDirs(listOf("src/main/kotlin"))
-    }
-
     lint {
         disable.add("MissingTranslation")
-    }
-}
-
-kotlin {
-    compilerOptions {
-        jvmTarget = JvmTarget.fromTarget("1.8")
     }
 }
 
