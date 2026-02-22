@@ -77,7 +77,7 @@ object Settings {
         }
 
     var shouldKeepUpdatingWhileScreenIsOff: Boolean
-        get() = preferences.getBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, false)
+        get() = preferences.getBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, true)
         set(value) = preferences.edit {
             putBoolean(PREF_KEEP_UPDATING_WHILE_SCREEN_OFF, value)
         }
