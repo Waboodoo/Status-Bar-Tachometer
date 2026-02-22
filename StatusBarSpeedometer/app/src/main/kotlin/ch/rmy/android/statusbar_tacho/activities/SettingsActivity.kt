@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -201,7 +202,8 @@ class SettingsActivity : AppCompatActivity() {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(paddingValues)
+                            .padding(paddingValues),
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Box(
                             modifier = Modifier
@@ -284,6 +286,7 @@ class SettingsActivity : AppCompatActivity() {
                         ) {
                             SettingsScreen(
                                 modifier = Modifier
+                                    .widthIn(max = 800.dp)
                                     .verticalScroll(rememberScrollState())
                                     .padding(horizontal = 32.dp, vertical = 16.dp),
                                 speedUnit = speedUnit,
