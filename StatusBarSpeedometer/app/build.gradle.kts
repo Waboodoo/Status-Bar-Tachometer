@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.androidx.lifecycle.service)
 
     /* Compose */
     implementation(platform(libs.androidx.compose.bom))
