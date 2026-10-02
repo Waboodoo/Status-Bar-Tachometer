@@ -1,19 +1,18 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     alias(libs.plugins.compose.compiler)
 }
 
-android {
+extensions.configure<ApplicationExtension> {
     namespace = "ch.rmy.android.statusbar_tacho"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "ch.rmy.android.statusbar_tacho"
         minSdk = 23
-        targetSdk = 36
+        targetSdk = 37
         versionName = "3.16.0"
         //noinspection HighAppVersionCode
         versionCode = 2003160000
@@ -24,10 +23,6 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isMinifyEnabled = false
-            isShrinkResources = false
-
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             applicationIdSuffix = ".debug"
         }
         getByName("release") {
@@ -44,10 +39,6 @@ android {
         shaders = false
     }
 
-    kotlin {
-        jvmToolchain(17)
-    }
-
     packaging {
         resources {
             excludes.add("DebugProbesKt.bin")
@@ -57,6 +48,10 @@ android {
     lint {
         disable.add("MissingTranslation")
     }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
