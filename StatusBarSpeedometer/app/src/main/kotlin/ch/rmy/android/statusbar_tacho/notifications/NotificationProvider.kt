@@ -6,6 +6,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.AudioAttributes
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
@@ -91,9 +93,15 @@ class NotificationProvider(context: Context) {
         NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.notification_channel),
-            NotificationManager.IMPORTANCE_LOW
+            NotificationManager.IMPORTANCE_DEFAULT
         )
             .apply {
+                setSound(
+                    Uri.EMPTY,
+                    AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build()
+                )
                 enableLights(false)
                 enableVibration(false)
                 setShowBadge(false)
