@@ -13,9 +13,9 @@ extensions.configure<ApplicationExtension> {
         applicationId = "ch.rmy.android.statusbar_tacho"
         minSdk = 23
         targetSdk = 37
-        versionName = "3.16.0"
+        versionName = "3.17.0"
         //noinspection HighAppVersionCode
-        versionCode = 2003160000
+        versionCode = 2003170000
         // 20,(2 digits major),(2 digits minor),(2 digits patch),(2 digits build)
 
         vectorDrawables.useSupportLibrary = true
