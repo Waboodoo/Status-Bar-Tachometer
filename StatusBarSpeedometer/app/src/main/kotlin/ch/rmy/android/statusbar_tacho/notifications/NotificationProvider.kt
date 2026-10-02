@@ -24,12 +24,7 @@ class NotificationProvider(context: Context) {
     private val builder: Notification.Builder
 
     init {
-        val pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT or if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            0
-        }
-
+        val pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         val contentIntent = Intent(context, SettingsActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         val deleteIntent = Intent(context, DismissReceiver::class.java)
@@ -53,20 +48,14 @@ class NotificationProvider(context: Context) {
             .setDeleteIntent(turnOffPendingIntent)
             .setLocalOnly(true)
             .setOngoing(true)
-            .let {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    it.addAction(
-                        Notification.Action.Builder(
-                            null,
-                            context.getString(R.string.notification_action_turn_off),
-                            turnOffPendingIntent,
-                        )
-                            .build()
-                    )
-                } else {
-                    it
-                }
-            }
+            .addAction(
+                Notification.Action.Builder(
+                    null,
+                    context.getString(R.string.notification_action_turn_off),
+                    turnOffPendingIntent,
+                )
+                    .build()
+            )
             .let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     it.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
